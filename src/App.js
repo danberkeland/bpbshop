@@ -14,6 +14,7 @@ import Loader from "./AppStructure/Loader";
 
 import { useSettingsStore } from "./Contexts/SettingsZustand";
 import { Choose } from "./Pages/Choose";
+import InfoChosen from "./Pages/InfoChosen";
 
 Amplify.configure(awsmobile);
 
@@ -29,7 +30,7 @@ export function App() {
 
       <Router>
         {formType === "infoChosen" ? (
-          <React.Fragment>Info Chosen</React.Fragment>
+          <InfoChosen />
         ) : <Choose /> }
       </Router>
     </React.Fragment>

@@ -13,18 +13,17 @@ export const withBPBForm = (Component) => (props) => {
   const setIsCreate = useSettingsStore((state) => state.setIsCreate);
   const isChange = useSettingsStore((state) => state.isChange);
   const setFormType = useSettingsStore((state) => state.setFormType);
-  const setAuthClass = useSettingsStore((state) => state.setAuthClass);
-  const setAccess = useSettingsStore((state) => state.setAccess);
-  const setUser = useSettingsStore((state) => state.setUser);
-  const setUserObject = useSettingsStore((state) => state.setUserObject);
   const formType = useSettingsStore((state) => state.formType);
   const isLoading = useSettingsStore((state) => state.isLoading);
-  const user = useSettingsStore((state) => state.user);
-  const authClass = useSettingsStore((state) => state.authClass);
   const setIsLoading = useSettingsStore((state) => state.setIsLoading);
-  const userObject = useSettingsStore((state) => state.userObject);
-  const currentLoc = useSettingsStore((state) => state.currentLoc);
-  const setCurrentLoc = useSettingsStore((state) => state.setCurrentLoc);
+  const location = useSettingsStore((state) => state.location);
+  const setLocation = useSettingsStore((state) => state.setLocation);
+  const delivDate = useSettingsStore((state) => state.delivDate);
+  const setDelivDate = useSettingsStore((state) => state.setDelivDate);
+  const delivTime = useSettingsStore((state) => state.delivTime);
+  const setDelivTime = useSettingsStore((state) => state.setDelivTime);
+
+  console.log("Firstprops", props);
 
   props = {
     ...props,
@@ -35,26 +34,15 @@ export const withBPBForm = (Component) => (props) => {
     setIsEdit,
     setIsCreate,
     setFormType,
-    setAuthClass,
-    setAccess,
-    setUserObject,
-    setUser,
     isLoading,
-    user,
-    authClass,
     setIsLoading,
-    userObject,
-    currentLoc,
-    setCurrentLoc,
+    location,
+    setLocation,
+    delivDate,
+    setDelivDate,
+    delivTime,
+    setDelivTime
   };
-
-  let str = props.name;
-  let source = str + "List";
-  let path = "/" + str.charAt(0).toUpperCase() + str.slice(1) + "s";
-
-  let fns = props;
-
-  var sourceVar = window[source];
 
   const editButtonStyle = {
     width: "100px",
@@ -71,28 +59,23 @@ export const withBPBForm = (Component) => (props) => {
     setIsEdit(true);
   };
 
+  console.log("BPBprops", props);
+  let fns = props
+
   return (
     <div>
       <ConfirmDialog />
       <Formik
         initialValues={props.initialState}
-        validationSchema={props.validationSchema(sourceVar)}
+        validationSchema={props.validationSchema(props)}
         onSubmit={(props) => {
+          console.log("submitprops", props);
           setIsLoading(true);
-          console.log("Formprops", props);
-          console.log("fns", fns);
           window.scrollTo(0, 0);
           setIsEdit(false);
-          if (isCreate) {
-            fns.create(props, fns).then(() => {
-              window.location = path;
-            });
-          } else {
-            fns.update({ ...fns, ...props }).then(() => {
-              console.log("Formprops", props);
-              formType === "signedIn" ? (window.location = path) : <div></div>;
-            });
-          }
+         
+          fns.update({ ...fns, ...props })
+          
         }}
       >
         {(props) => (

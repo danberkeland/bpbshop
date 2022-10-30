@@ -1,21 +1,23 @@
 import * as yup from "yup";
 
-export const validationSchema = (locationList) => {
-  const phoneRegEx = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-
+export const validationSchema = (props) => {
+  console.log('valprops', props)
+  
   return yup.object().shape({
-    email: yup
-      .array()
-      .transform(function (value, originalValue) {
-        if (this.isType(value) && value !== null) {
-          return value;
-        }
-        return originalValue ? originalValue.split(/[\s,]+/) : [];
-      })
-      .of(yup.string().email(({ value }) => `${value} is not a valid email`)),
-
-    phone: yup.string().matches(phoneRegEx, "Phone number format xxx-xxx-xxxx"),
-
+    location: yup.string(),
+    time: yup.date().test(
+      "is-open",
+      `Must be within ${props.loc} store hours.`,
+      (value) => {  
+        let newDate = new Date(Date.parse(value))
+        let fullTime = newDate.getHours()+newDate.getMinutes()/60  
+       
+       
+        return (fullTime>7 && fullTime<14) ? true : false
+      }
+    )
+      
+      
     
   });
 };

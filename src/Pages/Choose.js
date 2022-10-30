@@ -6,7 +6,7 @@ import { validationSchema } from "./ValidationSchema";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 
-import { submitAuth, sendForgottenPasswordEmail } from "../restAPIs.js";
+import { infoChosen } from "../restAPIs.js";
 import { withFadeIn } from "../hoc/withFadeIn";
 import { withBPBForm } from "../hoc/withBPBForm";
 import { GroupBox, Title } from "../CommonStyles";
@@ -17,9 +17,15 @@ import { useSettingsStore } from "../Contexts/SettingsZustand";
 const BPB = new CustomInputs();
 
 const initialState = {
-  email: "",
-  password: "",
+  location: "",
+  pickup: "",
+  time: "",
 };
+
+const locations = [
+  { label: "Prado", value: "prado", open: 7, close: 11 },
+  { label: "Carlton", value: "carlton", open: 7, close: 14 },
+];
 
 export const Choose = () => {
   const setFormType = useSettingsStore((state) => state.setFormType);
@@ -37,11 +43,6 @@ export const Choose = () => {
     </div>
   );
 
-  const handleForgotPassword = async (props) => {
-    await sendForgottenPasswordEmail(props.values.email).then(() => setFormType("forgotPassword"))
-    
-  }
-
   useEffect(() => {
     setIsEdit(true);
   });
@@ -50,32 +51,40 @@ export const Choose = () => {
     withBPBForm,
     withFadeIn
   )((props) => {
+    console.log("Locprops", props);
+
     return (
       <React.Fragment>
         <GroupBox>
           <div className="flex justify-content-center">
             <div className="card">
               <Title>Sign In</Title>
-              
-              <BPB.CustomTextInput
-                label="Location?"
+
+              <BPB.CustomDropdownInput
+                label="Location"
                 name="location"
+                options={locations}
                 converter={props}
               />
-              <BPB.CustomTextInput
+              <BPB.CustomCalendarInput
                 label="Pickup Date?"
-                name="date"
+                name="pickup"
                 converter={props}
               />
-              <BPB.CustomTextInput
+              <BPB.CustomTimeInput
                 label="Pickup Time?"
                 name="time"
+                stepMinute={10}
                 converter={props}
               />
+              {/*
+              {props.values.location === "carlton" && setCurrentLoc("carlton")}
+              {props.values.location === "prado" && setCurrentLoc("prado")}
+    */}
             </div>
           </div>
         </GroupBox>
-     
+
         <Dialog
           visible={showMessage}
           onHide={() => setShowMessage(false)}
@@ -83,7 +92,6 @@ export const Choose = () => {
           footer={dialogFooter}
           showHeader={false}
           breakpoints={{ "960px": "80vw" }}
-          
         >
           <div className="flex align-items-center flex-column pt-6 px-3">
             <i
@@ -102,10 +110,10 @@ export const Choose = () => {
 
   return (
     <BPBLocationForm
-      name="auth"
+      name="pickup"
       validationSchema={validationSchema}
       initialState={initialState}
-      update={submitAuth}
+      update={infoChosen}
       setShowMessage={setShowMessage}
     />
   );

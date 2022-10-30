@@ -5,7 +5,8 @@ import { InputNumber } from "primereact/inputnumber";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
-import { Password } from 'primereact/password';
+import { Password } from "primereact/password";
+import { Calendar } from "primereact/calendar";
 
 import { withFormComponentWrap } from "../hoc/withFormComponentWrap";
 
@@ -15,15 +16,10 @@ const options = [
 ];
 
 const CustomIDInputBase = ({ label, ...props }) => {
-  
   return (
     <InputText
       {...props}
-      value={ 
-        props.value
-          ? props.value
-          : ""
-      }
+      value={props.value ? props.value : ""}
       type="string"
       autoCapitalize="none"
       securetextentry="true"
@@ -33,48 +29,44 @@ const CustomIDInputBase = ({ label, ...props }) => {
 };
 
 const CustomTextInputBase = ({ label, ...props }) => {
-  
   return (
     <InputText
       {...props}
       type="string"
-      value={
-        props.value
-          ? props.value
-          : ""
-      }
+      value={props.value ? props.value : ""}
     />
   );
 };
 
+const CustomCalendarBase = ({ label, ...props }) => {
+  return (
+    <Calendar {...props} type="string" value={props.value ? props.value : ""} />
+  );
+};
+
+const CustomTimeBase = ({ label, ...props }) => {
+  return (
+    <Calendar {...props} timeOnly hourFormat="12" type="string" value={props.value ? props.value : ""} />
+  );
+};
+
 const CustomPasswordInputBase = ({ label, ...props }) => {
-  
   return (
     <Password
       {...props}
       type="string"
       toggleMask={true}
-  
-      value={
-        props.value
-          ? props.value
-          : ""
-      }
+      value={props.value ? props.value : ""}
     />
   );
 };
 
 const CustomFloatInputBase = ({ label, ...props }) => {
-  
   return (
     <InputNumber
       {...props}
       type="tel"
-      value={
-        isNaN(props.value)
-          ? 0
-          : Number(props.value)
-      }
+      value={isNaN(props.value) ? 0 : Number(props.value)}
       onChange={(values) => {
         props.converter.setFieldValue(props.name, Number(values.value));
       }}
@@ -86,16 +78,11 @@ const CustomFloatInputBase = ({ label, ...props }) => {
 };
 
 const CustomIntInputBase = ({ label, ...props }) => {
- 
   return (
     <InputNumber
       {...props}
       type="tel"
-      value={
-        isNaN(props.value)
-          ? 0
-          : Number(props.value)
-      }
+      value={isNaN(props.value) ? 0 : Number(props.value)}
       onChange={(values) => {
         props.converter.setFieldValue(props.name, Number(values.value));
       }}
@@ -104,15 +91,10 @@ const CustomIntInputBase = ({ label, ...props }) => {
 };
 
 const CustomYesNoInputBase = ({ label, ...props }) => {
-  
   return (
     <SelectButton
       {...props}
-      value={
-        props.value
-          ? props.value
-          : false
-      }
+      value={props.value ? props.value : false}
       onChange={() => {
         props.converter.setFieldValue(
           props.name,
@@ -125,32 +107,17 @@ const CustomYesNoInputBase = ({ label, ...props }) => {
 };
 
 const CustomDropdownInputBase = ({ label, ...props }) => {
-  
   return (
     <Dropdown
       {...props}
       type="string"
-      value={
-        props.value
-          ? props.value
-          : null
-      }
+      value={props.value ? props.value : null}
     />
   );
 };
 
 const CustomMultiSelectInputBase = ({ label, ...props }) => {
-  
-  return (
-    <MultiSelect
-      {...props}
-      value={
-        props.value
-          ? props.value
-          : null
-      }
-    />
-  );
+  return <MultiSelect {...props} value={props.value ? props.value : null} />;
 };
 
 export class CustomInputs {
@@ -165,5 +132,7 @@ export class CustomInputs {
     this.CustomMultiSelectInput = withFormComponentWrap(
       CustomMultiSelectInputBase
     );
+    this.CustomCalendarInput = withFormComponentWrap(CustomCalendarBase);
+    this.CustomTimeInput = withFormComponentWrap(CustomTimeBase);
   }
 }
