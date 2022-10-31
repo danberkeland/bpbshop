@@ -2,6 +2,55 @@ import React from "react";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
 
+const menu = [
+  {
+    title: "Breakfast Sandwiches",
+    items: [
+      {
+        name: "Turkey, Egg, and Avocado Croissant",
+        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
+        price: 10.25,
+        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
+      },
+      {
+        name: "Turkey, Egg, and Avocado Croissant",
+        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
+        price: 10.25,
+        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
+      },
+      {
+        name: "Turkey, Egg, and Avocado Croissant",
+        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
+        price: 10.25,
+        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
+      },
+    ],
+  },
+  {
+    title: "Breakfast Sandwiches",
+    items: [
+      {
+        name: "Turkey, Egg, and Avocado Croissant",
+        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
+        price: 10.25,
+        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
+      },
+      {
+        name: "Turkey, Egg, and Avocado Croissant",
+        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
+        price: 10.25,
+        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
+      },
+      {
+        name: "Turkey, Egg, and Avocado Croissant",
+        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
+        price: 10.25,
+        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
+      },
+    ],
+  },
+];
+
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
@@ -40,81 +89,43 @@ function InfoChosen() {
           />
         </div>
       </div>
-      
-      <div className="itemContainer">
-      <h1>BACK PORCH BAKERY</h1>
-        <div className="menuGroup">
-          <h2>Breakfast Sandwiches</h2>
-          <div className="menuGroupDescription">
-            The cafe is OPEN with all of our pastries, cookies, breads, and
-            drinks!
-          </div>
-          <div className="menuGroupDescription">
-            Breakfast Sandwiches are available all day.
-          </div>
-        </div>
-        <div className="menuGroupGrid">
-        <div className="itemContainer">
-         
-          <h3>Turkey, Egg, and Avocado Croissant</h3>
-          <div className="itemDescrip">
-            Egg, Turkey, Avocado, Aioli on a Back Porch Croissant
-          </div>
-          <h4>$10.25</h4>
-          <div className="itemPic">PIC</div>
-        </div>
-        <div className="itemContainer">
-          <h3>Turkey, Egg, and Avocado Croissant</h3>
-          <div className="itemDescrip">
-            Egg, Turkey, Avocado, Aioli on a Back Porch Croissant
-          </div>
-          <h4>$10.25</h4>
-          <div className="itemPic">PIC</div>
-        </div>
-        <div className="itemContainer">
-          <h3>Turkey, Egg, and Avocado Croissant</h3>
-          <div className="itemDescrip">
-            Egg, Turkey, Avocado, Aioli on a Back Porch Croissant
-          </div>
-          <h4>$10.25</h4>
-          <div className="itemPic">PIC</div>
-          </div>
-       
-        </div>
-        <div className="menuGroup">
-          <h2>Breakfast Sandwiches</h2>
-          <div className="menuGroupDescription">
-            The cafe is OPEN with all of our pastries, cookies, breads, and
-            drinks!
-          </div>
-          <div className="menuGroupDescription">
-            Breakfast Sandwiches are available all day.
-          </div>
-        </div>
-        <div className="itemContainer">
-          <h3>Turkey, Egg, and Avocado Croissant</h3>
-          <div className="itemDescrip">
-            Egg, Turkey, Avocado, Aioli on a Back Porch Croissant
-          </div>
-          <h4>$10.25</h4>
-          <div className="itemPic">PIC</div>
-        </div>
-        <div className="itemContainer">
-          <h3>Turkey, Egg, and Avocado Croissant</h3>
-          <div className="itemDescrip">
-            Egg, Turkey, Avocado, Aioli on a Back Porch Croissant
-          </div>
-          <h4>$10.25</h4>
-          <div className="itemPic">PIC</div>
-        </div>
-        <div className="itemContainer">
-          <h3>Turkey, Egg, and Avocado Croissant</h3>
-          <div className="itemDescrip">
-            Egg, Turkey, Avocado, Aioli on a Back Porch Croissant
-          </div>
-          <h4>$10.25</h4>
-          <div className="itemPic">PIC</div>
-        </div>
+
+      <div className="mainContainer">
+        <h1>BACK PORCH BAKERY</h1>
+
+        {menu.map((group, index) => {
+          return (
+            <React.Fragment>
+              <div className="menuGroup">
+                <h2>{group.title}</h2>
+                <div className="menuGroupDescription">
+                  The cafe is OPEN with all of our pastries, cookies, breads,
+                  and drinks!
+                </div>
+                <div className="menuGroupDescription">
+                  Breakfast Sandwiches are available all day.
+                </div>
+                <div className="menuGroupGrid">
+                  {group.items.map((item) => (
+                    <div className="itemContainer">
+                      <div className="descripGroup">
+                        <h3>{item.name}</h3>
+                        <div className="itemDescrip">{item.description}</div>
+                        <h4>${item.price}</h4>
+                      </div>
+
+                      <img
+                        className="foodPic"
+                        src={"https://backporchbakery.square.site/" + item.url}
+                        alt="sandwich"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
 
       <div className="locationInfoBox">

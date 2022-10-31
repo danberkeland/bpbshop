@@ -17,8 +17,8 @@ h1 {
 }
 
 
-.itemContainer {
-  max-width: 840px;
+.mainContainer {
+  width: 100%;
   line-height: 16px;
   padding-left: 68px;
   padding-right: 68px;
@@ -51,6 +51,11 @@ h1 {
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
-  display: block;
+  display: flex;
   padding: 16px 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
 }
