@@ -99,6 +99,7 @@ h1 {
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
+  width: 100%;
   display: flex;
   padding: 16px 24px;
   align-items: center;
@@ -113,10 +114,15 @@ h1 {
 }
 
 .descripGroup {
-  width: 70%;
+  width: 60%;
+  min-width: 300px;
 }
 
 .signInBox {
   width: 100%;
   background-color: white;;
+}
+
+.foodPicSmall {
+  width: 180px;
 }

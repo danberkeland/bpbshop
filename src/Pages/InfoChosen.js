@@ -46,18 +46,20 @@ function InfoChosen() {
     let isComingUp = true;
     let today = DateTime.now().setZone("America/Los_Angeles");
     today = today.toString().split("T")[0];
-    let todayPlus21 = DateTime.now()
+    let delivDatePlus21 = DateTime.fromISO(delivDate)
       .setZone("America/Los_Angeles")
       .plus({ days: 21 });
-    todayPlus21 = todayPlus21.toString().split("T")[0];
+    delivDatePlus21 = delivDatePlus21.toString().split("T")[0];
 
-    if (item.specialStart > todayPlus21) {
+    if (item.specialStart > delivDatePlus21) {
       isComingUp = false;
     }
 
     if (item.specialEnd < today) {
       isComingUp = false;
     }
+
+    console.log("isComingUp", isComingUp);
 
     return item.location === location && isComingUp;
   };
@@ -101,8 +103,8 @@ function InfoChosen() {
           return (
             group.items.filter(itemFilter).length > 0 && (
               <React.Fragment>
-                <div id={index} key={"menuGroup"+index} className="menuGroup">
-                  <h2 key={"groupTitle"+index}>{group.title}</h2>
+                <div id={index} key={"menuGroup" + index} className="menuGroup">
+                  <h2 key={"groupTitle" + index}>{group.title}</h2>
                   <div className="menuGroupDescripContainer">
                     <div className="menuGroupDescription">
                       The cafe is OPEN with all of our pastries, cookies,
@@ -110,11 +112,15 @@ function InfoChosen() {
                     </div>
                     <div className="menuGroupDescription">{group.info}</div>
                   </div>
-                  <div key={"menuGroupGrid"+index} className="menuGroupGrid">
+                  <div key={"menuGroupGrid" + index} className="menuGroupGrid">
                     {group.items
                       .filter((item) => item.location === location)
                       .map((item, index) => (
-                        <div id={index} key={"itemContainer"+index} className="itemContainer">
+                        <div
+                          id={index}
+                          key={"itemContainer" + index}
+                          className="itemContainer"
+                        >
                           <div className="descripGroup">
                             <h3>{item.name}</h3>
                             <div className="itemDescrip">
@@ -134,8 +140,8 @@ function InfoChosen() {
                                 {item.specialStart ? (
                                   item.specialEnd ? (
                                     <div className="itemAlert">
-                                      Item available between {item.specialStart}{" "}
-                                      and {item.specialEnd}
+                                      Available {item.specialStart}
+                                      to {item.specialEnd}
                                     </div>
                                   ) : (
                                     <div className="itemAlert">
@@ -168,10 +174,9 @@ function InfoChosen() {
                             )}
                           </div>
                           <img
-                            className="foodPic"
-                            src={
-                              "https://backporchbakery.square.site/" + item.url
-                            }
+                            className="foodPicSmall"
+                            src={item.url}
+                            
                             alt="sandwich"
                           />
                         </div>
