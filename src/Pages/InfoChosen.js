@@ -8,6 +8,13 @@ function InfoChosen() {
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
 
+  function time_convert(num)
+  { 
+   var hours = Math.floor(num / 60);  
+   var minutes = num % 60;
+   return hours + ":" + minutes;         
+ }
+
   return (
     <React.Fragment>
       <div className="header">
@@ -44,36 +51,70 @@ function InfoChosen() {
         </div>
 
         {menu.map((group, index) => {
-          return group.items.filter(item => item.location===location).length>0 && (
-            <React.Fragment>
-              <div id={index} className="menuGroup">
-                <h2>{group.title}</h2>
-                <div className="menuGroupDescripContainer">
-                  <div className="menuGroupDescription">
-                    The cafe is OPEN with all of our pastries, cookies, breads,
-                    and drinks!
-                  </div>
-                  <div className="menuGroupDescription">{group.info}</div>
-                </div>
-                <div className="menuGroupGrid">
-                  {group.items.filter(item => item.location===location).map((item, index) => (
-                    <div id={index} className="itemContainer">
-                      <div className="descripGroup">
-                        <h3>{item.name}</h3>
-                        <div className="itemDescrip">{item.description}</div>
-                        <h4>${item.price}</h4>
-                      </div>
-
-                      <img
-                        className="foodPic"
-                        src={"https://backporchbakery.square.site/" + item.url}
-                        alt="sandwich"
-                      />
+          return (
+            group.items.filter((item) => item.location === location).length >
+              0 && (
+              <React.Fragment>
+                <div id={index} className="menuGroup">
+                  <h2>{group.title}</h2>
+                  <div className="menuGroupDescripContainer">
+                    <div className="menuGroupDescription">
+                      The cafe is OPEN with all of our pastries, cookies,
+                      breads, and drinks!
                     </div>
-                  ))}
+                    <div className="menuGroupDescription">{group.info}</div>
+                  </div>
+                  <div className="menuGroupGrid">
+                    {group.items
+                      .filter((item) => item.location === location)
+                      .map((item, index) => (
+                        <div id={index} className="itemContainer">
+                          <div className="descripGroup">
+                            <h3>{item.name}</h3>
+                            <div className="itemDescrip">
+                              {item.description}
+                            </div>
+                            <h4>${item.price}</h4>
+                            {item.specialStart ? (
+                              item.specialEnd ? (
+                                <div className="itemAlert">
+                                  Item available between {item.specialStart} and{" "}
+                                  {item.specialEnd}
+                                </div>
+                              ) : (
+                                <div className="itemAlert">
+                                  Item available after {item.specialStart}
+                                </div>
+                              )
+                            ) : (
+                              <div></div>
+                            )}
+                            {item.days ? (
+                              <div className="itemAlert">
+                                Available {item.days.map((item) => item+", ")} after{" "}
+                                {time_convert(item.start*60)} am
+                              </div>
+                            ) : (
+                              <div className="itemAlert">
+                                Available everyday after {time_convert(item.start*60)} am
+                              </div>
+                            )}
+                            {item.lead>0 && <div>LEAD TIME: {item.lead} days</div>}
+                          </div>
+
+                          <img
+                            className="foodPic"
+                            src={
+                              "https://backporchbakery.square.site/" + item.url
+                            }
+                            alt="sandwich"
+                          />
+                        </div>
+                      ))}
+                  </div>
                 </div>
-              </div>
-            </React.Fragment>
+              </React.Fragment>
+            )
           );
         })}
       </div>
