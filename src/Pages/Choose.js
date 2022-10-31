@@ -14,12 +14,24 @@ import { compose } from "../utils";
 import "./Choose.css";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 
+
+const { DateTime } = require("luxon");
+
+let now = DateTime.now()
+  .setZone("America/Los_Angeles")
+
+let newDate = new Date(Date.parse(now))
+let newTime = new Date(Date.parse('01 Jan 2022 07:00:00'))
+
+console.log('now', now)
+  
+
 const BPB = new CustomInputs();
 
 const initialState = {
-  location: "",
-  pickup: "",
-  time: "",
+  location: "carlton",
+  pickup: newDate,
+  time: newTime,
 };
 
 const locations = [
@@ -55,10 +67,11 @@ export const Choose = () => {
 
     return (
       <React.Fragment>
+       
         <GroupBox>
           <div className="flex justify-content-center">
             <div className="card">
-              <Title>Sign In</Title>
+              <Title>Choose Pickup Time and Location</Title>
 
               <BPB.CustomDropdownInput
                 label="Location"
@@ -104,6 +117,7 @@ export const Choose = () => {
             </p>
           </div>
         </Dialog>
+       
       </React.Fragment>
     );
   });

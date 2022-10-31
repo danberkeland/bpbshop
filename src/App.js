@@ -16,7 +16,19 @@ import { useSettingsStore } from "./Contexts/SettingsZustand";
 import { Choose } from "./Pages/Choose";
 import InfoChosen from "./Pages/InfoChosen";
 
+import styled from "styled-components";
+
 Amplify.configure(awsmobile);
+
+const LoaderBack = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 199;
+  background-color: rgba(65, 64, 99, 0.5);
+`;
 
 export function App() {
   const formType = useSettingsStore((state) => state.formType);
@@ -26,12 +38,18 @@ export function App() {
     <React.Fragment>
       {isLoading && <Loader />}
 
-      <h1>Back Porch Bakery</h1>
 
       <Router>
         {formType === "infoChosen" ? (
           <InfoChosen />
-        ) : <Choose /> }
+        ) : (
+          <React.Fragment>
+            <InfoChosen />
+            <LoaderBack>
+              <Choose />
+            </LoaderBack>
+          </React.Fragment>
+        )}
       </Router>
     </React.Fragment>
   );

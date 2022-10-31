@@ -1,55 +1,7 @@
 import React from "react";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
-
-const menu = [
-  {
-    title: "Breakfast Sandwiches",
-    items: [
-      {
-        name: "Turkey, Egg, and Avocado Croissant",
-        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
-        price: 10.25,
-        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
-      },
-      {
-        name: "Turkey, Egg, and Avocado Croissant",
-        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
-        price: 10.25,
-        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
-      },
-      {
-        name: "Turkey, Egg, and Avocado Croissant",
-        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
-        price: 10.25,
-        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
-      },
-    ],
-  },
-  {
-    title: "Breakfast Sandwiches",
-    items: [
-      {
-        name: "Turkey, Egg, and Avocado Croissant",
-        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
-        price: 10.25,
-        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
-      },
-      {
-        name: "Turkey, Egg, and Avocado Croissant",
-        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
-        price: 10.25,
-        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
-      },
-      {
-        name: "Turkey, Egg, and Avocado Croissant",
-        description: "Egg, Turkey, Avocado, Aioli on a Back Porch Croissant",
-        price: 10.25,
-        url: "uploads/1/2/9/7/129700795/s925172661976394124_p376_i1_w160.jpeg",
-      },
-    ],
-  },
-];
+import { menu } from "./Menu";
 
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
@@ -58,10 +10,6 @@ function InfoChosen() {
 
   return (
     <React.Fragment>
-      <div>InfoChosen</div>
-      <div>{delivDate}</div>
-      <div>{delivTime}</div>
-      <div>{location}</div>
       <div className="header">
         <div className="homeFlag">
           <img
@@ -91,23 +39,25 @@ function InfoChosen() {
       </div>
 
       <div className="mainContainer">
-        <h1>BACK PORCH BAKERY</h1>
+        <div className="banner">
+          <h1>BACK PORCH BAKERY</h1>
+        </div>
 
         {menu.map((group, index) => {
-          return (
+          return group.items.filter(item => item.location===location).length>0 && (
             <React.Fragment>
-              <div className="menuGroup">
+              <div id={index} className="menuGroup">
                 <h2>{group.title}</h2>
-                <div className="menuGroupDescription">
-                  The cafe is OPEN with all of our pastries, cookies, breads,
-                  and drinks!
-                </div>
-                <div className="menuGroupDescription">
-                  Breakfast Sandwiches are available all day.
+                <div className="menuGroupDescripContainer">
+                  <div className="menuGroupDescription">
+                    The cafe is OPEN with all of our pastries, cookies, breads,
+                    and drinks!
+                  </div>
+                  <div className="menuGroupDescription">{group.info}</div>
                 </div>
                 <div className="menuGroupGrid">
-                  {group.items.map((item) => (
-                    <div className="itemContainer">
+                  {group.items.filter(item => item.location===location).map((item, index) => (
+                    <div id={index} className="itemContainer">
                       <div className="descripGroup">
                         <h3>{item.name}</h3>
                         <div className="itemDescrip">{item.description}</div>

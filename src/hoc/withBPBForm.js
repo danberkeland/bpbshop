@@ -4,7 +4,7 @@ import { Button } from "primereact/button";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import { Formik, Form } from "formik";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
-import { FlexSpaceBetween } from "../CommonStyles";
+import { CenteredContainer, FlexSpaceBetween } from "../CommonStyles";
 
 export const withBPBForm = (Component) => (props) => {
   const isEdit = useSettingsStore((state) => state.isEdit);
@@ -41,7 +41,7 @@ export const withBPBForm = (Component) => (props) => {
     delivDate,
     setDelivDate,
     delivTime,
-    setDelivTime
+    setDelivTime,
   };
 
   const editButtonStyle = {
@@ -60,10 +60,11 @@ export const withBPBForm = (Component) => (props) => {
   };
 
   console.log("BPBprops", props);
-  let fns = props
+  let fns = props;
 
   return (
     <div>
+      <CenteredContainer>
       <ConfirmDialog />
       <Formik
         initialValues={props.initialState}
@@ -73,50 +74,58 @@ export const withBPBForm = (Component) => (props) => {
           setIsLoading(true);
           window.scrollTo(0, 0);
           setIsEdit(false);
-         
-          fns.update({ ...fns, ...props })
-          
+
+          fns.update({ ...fns, ...props });
         }}
       >
         {(props) => (
           <React.Fragment>
-            <Form>
-              <Component {...props} />
-              {isEdit | isCreate && formType === "signedIn" ? (
-                <div className="floatButtonsTop">
-                  {isChange && (
-                    <Button
-                      label="Submit"
-                      type="submit"
-                      className="p-button-raised p-button-rounded p-button-danger"
-                      style={editButtonStyle}
-                    />
-                  )}
-                </div>
-              ) : (
-                <div></div>
-              )}
-              {formType !== "signedIn" && (
-                <Button label="Submit" type="submit" style={editButtonStyle} />
-              )}
-
-              {!isEdit && !isCreate && formType === "signedIn" && (
-                <FlexSpaceBetween>
+            
+            <div className="signInBox">
+              <Form>
+                <Component {...props} />
+                {isEdit | isCreate && formType === "signedIn" ? (
+                  <div className="floatButtonsTop">
+                    {isChange && (
+                      <Button
+                        label="Submit"
+                        type="submit"
+                        className="p-button-raised p-button-rounded p-button-danger"
+                        style={editButtonStyle}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+                {formType !== "signedIn" && (
                   <Button
-                    type="button"
-                    icon="pi pi-pencil"
-                    className="p-button-outlined p-button-help"
-                    label="Edit"
-                    onClick={(e) => handleEdit(e, props)}
+                    label="Submit"
+                    type="submit"
+                    style={editButtonStyle}
                   />
-                </FlexSpaceBetween>
-              )}
-            </Form>
+                )}
+
+                {!isEdit && !isCreate && formType === "signedIn" && (
+                  <FlexSpaceBetween>
+                    <Button
+                      type="button"
+                      icon="pi pi-pencil"
+                      className="p-button-outlined p-button-help"
+                      label="Edit"
+                      onClick={(e) => handleEdit(e, props)}
+                    />
+                  </FlexSpaceBetween>
+                )}
+              </Form>
+            </div>
+            
           </React.Fragment>
         )}
       </Formik>
 
       <div className="bottomSpace"></div>
+      </CenteredContainer>
     </div>
   );
 };
