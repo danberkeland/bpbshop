@@ -108,6 +108,10 @@ h1 {
  
 }
 
+.itemAlert {
+  color: red;
+}
+
 .descripGroup {
   width: 70%;
 }

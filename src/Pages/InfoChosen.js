@@ -2,18 +2,65 @@ import React from "react";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
 import { menu } from "./Menu";
+import { DateTime } from "luxon";
 
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
 
-  function time_convert(num)
-  { 
-   var hours = Math.floor(num / 60);  
-   var minutes = num % 60;
-   return hours + ":" + minutes;         
- }
+  function time_convert(num) {
+    var hours = Math.floor(num / 60);
+    var minutes = num % 60;
+    return hours + ":" + minutes;
+  }
+
+  function checkAvailable(item) {
+    // check if within lead time
+    let todayPlusLead = DateTime.now()
+      .setZone("America/Los_Angeles")
+      .plus({ days: item.lead });
+    todayPlusLead = todayPlusLead.toString().split("T")[0];
+    let leadTime = delivDate >= todayPlusLead;
+
+    // check if within special days
+    let specialDays = true;
+    if (item.specialStart > delivDate || item.specialEnd < delivDate) {
+      specialDays = false;
+    }
+
+    // check match on dayofweek
+    let dayOfWeek = true;
+    let newDate = DateTime.fromISO(delivDate);
+    let weekday = newDate.weekdayShort;
+    dayOfWeek = item.days ? item.days.includes(weekday) : true;
+
+    // check on time of day
+    let timeOfDay = item.start < delivTime;
+
+    return leadTime && specialDays && dayOfWeek && timeOfDay;
+  }
+
+  const itemFilter = (item) => {
+    // check if available within the week
+    let isComingUp = true;
+    let today = DateTime.now().setZone("America/Los_Angeles");
+    today = today.toString().split("T")[0];
+    let todayPlus21 = DateTime.now()
+      .setZone("America/Los_Angeles")
+      .plus({ days: 21 });
+    todayPlus21 = todayPlus21.toString().split("T")[0];
+
+    if (item.specialStart > todayPlus21) {
+      isComingUp = false;
+    }
+
+    if (item.specialEnd < today) {
+      isComingUp = false;
+    }
+
+    return item.location === location && isComingUp;
+  };
 
   return (
     <React.Fragment>
@@ -52,11 +99,10 @@ function InfoChosen() {
 
         {menu.map((group, index) => {
           return (
-            group.items.filter((item) => item.location === location).length >
-              0 && (
+            group.items.filter(itemFilter).length > 0 && (
               <React.Fragment>
-                <div id={index} className="menuGroup">
-                  <h2>{group.title}</h2>
+                <div id={index} key={"menuGroup"+index} className="menuGroup">
+                  <h2 key={"groupTitle"+index}>{group.title}</h2>
                   <div className="menuGroupDescripContainer">
                     <div className="menuGroupDescription">
                       The cafe is OPEN with all of our pastries, cookies,
@@ -64,44 +110,63 @@ function InfoChosen() {
                     </div>
                     <div className="menuGroupDescription">{group.info}</div>
                   </div>
-                  <div className="menuGroupGrid">
+                  <div key={"menuGroupGrid"+index} className="menuGroupGrid">
                     {group.items
                       .filter((item) => item.location === location)
                       .map((item, index) => (
-                        <div id={index} className="itemContainer">
+                        <div id={index} key={"itemContainer"+index} className="itemContainer">
                           <div className="descripGroup">
                             <h3>{item.name}</h3>
                             <div className="itemDescrip">
                               {item.description}
                             </div>
                             <h4>${item.price}</h4>
-                            {item.specialStart ? (
-                              item.specialEnd ? (
-                                <div className="itemAlert">
-                                  Item available between {item.specialStart} and{" "}
-                                  {item.specialEnd}
-                                </div>
-                              ) : (
-                                <div className="itemAlert">
-                                  Item available after {item.specialStart}
-                                </div>
-                              )
-                            ) : (
-                              <div></div>
-                            )}
-                            {item.days ? (
-                              <div className="itemAlert">
-                                Available {item.days.map((item) => item+", ")} after{" "}
-                                {time_convert(item.start*60)} am
-                              </div>
-                            ) : (
-                              <div className="itemAlert">
-                                Available everyday after {time_convert(item.start*60)} am
-                              </div>
-                            )}
-                            {item.lead>0 && <div>LEAD TIME: {item.lead} days</div>}
-                          </div>
 
+                            {checkAvailable(item) ? (
+                              <Button
+                                icon="pi pi-shopping-cart"
+                                label="SELECT"
+                                className="p-button-rounded p-button-primary p-button-outlined"
+                                aria-label="Bookmark"
+                              />
+                            ) : (
+                              <div>
+                                {item.specialStart ? (
+                                  item.specialEnd ? (
+                                    <div className="itemAlert">
+                                      Item available between {item.specialStart}{" "}
+                                      and {item.specialEnd}
+                                    </div>
+                                  ) : (
+                                    <div className="itemAlert">
+                                      Item available after {item.specialStart}
+                                    </div>
+                                  )
+                                ) : (
+                                  <div></div>
+                                )}
+                                {item.days ? (
+                                  <div className="itemAlert">
+                                    Available{" "}
+                                    {item.days.map((item) => item + ", ")} after{" "}
+                                    {time_convert(item.start * 60)} am
+                                  </div>
+                                ) : !item.specialStart ? (
+                                  <div className="itemAlert">
+                                    Available everyday after{" "}
+                                    {time_convert(item.start * 60)} am
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                                {item.lead > 0 && (
+                                  <div className="itemAlert">
+                                    LEAD TIME: {item.lead} days
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
                           <img
                             className="foodPic"
                             src={

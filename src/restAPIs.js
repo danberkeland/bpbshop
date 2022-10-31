@@ -32,7 +32,7 @@ export const fetcher = async (event, path, fetchType) => {
   let obj;
   try {
     obj = await axios.post(root + path, event, {
-      headers: headers
+      headers: headers,
     });
   } catch (err) {
     console.log(`Error creating ${path}`, err);
@@ -50,15 +50,24 @@ export const updateProduct = (event) => {
 };
 
 export const infoChosen = (event) => {
-  let newTime = new Date(Date.parse(event.time))
-  let newDate = new Date(Date.parse(event.pickup))
-  console.log('newDate', newDate)
-  let fullTime = newTime.getHours()+newTime.getMinutes()/60  
-  let fullDate = newDate.getFullYear()+"-"+newDate.getMonth()+"-"+newDate.getDay()
-  event.setDelivTime(fullTime)
-  event.setLocation(event.location)
-  event.setDelivDate(fullDate)
-  event.setIsLoading(false)
-  event.setFormType("infoChosen")
- 
-}
+  console.log("event", event);
+  let newTime = new Date(Date.parse(event.time));
+  let newDate = new Date(Date.parse(event.pickup));
+
+  console.log("newDate", newDate);
+  let fullTime = newTime.getHours() + newTime.getMinutes() / 60;
+  let fullDate =
+    newDate.getFullYear() +
+    "-" +
+    (newDate.getMonth() + 1 < 10
+      ? "0" + newDate.getMonth() + 1
+      : newDate.getMonth() + 1) +
+    "-" +
+    (newDate.getDate() < 10 ? "0" + newDate.getDate() : newDate.getDate());
+  console.log("fullDate", fullDate);
+  event.setDelivTime(fullTime);
+  event.setLocation(event.location);
+  event.setDelivDate(fullDate);
+  event.setIsLoading(false);
+  event.setFormType("infoChosen");
+};

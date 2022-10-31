@@ -313,7 +313,7 @@ export const menu = [
         location: "prado",
         start: 8.5,
         lead: 2,
-        days: ["T","Th"],
+        days: ["Tue","Thu"],
         specialStart: null,
         specialEnd: null
       },
@@ -350,8 +350,8 @@ export const menu = [
         start: 8.5,
         lead: 3,
         days: null,
-        specialStart: null,
-        specialEnd: null
+        specialStart: "2022-11-10",
+        specialEnd: "2022-11-15"
       },
       {
         name: "Multigrain",
