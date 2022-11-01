@@ -271,7 +271,9 @@ function InfoChosen() {
                                 )}
                               </div>
                             )}
+                            <div className="gap"> </div>
                           </div>
+                          
                           <img
                             className="foodPicSmall"
                             src={item.url}

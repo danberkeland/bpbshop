@@ -22,6 +22,7 @@ code {
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 
@@ -132,7 +133,9 @@ h3 {
 }
 
 .foodPicSmall {
-  width: 180px;
+  object-fit: cover;
+  width: 160px;
+  height: 160px;
 }
 
 .foodPicBig {
@@ -148,7 +151,7 @@ h3 {
 
 .twoColumns {
   display: grid;
-  grid-template-columns: 1fr 1fr;;
+  grid-template-columns: 1fr 1fr;
 }
 
 .gap {
@@ -166,4 +169,40 @@ h3 {
   justify-content: space-around;
   padding: 20px;
   margin: 80px 0 0 0;
+}
+
+@media (max-width: 1220px) {
+  .descripGroup {
+    width: 100%;
+    min-width: 300px;
+  }
+  .foodPicSmall {
+    object-fit: cover;
+    width: 100%;
+    height: 280px;
+  }
+}
+
+@media (max-width: 790px) {
+  
+.menuGroupGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 16px;
+  column-gap: 16px;
+}
+
+
+.mainContainer {
+  width: 100%;
+  line-height: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 }
