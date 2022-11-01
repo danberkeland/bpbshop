@@ -7,7 +7,7 @@ export const validationSchema = (props) => {
     location: yup.string(),
     time: yup.date().test(
       "is-open",
-      `Must be within ${props.loc} store hours.`,
+      `Must be within ${props.location} store hours.`,
       (value) => {  
         let newDate = new Date(Date.parse(value))
         let fullTime = newDate.getHours()+newDate.getMinutes()/60  

@@ -8,6 +8,7 @@ import { menu } from "./Menu";
 import { DateTime } from "luxon";
 import { Title, SubInfo } from "../CommonStyles";
 
+
 const breads = [
   { label: "NONE", value: "NONE" },
   { label: "Croissant ($1.00)", value: "croix" },
@@ -16,6 +17,7 @@ const breads = [
   { label: "Multigrain ($0.50)", value: "multi" },
   { label: "Levain ($0.50)", value: "lev" },
 ];
+
 
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);

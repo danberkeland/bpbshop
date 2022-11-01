@@ -10,6 +10,13 @@ import { Calendar } from "primereact/calendar";
 
 import { withFormComponentWrap } from "../hoc/withFormComponentWrap";
 
+
+const { DateTime } = require("luxon");
+
+let now = DateTime.now()
+  .setZone("America/Los_Angeles")
+let newDate = new Date(Date.parse(now))
+
 const options = [
   { label: "Yes", value: true },
   { label: "No", value: false },
@@ -40,7 +47,7 @@ const CustomTextInputBase = ({ label, ...props }) => {
 
 const CustomCalendarBase = ({ label, ...props }) => {
   return (
-    <Calendar {...props} type="string" value={props.value ? props.value : ""} />
+    <Calendar {...props} type="string" minDate={newDate} value={props.value ? props.value : ""} />
   );
 };
 

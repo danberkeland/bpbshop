@@ -40,7 +40,7 @@ const locations = [
 ];
 
 export const Choose = () => {
-  const setFormType = useSettingsStore((state) => state.setFormType);
+  const setLocation = useSettingsStore((state) => state.setLocation);
   const setIsEdit = useSettingsStore((state) => state.setIsEdit);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -90,13 +90,15 @@ export const Choose = () => {
                 stepMinute={10}
                 converter={props}
               />
-              {/*
-              {props.values.location === "carlton" && setCurrentLoc("carlton")}
-              {props.values.location === "prado" && setCurrentLoc("prado")}
-    */}
+           
+              {props.values.location === "carlton" && setLocation("carlton")}
+              {props.values.location === "prado" && setLocation("prado")}
+           
             </div>
+           
           </div>
         </GroupBox>
+        <div id="locationName">{props.values.location}</div>
 
         <Dialog
           visible={showMessage}
@@ -129,6 +131,7 @@ export const Choose = () => {
       initialState={initialState}
       update={infoChosen}
       setShowMessage={setShowMessage}
+     
     />
   );
 };
