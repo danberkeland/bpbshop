@@ -1,18 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { InputNumber } from "primereact/inputnumber";
+import { Dropdown } from "primereact/dropdown";
 import { menu } from "./Menu";
 import { DateTime } from "luxon";
+import { Title, SubInfo } from "../CommonStyles";
+
+const breads = [
+  { label: "NONE", value: "NONE" },
+  { label: "Croissant ($1.00)", value: "croix" },
+  { label: "Brioche ($0.50)", value: "bri" },
+  { label: "Baguette ($0.50)", value: "bag" },
+  { label: "Multigrain ($0.50)", value: "multi" },
+  { label: "Levain ($0.50)", value: "lev" },
+];
 
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
 
+  const [displayBasic, setDisplayBasic] = useState(false);
+  const [menuGroup, setMenuGroup] = useState(0);
+  const [item, setItem] = useState(0);
+  const [qty, setQty] = useState(0);
+  const [selectedBread, setSelectedBread] = useState("NONE");
+
   function time_convert(num) {
+    let result;
     var hours = Math.floor(num / 60);
     var minutes = num % 60;
-    return hours + ":" + minutes;
+    if (minutes < 10) {
+      result = hours + ":0" + minutes;
+    } else {
+      result = hours + ":" + minutes;
+    }
+
+    return result;
   }
 
   function checkAvailable(item) {
@@ -64,8 +90,75 @@ function InfoChosen() {
     return item.location === location && isComingUp;
   };
 
+  const onDisplay = (index1, index2) => {
+    console.log("index", index1 + index2);
+    setMenuGroup(index1);
+    setItem(index2);
+    setDisplayBasic(true);
+  };
+
+  const onHide = () => {
+    setQty(0);
+    setSelectedBread("NONE");
+    setDisplayBasic(false);
+  };
+
+  const onBreadChange = (e) => {
+    setSelectedBread(e.value);
+  };
+
+  const cartAdd = (price) => {
+    let total = qty * price;
+    return "ADD TO CART $" + total;
+  };
+
   return (
     <React.Fragment>
+      <Dialog visible={displayBasic} style={{ width: "50vw" }} onHide={onHide}>
+        <img
+          className="foodPicBig"
+          src={menu[menuGroup].items[item].url}
+          alt="sandwich"
+        />
+        <Title>{menu[menuGroup].items[item].name}</Title>
+        <SubInfo>{menu[menuGroup].items[item].description}</SubInfo>
+        <InputNumber
+          inputId="horizontal"
+          value={qty}
+          onValueChange={(e) => setQty(e.value)}
+          showButtons
+          buttonLayout="horizontal"
+          min={0}
+          decrementButtonClassName="p-button-secondary"
+          incrementButtonClassName="p-button-secondary"
+          incrementButtonIcon="pi pi-plus"
+          decrementButtonIcon="pi pi-minus"
+        />
+        <SubInfo>For Pickup from {location} on:</SubInfo>
+        <SubInfo>
+          {delivDate} at {delivTime}
+        </SubInfo>
+
+        {menu[menuGroup].items[item].modifiers && (
+          <React.Fragment>
+            <label>Substitute Bread:</label>
+            <Dropdown
+              value={selectedBread}
+              options={breads}
+              onChange={onBreadChange}
+              optionLabel="label"
+            />
+          </React.Fragment>
+        )}
+        <Button
+          type="button"
+          icon="pi pi-shopping-cart"
+          label={cartAdd(menu[menuGroup].items[item].price)}
+          className="p-button-raised"
+          aria-label="Bookmark"
+          onClick={() => {}}
+        />
+      </Dialog>
       <div className="header">
         <div className="homeFlag">
           <img
@@ -75,7 +168,7 @@ function InfoChosen() {
             alt="Back Porch Bakery logo"
           />
         </div>
-        <div className="buttons">
+        {/*<div className="buttons">
           <Button
             label="BUY A GIFT CARD"
             className="p-button-text p-button-plain"
@@ -84,7 +177,7 @@ function InfoChosen() {
             label="BUY A T-SHIRT"
             className="p-button-text p-button-plain"
           />
-        </div>
+        </div>*/}
         <div className="cartButton">
           <Button
             icon="pi pi-shopping-cart"
@@ -99,12 +192,16 @@ function InfoChosen() {
           <h1>BACK PORCH BAKERY</h1>
         </div>
 
-        {menu.map((group, index) => {
+        {menu.map((group, index1) => {
           return (
             group.items.filter(itemFilter).length > 0 && (
               <React.Fragment>
-                <div id={index} key={"menuGroup" + index} className="menuGroup">
-                  <h2 key={"groupTitle" + index}>{group.title}</h2>
+                <div
+                  id={index1}
+                  key={"menuGroup" + index1}
+                  className="menuGroup"
+                >
+                  <Title key={"groupTitle" + index1}>{group.title}</Title>
                   <div className="menuGroupDescripContainer">
                     <div className="menuGroupDescription">
                       The cafe is OPEN with all of our pastries, cookies,
@@ -112,13 +209,13 @@ function InfoChosen() {
                     </div>
                     <div className="menuGroupDescription">{group.info}</div>
                   </div>
-                  <div key={"menuGroupGrid" + index} className="menuGroupGrid">
+                  <div key={"menuGroupGrid" + index1} className="menuGroupGrid">
                     {group.items
                       .filter((item) => item.location === location)
-                      .map((item, index) => (
+                      .map((item, index2) => (
                         <div
-                          id={index}
-                          key={"itemContainer" + index}
+                          id={index2}
+                          key={"itemContainer" + index2}
                           className="itemContainer"
                         >
                           <div className="descripGroup">
@@ -126,22 +223,24 @@ function InfoChosen() {
                             <div className="itemDescrip">
                               {item.description}
                             </div>
-                            <h4>${item.price}</h4>
+                            <h4>${item.price.toFixed(2)}</h4>
 
                             {checkAvailable(item) ? (
                               <Button
+                                type="button"
                                 icon="pi pi-shopping-cart"
                                 label="SELECT"
                                 className="p-button-rounded p-button-primary p-button-outlined"
                                 aria-label="Bookmark"
+                                onClick={() => onDisplay(index1, index2)}
                               />
                             ) : (
                               <div>
                                 {item.specialStart ? (
                                   item.specialEnd ? (
                                     <div className="itemAlert">
-                                      Available {item.specialStart}
-                                      to {item.specialEnd}
+                                      Available {item.specialStart} to{" "}
+                                      {item.specialEnd}
                                     </div>
                                   ) : (
                                     <div className="itemAlert">
@@ -176,7 +275,6 @@ function InfoChosen() {
                           <img
                             className="foodPicSmall"
                             src={item.url}
-                            
                             alt="sandwich"
                           />
                         </div>
@@ -190,30 +288,53 @@ function InfoChosen() {
       </div>
 
       <div className="locationInfoBox">
-        <div className="locationInfoTitle">Location & Hours</div>
-        <div className="column">
-          <div>Back Porch Bakery</div>
-          <div>6005 El Camino Real</div>
-          <div>Atascadero, California 93422</div>
-          <div>(805) 914-5443</div>
-          <div>backporchbakeryslo@gmail.com</div>
-          <div>GET DIRECTIONS</div>
-        </div>
-        <div className="column">
-          <div>Sunday 7:00 am - 2:00 pm</div>
-          <div>Monday 7:00 am - 2:00 pm</div>
-          <div>Tuesday 7:00 am - 2:00 pm</div>
-          <div>Wednesday 7:00 am - 2:00 pm</div>
-          <div>Thursday 7:00 am - 2:00 pm</div>
-          <div>Friday 7:00 am - 2:00 pm</div>
-          <div>Saturday 7:00 am - 2:00 pm</div>
+        <Title>Location & Hours</Title>
+        <div className="twoColumns">
+          <div className="column">
+            <div>Back Porch Bakery</div>
+            <div>6005 El Camino Real</div>
+            <div>Atascadero, California 93422</div>
+            <div>(805) 914-5443</div>
+            <div>backporchbakeryslo@gmail.com</div>
+            <div className="gap"> </div>
+            <Button
+              type="button"
+              icon="pi pi-map"
+              label="GET DIRECTIONS"
+              className="p-button-rounded p-button-primary p-button-outlined"
+              aria-label="Bookmark"
+              onClick={() => {}}
+            />
+          </div>
+          <div className="column">
+            <div>Sunday 7:00 am - 2:00 pm</div>
+            <div>Monday 7:00 am - 2:00 pm</div>
+            <div>Tuesday 7:00 am - 2:00 pm</div>
+            <div>Wednesday 7:00 am - 2:00 pm</div>
+            <div>Thursday 7:00 am - 2:00 pm</div>
+            <div>Friday 7:00 am - 2:00 pm</div>
+            <div>Saturday 7:00 am - 2:00 pm</div>
+          </div>
         </div>
       </div>
+      
       <div className="footer">
         <div className="homeFlag">
-          <Button label="FLAG" />
+          <img
+            srcSet="https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=400 400w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=800 800w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=1200 1200w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=1600 1600w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=2000 2000w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=2400 2400w"
+            sizes="(min-width: 600px) 70.35809523809523px, 43.45174603174603px"
+            src="https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg"
+            alt="Back Porch Bakery logo"
+          />
         </div>
-        <div className="copyright">2022</div>
+        <div className="copyright">&#169; 2022</div>
+        <div className="cartButton">
+          <Button
+            icon="pi pi-shopping-cart"
+            className="p-button-rounded p-button-plain p-button-text"
+            aria-label="Cart"
+          />
+        </div>
       </div>
     </React.Fragment>
   );

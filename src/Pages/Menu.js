@@ -1,3 +1,14 @@
+
+
+const breads = [
+  { label: "NONE", value: "NONE" },
+  { label: "Croissant ($1.00)", value: "croix" },
+  { label: "Brioche ($0.50)", value: "bri" },
+  { label: "Baguette ($0.50)", value: "bag" },
+  { label: "Multigrain ($0.50)", value: "multi" },
+  { label: "Levain ($0.50)", value: "lev" },
+];
+
 export const menu = [
   {
     title: "Breakfast Sandwiches",
@@ -15,7 +26,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       {
         name: "Back Porch Breakfast Croissant",
@@ -30,7 +42,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       {
         name: "Bacon, Eggs, and Cheddar Croissant",
@@ -44,7 +57,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
     ],
   },
@@ -65,7 +79,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       {
         name: "The Queen of Clubs",
@@ -79,7 +94,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       {
         name: "The California Garden",
@@ -93,7 +109,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       {
         name: "Sweet n Spicy BLT",
@@ -107,7 +124,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       {
         name: "Salami and Brie Ficelle",
@@ -121,7 +139,8 @@ export const menu = [
         lead: 0,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        modifiers: [breads]
       },
       
     ],
@@ -143,7 +162,8 @@ export const menu = [
         lead: 2,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+       
       },
       {
         name: "Chocolate Croissant",
@@ -157,7 +177,8 @@ export const menu = [
         lead: 2,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        
       },
       {
         name: "Morning Bun",
@@ -171,7 +192,8 @@ export const menu = [
         lead: 2,
         days: null,
         specialStart: null,
-        specialEnd: null
+        specialEnd: null,
+        
       },
       {
         name: "All Butter Croissant",
