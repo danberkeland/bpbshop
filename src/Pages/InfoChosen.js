@@ -4,12 +4,11 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
-import { Accordion, AccordionTab } from 'primereact/accordion';
+import { Accordion, AccordionTab } from "primereact/accordion";
 import { menu } from "./Menu";
 import { DateTime } from "luxon";
 import { Title, SubInfo } from "../CommonStyles";
-import background from "../pastryblock.jpg"
-
+import background from "../pastryblock.jpg";
 
 const breads = [
   { label: "NONE", value: "NONE" },
@@ -19,7 +18,6 @@ const breads = [
   { label: "Multigrain ($0.50)", value: "multi" },
   { label: "Levain ($0.50)", value: "lev" },
 ];
-
 
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
@@ -34,15 +32,27 @@ function InfoChosen() {
 
   function time_convert(num) {
     let result;
+    let ampm = " am";
     var hours = Math.floor(num / 60);
+    if (hours > 12) {
+      hours -= 12;
+      ampm = " pm";
+    }
     var minutes = num % 60;
     if (minutes < 10) {
-      result = hours + ":0" + minutes;
+      result = hours + ":0" + minutes + ampm;
     } else {
-      result = hours + ":" + minutes;
+      result = hours + ":" + minutes + ampm;
     }
 
     return result;
+  }
+
+  function date_convert(num) {
+    let newDate = DateTime.fromISO(num);
+    console.log("newDate", newDate);
+    console.log("newDate", newDate.DATE_MED_WITH_WEEKDAY);
+    return newDate.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
   }
 
   function checkAvailable(item) {
@@ -118,7 +128,11 @@ function InfoChosen() {
 
   return (
     <React.Fragment>
-      <Dialog visible={displayBasic} style={{ width: "50vw", minWidth: "300px"}} onHide={onHide}>
+      <Dialog
+        visible={displayBasic}
+        style={{ width: "50vw", minWidth: "300px" }}
+        onHide={onHide}
+      >
         <img
           className="foodPicBig"
           src={menu[menuGroup].items[item].url}
@@ -163,49 +177,52 @@ function InfoChosen() {
           onClick={() => {}}
         />
       </Dialog>
-      <div className="header">
-        <div className="homeFlag">
-          <img
-            srcSet="https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=400 400w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=800 800w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=1200 1200w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=1600 1600w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=2000 2000w, https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg?width=2400 2400w"
-            sizes="(min-width: 600px) 70.35809523809523px, 43.45174603174603px"
-            src="https://backporchbakery.square.site/uploads/b/08070970-0939-11ea-b111-29f3aeaebae0/e426db4990a8af339ea09b0f7e2396a6.jpeg"
-            alt="Back Porch Bakery logo"
-          />
+      <div className="tabContainer">
+        <div className="tabInfo">
+          <div>For pickup at&nbsp;&nbsp; </div>
+          <h2>{location}</h2>
+          <div> &nbsp;&nbsp; on &nbsp;&nbsp; </div>
+          <h2>{date_convert(delivDate)}</h2>
+          <div> &nbsp;&nbsp;at&nbsp;&nbsp; </div>
+          <h2> {time_convert(delivTime * 60)}</h2>
         </div>
-        {/*<div className="buttons">
-          <Button
-            label="BUY A GIFT CARD"
-            className="p-button-text p-button-plain"
-          />
-          <Button
-            label="BUY A T-SHIRT"
-            className="p-button-text p-button-plain"
-          />
-        </div>*/}
-        <div className="cartButton">
-          <Button
-            icon="pi pi-shopping-cart"
-            className="p-button-rounded p-button-plain p-button-text"
-            aria-label="Cart"
-          />
-        </div>
+
+        <Button
+          type="button"
+          icon="pi pi-clock"
+          label="Change Pickup"
+          className="p-button-raised"
+          aria-label="Bookmark"
+          onClick={() => {}}
+        />
+        <Button
+          type="button"
+          icon="pi pi-shopping-cart"
+          label="CART"
+          className="p-button-raised"
+          aria-label="Bookmark"
+          onClick={() => {}}
+        />
       </div>
 
       <div className="mainContainer">
-        <div className="banner" style={{ backgroundImage: `url(${background})`}}>
+        <div
+          className="banner"
+          style={{ backgroundImage: `url(${background})` }}
+        >
           <h1 className="bigTitle">BACK PORCH BAKERY</h1>
         </div>
         <Accordion multiple>
-        {menu.map((group, index1) => {
-          return (
-            group.items.filter(itemFilter).length > 0 && (
-              <AccordionTab header={group.title}>
-                <div
-                  id={index1}
-                  key={"menuGroup" + index1}
-                  className="menuGroup"
-                >
-                {/*  <Title key={"groupTitle" + index1}>{group.title}</Title>
+          {menu.map((group, index1) => {
+            return (
+              group.items.filter(itemFilter).length > 0 && (
+                <AccordionTab header={group.title}>
+                  <div
+                    id={index1}
+                    key={"menuGroup" + index1}
+                    className="menuGroup"
+                  >
+                    {/*  <Title key={"groupTitle" + index1}>{group.title}</Title>
                   <div className="menuGroupDescripContainer">
                     <div className="menuGroupDescription">
                       The cafe is OPEN with all of our pastries, cookies,
@@ -213,87 +230,87 @@ function InfoChosen() {
                     </div>
                     <div className="menuGroupDescription">{group.info}</div>
             </div>*/}
-                  <div key={"menuGroupGrid" + index1} className="menuGroupGrid">
-                    {group.items
-                      .filter((item) => item.location === location)
-                      .map((item, index2) => (
-                       
-                        <div
-                          id={index2}
-                          key={"itemContainer" + index2}
-                          className="itemContainer"
-                        >
-                          <div className="descripGroup">
-                            <h3>{item.name}</h3>
-                            <div className="itemDescrip">
-                              {item.description}
-                            </div>
-                            <h4>${item.price.toFixed(2)}</h4>
+                    <div
+                      key={"menuGroupGrid" + index1}
+                      className="menuGroupGrid"
+                    >
+                      {group.items
+                        .filter((item) => item.location === location)
+                        .map((item, index2) => (
+                          <div
+                            id={index2}
+                            key={"itemContainer" + index2}
+                            className="itemContainer"
+                          >
+                            <div className="descripGroup">
+                              <h3>{item.name}</h3>
+                              <div className="itemDescrip">
+                                {item.description}
+                              </div>
+                              <h4>${item.price.toFixed(2)}</h4>
 
-                            {checkAvailable(item) ? (
-                              <Button
-                                type="button"
-                                icon="pi pi-shopping-cart"
-                                label="SELECT"
-                                className="p-button-rounded p-button-primary p-button-outlined"
-                                aria-label="Bookmark"
-                                onClick={() => onDisplay(index1, index2)}
-                              />
-                            ) : (
-                              <div>
-                                {item.specialStart ? (
-                                  item.specialEnd ? (
+                              {checkAvailable(item) ? (
+                                <Button
+                                  type="button"
+                                  icon="pi pi-shopping-cart"
+                                  label="SELECT"
+                                  className="p-button-rounded p-button-primary p-button-outlined"
+                                  aria-label="Bookmark"
+                                  onClick={() => onDisplay(index1, index2)}
+                                />
+                              ) : (
+                                <div>
+                                  {item.specialStart ? (
+                                    item.specialEnd ? (
+                                      <div className="itemAlert">
+                                        Available {item.specialStart} to{" "}
+                                        {item.specialEnd}
+                                      </div>
+                                    ) : (
+                                      <div className="itemAlert">
+                                        Item available after {item.specialStart}
+                                      </div>
+                                    )
+                                  ) : (
+                                    <div></div>
+                                  )}
+                                  {item.days ? (
                                     <div className="itemAlert">
-                                      Available {item.specialStart} to{" "}
-                                      {item.specialEnd}
+                                      Available{" "}
+                                      {item.days.map((item) => item + ", ")}{" "}
+                                      after {time_convert(item.start * 60)}
+                                    </div>
+                                  ) : !item.specialStart ? (
+                                    <div className="itemAlert">
+                                      Available everyday after{" "}
+                                      {time_convert(item.start * 60)}
                                     </div>
                                   ) : (
+                                    ""
+                                  )}
+                                  {item.lead > 0 && (
                                     <div className="itemAlert">
-                                      Item available after {item.specialStart}
+                                      LEAD TIME: {item.lead} days
                                     </div>
-                                  )
-                                ) : (
-                                  <div></div>
-                                )}
-                                {item.days ? (
-                                  <div className="itemAlert">
-                                    Available{" "}
-                                    {item.days.map((item) => item + ", ")} after{" "}
-                                    {time_convert(item.start * 60)} am
-                                  </div>
-                                ) : !item.specialStart ? (
-                                  <div className="itemAlert">
-                                    Available everyday after{" "}
-                                    {time_convert(item.start * 60)} am
-                                  </div>
-                                ) : (
-                                  ""
-                                )}
-                                {item.lead > 0 && (
-                                  <div className="itemAlert">
-                                    LEAD TIME: {item.lead} days
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                            <div className="gap"> </div>
+                                  )}
+                                </div>
+                              )}
+                              <div className="gap"> </div>
+                            </div>
+
+                            <img
+                              className="foodPicSmall"
+                              src={item.url}
+                              alt="sandwich"
+                            />
                           </div>
-                          
-                          <img
-                            className="foodPicSmall"
-                            src={item.url}
-                            alt="sandwich"
-                          />
-                        </div>
-                       
-                      ))}
+                        ))}
+                    </div>
                   </div>
-                </div>
-              </AccordionTab>
-            )
-          );
-          
-        })}
+                </AccordionTab>
+              )
+            );
+          })}
         </Accordion>
       </div>
 
@@ -327,7 +344,7 @@ function InfoChosen() {
           </div>
         </div>
       </div>
-      
+
       <div className="footer">
         <div className="homeFlag">
           <img
