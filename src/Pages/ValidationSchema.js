@@ -5,6 +5,7 @@ export const validationSchema = (props) => {
   
   return yup.object().shape({
     location: yup.string(),
+    /*
     time: yup.date().test(
       "is-open",
       `Must be within ${props.location} store hours.`,
@@ -15,7 +16,8 @@ export const validationSchema = (props) => {
        
         return (fullTime>7 && fullTime<14) ? true : false
       }
-    )
+      
+    )*/
       
       
     

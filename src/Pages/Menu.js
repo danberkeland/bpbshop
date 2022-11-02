@@ -2,11 +2,11 @@
 
 const breads = [
   { label: "NONE", value: "NONE" },
-  { label: "Croissant ($1.00)", value: "croix" },
-  { label: "Brioche ($0.50)", value: "bri" },
-  { label: "Baguette ($0.50)", value: "bag" },
-  { label: "Multigrain ($0.50)", value: "multi" },
-  { label: "Levain ($0.50)", value: "lev" },
+  { label: "Croissant ($1.00)", value: "croix", price: 1 },
+  { label: "Brioche ($0.50)", value: "bri", price: .5 },
+  { label: "Baguette ($0.50)", value: "bag", price: .5 },
+  { label: "Multigrain ($0.50)", value: "multi", price: .5 },
+  { label: "Levain ($0.50)", value: "lev", price: .5 },
 ];
 
 export const menu = [

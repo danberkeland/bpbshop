@@ -14,17 +14,12 @@ import { compose } from "../utils";
 import "./Choose.css";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 
-
 const { DateTime } = require("luxon");
 
-let now = DateTime.now()
-  .setZone("America/Los_Angeles")
+let now = DateTime.now().setZone("America/Los_Angeles");
 
-let newDate = new Date(Date.parse(now))
-let newTime = new Date(Date.parse('01 Jan 2022 07:00:00'))
-
-console.log('now', now)
-  
+let newDate = new Date(Date.parse(now));
+let newTime = new Date(Date.parse("01 Jan 2022 07:00:00"));
 
 const BPB = new CustomInputs();
 
@@ -35,8 +30,18 @@ const initialState = {
 };
 
 const locations = [
-  { label: "Prado", value: "prado", open: 7, close: 11 },
-  { label: "Carlton", value: "carlton", open: 7, close: 14 },
+  {
+    label: "Prado",
+    value: "prado",
+    open: "01 Jan 2022 07:00:00",
+    close: "01 Jan 2022 11:00:00",
+  },
+  {
+    label: "Carlton",
+    value: "carlton",
+    open: "01 Jan 2022 07:00:00",
+    close: "01 Jan 2022 14:00:00",
+  },
 ];
 
 export const Choose = () => {
@@ -65,9 +70,15 @@ export const Choose = () => {
   )((props) => {
     console.log("Locprops", props);
 
+    const ind = locations.findIndex(
+      (loc) => loc.value === props.values.location
+    );
+
+    let openTime = new Date(Date.parse(locations[ind].open));
+    let closeTime = new Date(Date.parse(locations[ind].close));
+
     return (
       <React.Fragment>
-       
         <GroupBox>
           <div className="flex justify-content-center">
             <div className="card">
@@ -87,18 +98,14 @@ export const Choose = () => {
               <BPB.CustomTimeInput
                 label="Pickup Time?"
                 name="time"
+                minDate={openTime}
+                maxDate={closeTime}
                 stepMinute={10}
                 converter={props}
               />
-           
-              {props.values.location === "carlton" && setLocation("carlton")}
-              {props.values.location === "prado" && setLocation("prado")}
-           
             </div>
-           
           </div>
         </GroupBox>
-        <div id="locationName">{props.values.location}</div>
 
         <Dialog
           visible={showMessage}
@@ -119,7 +126,6 @@ export const Choose = () => {
             </p>
           </div>
         </Dialog>
-       
       </React.Fragment>
     );
   });
@@ -131,7 +137,6 @@ export const Choose = () => {
       initialState={initialState}
       update={infoChosen}
       setShowMessage={setShowMessage}
-     
     />
   );
 };
