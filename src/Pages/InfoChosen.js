@@ -23,6 +23,7 @@ function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
+  const setFormType = useSettingsStore((state) => state.setFormType);
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [menuGroup, setMenuGroup] = useState(0);
@@ -126,6 +127,10 @@ function InfoChosen() {
     return "ADD TO CART $" + total;
   };
 
+  const handleChangePickup = () => {
+    setFormType("");
+  };
+
   return (
     <React.Fragment>
       <Dialog
@@ -186,23 +191,36 @@ function InfoChosen() {
           <div> at&nbsp;&nbsp; </div>
           <h2> {time_convert(delivTime * 60)}</h2>
         </div>
+        <div className="lgscreen">
+          <Button
+            type="button"
+            icon="pi pi-clock"
+            label="Change Pickup"
+            className="p-button-raised"
+            aria-label="Bookmark"
+            onClick={handleChangePickup}
+          />
+        </div>
+        <div className="lgscreen">
+          <Button
+            type="button"
+            icon="pi pi-shopping-cart"
+            label="CART"
+            className="p-button-raised"
+            aria-label="Bookmark"
+            onClick={() => {}}
+          />
+        </div>
 
-        <Button
-          type="button"
-          icon="pi pi-clock"
-          label="Change Pickup"
-          className="p-button-raised lgscreen"
-          aria-label="Bookmark"
-          onClick={() => {}}
-        />
-        <Button
-          type="button"
-          icon="pi pi-shopping-cart"
-          label="CART"
-          className="p-button-raised lgscreen"
-          aria-label="Bookmark"
-          onClick={() => {}}
-        />
+        <div className="floatButtonsTop smscreen">
+          <Button
+            type="button"
+            icon="pi pi-shopping-cart"
+            className="p-button-raised p-button-rounded"
+            aria-label="Bookmark"
+            onClick={() => {}}
+          />
+        </div>
       </div>
 
       <div className="mainContainer">
