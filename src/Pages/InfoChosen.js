@@ -118,7 +118,7 @@ function InfoChosen() {
 
   return (
     <React.Fragment>
-      <Dialog visible={displayBasic} style={{ width: "50vw" }} onHide={onHide}>
+      <Dialog visible={displayBasic} style={{ width: "50vw", minWidth: "300px"}} onHide={onHide}>
         <img
           className="foodPicBig"
           src={menu[menuGroup].items[item].url}
