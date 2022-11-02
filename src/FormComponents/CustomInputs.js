@@ -60,6 +60,7 @@ const CustomTimeBase = ({ label, ...props }) => {
     <Calendar
       {...props}
       timeOnly
+      
       hourFormat="12"
       type="string"
       value={props.value ? props.value : ""}

@@ -84,27 +84,24 @@ export const withBPBForm = (Component) => (props) => {
             <div className="signInBox">
               <Form>
                 <Component {...props} />
-                {isEdit | isCreate && formType === "signedIn" ? (
-                  <div className="floatButtonsTop">
-                    {isChange && (
-                      <Button
-                        label="Submit"
-                        type="submit"
-                        className="p-button-raised p-button-rounded p-button-danger"
-                        style={editButtonStyle}
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <div></div>
-                )}
-                {formType !== "signedIn" && (
-                  <Button
+                
+                <div className = "lgscreen">
+                <Button
                     label="Submit"
                     type="submit"
                     style={editButtonStyle}
                   />
-                )}
+                </div>
+                <div className = "smscreen floatButtonBottom">
+                <Button
+                    label="Submit"
+                    type="submit"
+                    className="p-button-rounded p-button-success"
+                    style={editButtonStyle}
+                  />
+                </div>
+                 
+               
 
                 {!isEdit && !isCreate && formType === "signedIn" && (
                   <FlexSpaceBetween>

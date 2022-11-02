@@ -60,6 +60,20 @@ div .photoBox {
   right: 20px
 }
 
+.floatButtonBottom {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+}
+
 .p-password input {
   width: 100%;
 }
@@ -209,7 +223,8 @@ h3 {
   margin: 80px 0 0 0;
 }
 
-.smscreen, .medscreen {
+.smscreen,
+.medscreen {
   display: none;
 }
 
@@ -239,7 +254,8 @@ h3 {
     font-size: 48px;
   }
 
-  .smscreen, .lgscreen {
+  .smscreen,
+  .lgscreen {
     display: none;
   }
 
@@ -291,41 +307,43 @@ h3 {
   }
 
 
-  
-.tabContainer {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(66, 97, 201);
-  align-items: center;
-  color: yellow;
-  justify-content: space-around;
-  z-index: 200;
-  position: fixed;
-  width: 100%;
-  top: 0;
-}
+
+  .tabContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(66, 97, 201);
+    align-items: center;
+    color: yellow;
+    justify-content: space-around;
+    z-index: 200;
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
 
 
-.tabInfo {
-  display: flex;
-  align-items: center;
-}
+  .tabInfo {
+    display: flex;
+    align-items: center;
+  }
 
-.tabInfo div {
-  display: none;
-}
+  .tabInfo div {
+    display: none;
+  }
 
-.tabInfo h2 {
-  font-size: 16px;;
-}
+  .tabInfo h2 {
+    font-size: 16px;
+    ;
+  }
 
-.lgscreen, .medscreen {
-  display: none;
-}
+  .lgscreen,
+  .medscreen {
+    display: none;
+  }
 
-.smscreen {
-  display: flex;
-}
+  .smscreen {
+    display: flex;
+  }
 
 
 
