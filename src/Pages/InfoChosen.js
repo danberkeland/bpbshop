@@ -4,9 +4,11 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { menu } from "./Menu";
 import { DateTime } from "luxon";
 import { Title, SubInfo } from "../CommonStyles";
+import background from "../pastryblock.jpg"
 
 
 const breads = [
@@ -190,31 +192,32 @@ function InfoChosen() {
       </div>
 
       <div className="mainContainer">
-        <div className="banner">
-          <h1>BACK PORCH BAKERY</h1>
+        <div className="banner" style={{ backgroundImage: `url(${background})`}}>
+          <h1 className="bigTitle">BACK PORCH BAKERY</h1>
         </div>
-
+        <Accordion multiple>
         {menu.map((group, index1) => {
           return (
             group.items.filter(itemFilter).length > 0 && (
-              <React.Fragment>
+              <AccordionTab header={group.title}>
                 <div
                   id={index1}
                   key={"menuGroup" + index1}
                   className="menuGroup"
                 >
-                  <Title key={"groupTitle" + index1}>{group.title}</Title>
+                {/*  <Title key={"groupTitle" + index1}>{group.title}</Title>
                   <div className="menuGroupDescripContainer">
                     <div className="menuGroupDescription">
                       The cafe is OPEN with all of our pastries, cookies,
                       breads, and drinks!
                     </div>
                     <div className="menuGroupDescription">{group.info}</div>
-                  </div>
+            </div>*/}
                   <div key={"menuGroupGrid" + index1} className="menuGroupGrid">
                     {group.items
                       .filter((item) => item.location === location)
                       .map((item, index2) => (
+                       
                         <div
                           id={index2}
                           key={"itemContainer" + index2}
@@ -282,13 +285,16 @@ function InfoChosen() {
                             alt="sandwich"
                           />
                         </div>
+                       
                       ))}
                   </div>
                 </div>
-              </React.Fragment>
+              </AccordionTab>
             )
           );
+          
         })}
+        </Accordion>
       </div>
 
       <div className="locationInfoBox">
