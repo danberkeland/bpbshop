@@ -183,13 +183,22 @@ function InfoChosen() {
         />
       </Dialog>
       <div className="tabContainer">
-        <div className="tabInfo">
+        <div className="tabInfo lgscreen">
           <div>For pickup at&nbsp;&nbsp; </div>
           <h2>{location}&nbsp;&nbsp;</h2>
           <div> on &nbsp;&nbsp; </div>
           <h2>{date_convert(delivDate)}&nbsp;&nbsp;</h2>
           <div> at&nbsp;&nbsp; </div>
           <h2> {time_convert(delivTime * 60)}</h2>
+        </div>
+        <div className="smscreen">
+          <Button
+            type="button"
+            label={location + ` - ` + date_convert(delivDate) + " - " + time_convert(delivTime * 60)}
+            className="p-button-text p-button-warning"
+            aria-label="Bookmark"
+            onClick={handleChangePickup}
+          />
         </div>
         <div className="lgscreen">
           <Button
