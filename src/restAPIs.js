@@ -71,3 +71,7 @@ export const infoChosen = (event) => {
   event.setIsLoading(false);
   event.setFormType("infoChosen");
 };
+
+export const updateItem = () => {
+  console.log('testSubmit')
+}

@@ -45,9 +45,14 @@ const locations = [
 ];
 
 export const Choose = () => {
-  const setLocation = useSettingsStore((state) => state.setLocation);
   const setIsEdit = useSettingsStore((state) => state.setIsEdit);
   const [showMessage, setShowMessage] = useState(false);
+
+  const editButtonStyle = {
+    width: "100px",
+    margin: "20px",
+    fontSize: "1.2em",
+  };
 
   const dialogFooter = (
     <div className="flex justify-content-center">
@@ -126,6 +131,17 @@ export const Choose = () => {
             </p>
           </div>
         </Dialog>
+        <div className="lgscreen">
+          <Button label="Submit1" type="submit" style={editButtonStyle} />
+        </div>
+        <div className="smscreen medscreen floatButtonBottom">
+          <Button
+            label="Submit2"
+            type="submit"
+            className="p-button-rounded p-button-success"
+            style={editButtonStyle}
+          />
+        </div>
       </React.Fragment>
     );
   });

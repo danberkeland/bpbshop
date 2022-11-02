@@ -55,12 +55,11 @@ const CustomCalendarBase = ({ label, ...props }) => {
 };
 
 const CustomTimeBase = ({ label, ...props }) => {
-  console.log('Timeprops', props)
+  console.log("Timeprops", props);
   return (
     <Calendar
       {...props}
       timeOnly
-      
       hourFormat="12"
       type="string"
       value={props.value ? props.value : ""}
@@ -108,6 +107,28 @@ const CustomIntInputBase = ({ label, ...props }) => {
   );
 };
 
+const CustomQtyInputBase = ({ label, ...props }) => {
+  console.log('Qtyprops', props)
+  return (
+    <InputNumber
+      {...props}
+      inputId="horizontal"
+      disabled={false}
+      value={props.value}
+      onChange={(values) => {
+        props.converter.setFieldValue(props.name, Number(values.value));
+      }}
+      showButtons
+      buttonLayout="horizontal"
+      min={0}
+      decrementButtonClassName="p-button-secondary"
+      incrementButtonClassName="p-button-secondary"
+      incrementButtonIcon="pi pi-plus"
+      decrementButtonIcon="pi pi-minus"
+    />
+  );
+};
+
 const CustomYesNoInputBase = ({ label, ...props }) => {
   return (
     <SelectButton
@@ -145,6 +166,7 @@ export class CustomInputs {
     this.CustomIDInput = withFormComponentWrap(CustomIDInputBase);
     this.CustomFloatInput = withFormComponentWrap(CustomFloatInputBase);
     this.CustomIntInput = withFormComponentWrap(CustomIntInputBase);
+    this.CustomQtyInput = withFormComponentWrap(CustomQtyInputBase);
     this.CustomYesNoInput = withFormComponentWrap(CustomYesNoInputBase);
     this.CustomDropdownInput = withFormComponentWrap(CustomDropdownInputBase);
     this.CustomMultiSelectInput = withFormComponentWrap(

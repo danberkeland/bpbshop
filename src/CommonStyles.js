@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CenteredContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid lightblue;
+  /*border: 1px solid lightblue;*/
   padding: 20px 20px;
   box-sizing: border-box;
   position: absolute;

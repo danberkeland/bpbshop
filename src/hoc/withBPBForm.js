@@ -85,35 +85,9 @@ export const withBPBForm = (Component) => (props) => {
               <Form>
                 <Component {...props} />
                 
-                <div className = "lgscreen">
-                <Button
-                    label="Submit"
-                    type="submit"
-                    style={editButtonStyle}
-                  />
-                </div>
-                <div className = "smscreen floatButtonBottom">
-                <Button
-                    label="Submit"
-                    type="submit"
-                    className="p-button-rounded p-button-success"
-                    style={editButtonStyle}
-                  />
-                </div>
+                
                  
-               
-
-                {!isEdit && !isCreate && formType === "signedIn" && (
-                  <FlexSpaceBetween>
-                    <Button
-                      type="button"
-                      icon="pi pi-pencil"
-                      className="p-button-outlined p-button-help"
-                      label="Edit"
-                      onClick={(e) => handleEdit(e, props)}
-                    />
-                  </FlexSpaceBetween>
-                )}
+             
               </Form>
             </div>
             
