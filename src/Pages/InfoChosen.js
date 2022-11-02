@@ -180,10 +180,10 @@ function InfoChosen() {
       <div className="tabContainer">
         <div className="tabInfo">
           <div>For pickup at&nbsp;&nbsp; </div>
-          <h2>{location}</h2>
-          <div> &nbsp;&nbsp; on &nbsp;&nbsp; </div>
-          <h2>{date_convert(delivDate)}</h2>
-          <div> &nbsp;&nbsp;at&nbsp;&nbsp; </div>
+          <h2>{location}&nbsp;&nbsp;</h2>
+          <div> on &nbsp;&nbsp; </div>
+          <h2>{date_convert(delivDate)}&nbsp;&nbsp;</h2>
+          <div> at&nbsp;&nbsp; </div>
           <h2> {time_convert(delivTime * 60)}</h2>
         </div>
 
@@ -191,7 +191,7 @@ function InfoChosen() {
           type="button"
           icon="pi pi-clock"
           label="Change Pickup"
-          className="p-button-raised"
+          className="p-button-raised lgscreen"
           aria-label="Bookmark"
           onClick={() => {}}
         />
@@ -199,7 +199,7 @@ function InfoChosen() {
           type="button"
           icon="pi pi-shopping-cart"
           label="CART"
-          className="p-button-raised"
+          className="p-button-raised lgscreen"
           aria-label="Bookmark"
           onClick={() => {}}
         />

@@ -27,7 +27,8 @@ code {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 100px 0 0 0;;
+  margin: 100px 0 0 0;
+  ;
   color: white;
 
 }
@@ -88,10 +89,10 @@ h3 {
 
 .tabContainer {
   display: flex;
-  background-color:  rgb(66, 97, 201);
+  background-color: rgb(66, 97, 201);
   align-items: center;
   color: yellow;
-justify-content: space-around;
+  justify-content: space-around;
   z-index: 200;
   position: fixed;
   width: 100%;
@@ -271,6 +272,40 @@ justify-content: space-around;
   .bigTitle {
     font-size: 24px;
   }
+
+
+  
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(66, 97, 201);
+  align-items: center;
+  color: yellow;
+  justify-content: space-around;
+  z-index: 200;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+
+.tabInfo {
+  display: flex;
+  align-items: center;
+}
+
+.tabInfo div {
+  display: none;
+}
+
+.tabInfo h2 {
+  font-size: 16px;;
+}
+
+.tabContainer .lgscreen {
+  display: none;
+}
+
 
 
 
