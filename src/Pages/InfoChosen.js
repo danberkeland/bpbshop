@@ -191,7 +191,7 @@ function InfoChosen() {
           <div> at&nbsp;&nbsp; </div>
           <h2> {time_convert(delivTime * 60)}</h2>
         </div>
-        <div className="smscreen">
+        <div className="smscreen medscreen">
           <Button
             type="button"
             label={location + ` - ` + date_convert(delivDate) + " - " + time_convert(delivTime * 60)}
@@ -221,7 +221,7 @@ function InfoChosen() {
           />
         </div>
 
-        <div className="floatButtonsTop smscreen">
+        <div className="floatButtonsTop smscreen medscreen">
           <Button
             type="button"
             icon="pi pi-shopping-cart"
