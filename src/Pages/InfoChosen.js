@@ -124,7 +124,7 @@ function InfoChosen() {
 
   const cartAdd = (price) => {
     let total = qty * price;
-    return "ADD TO CART $" + total;
+    return "ADD TO CART $" + total.toFixed(2);
   };
 
   const handleChangePickup = () => {
@@ -138,49 +138,62 @@ function InfoChosen() {
         style={{ width: "50vw", minWidth: "300px" }}
         onHide={onHide}
       >
-        <img
-          className="foodPicBig"
-          src={menu[menuGroup].items[item].url}
-          alt="sandwich"
-        />
-        <Title>{menu[menuGroup].items[item].name}</Title>
-        <SubInfo>{menu[menuGroup].items[item].description}</SubInfo>
-        <InputNumber
-          inputId="horizontal"
-          value={qty}
-          onValueChange={(e) => setQty(e.value)}
-          showButtons
-          buttonLayout="horizontal"
-          min={0}
-          decrementButtonClassName="p-button-secondary"
-          incrementButtonClassName="p-button-secondary"
-          incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus"
-        />
-        <SubInfo>For Pickup from {location} on:</SubInfo>
-        <SubInfo>
-          {delivDate} at {delivTime}
-        </SubInfo>
-
-        {menu[menuGroup].items[item].modifiers && (
-          <React.Fragment>
-            <label>Substitute Bread:</label>
-            <Dropdown
-              value={selectedBread}
-              options={breads}
-              onChange={onBreadChange}
-              optionLabel="label"
+        <div className="selectedItemContainer">
+          <div className="lgImageBox">
+            <img
+              className="foodPicBig"
+              src={menu[menuGroup].items[item].url}
+              alt="sandwich"
             />
-          </React.Fragment>
-        )}
-        <Button
-          type="button"
-          icon="pi pi-shopping-cart"
-          label={cartAdd(menu[menuGroup].items[item].price)}
-          className="p-button-raised"
-          aria-label="Bookmark"
-          onClick={() => {}}
-        />
+          </div>
+          <div className="itemSelectBox">
+            <Title>{menu[menuGroup].items[item].name}</Title>
+            <SubInfo>{menu[menuGroup].items[item].description}</SubInfo>
+            <div className="inputConfig">
+              <InputNumber
+                inputId="horizontal"
+                value={qty}
+                onValueChange={(e) => setQty(e.value)}
+                showButtons
+                buttonLayout="horizontal"
+                min={0}
+                decrementButtonClassName="p-button-secondary"
+                incrementButtonClassName="p-button-secondary"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              />
+            </div>
+            
+            <SubInfo>Pickup: {location}</SubInfo>
+            <SubInfo>
+            {date_convert(delivDate)} at {time_convert(delivTime * 60)}
+            </SubInfo>
+            <div className="inputConfig">
+              {menu[menuGroup].items[item].modifiers && (
+                <React.Fragment>
+                  <label>Substitute Bread:</label>
+                  <Dropdown
+                    value={selectedBread}
+                    options={breads}
+                    onChange={onBreadChange}
+                    optionLabel="label"
+                  />
+                </React.Fragment>
+              )}
+            </div>
+            <div className="inputConfig">
+              <Button
+                type="button"
+                icon="pi pi-shopping-cart"
+                label={cartAdd(menu[menuGroup].items[item].price)}
+                className="p-button-raised"
+                aria-label="Bookmark"
+                onClick={() => {}}
+              />
+            </div>
+            
+          </div>
+        </div>
       </Dialog>
       <div className="tabContainer">
         <div className="tabInfo lgscreen">
@@ -194,7 +207,13 @@ function InfoChosen() {
         <div className="smscreen medscreen">
           <Button
             type="button"
-            label={location + ` - ` + date_convert(delivDate) + " - " + time_convert(delivTime * 60)}
+            label={
+              location +
+              ` - ` +
+              date_convert(delivDate) +
+              " - " +
+              time_convert(delivTime * 60)
+            }
             className="p-button-text p-button-warning"
             aria-label="Bookmark"
             onClick={handleChangePickup}

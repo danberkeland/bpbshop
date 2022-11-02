@@ -173,6 +173,14 @@ h3 {
   color: red;
 }
 
+.selectedItemContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+}
+
+
+
 .descripGroup {
   width: 60%;
   min-width: 300px;
@@ -192,8 +200,13 @@ h3 {
 
 .foodPicBig {
   object-fit: cover;
-  width: 45vw;
-  height: 30vw;
+  width: 400px;
+  height: 400px;
+  padding: 15px;
+}
+
+.inputConfig {
+  margin: 30px 10px;
 }
 
 .locationInfoBox {
