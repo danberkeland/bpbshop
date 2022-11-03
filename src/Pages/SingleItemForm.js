@@ -89,72 +89,27 @@ function SingleItemForm({
               </div>
               {pickupInfo}
               <Accordion>
-                <AccordionTab header="Substitute Bread">
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city1" name="city" value="NO Pickles" />
-                    <label htmlFor="city1">&nbsp;&nbsp;ADD Peperoncin</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city2" name="city" value="NO Mayo" />
-                    <label htmlFor="city2">&nbsp;&nbsp;NO Veggies</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city3" name="city" value="NO Lettuce" />
-                    <label htmlFor="city3">&nbsp;&nbsp;NO Sprouts</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox
-                      inputId="city4"
-                      name="city"
-                      value="San Francisco"
-                    />
-                    <label htmlFor="city4">&nbsp;&nbsp;NO Mayo</label>
-                  </div>
-                </AccordionTab>
-                <AccordionTab header="Chips">
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city1" name="city" value="NO Pickles" />
-                    <label htmlFor="city1">&nbsp;&nbsp;ADD Peperoncin</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city2" name="city" value="NO Mayo" />
-                    <label htmlFor="city2">&nbsp;&nbsp;NO Veggies</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city3" name="city" value="NO Lettuce" />
-                    <label htmlFor="city3">&nbsp;&nbsp;NO Sprouts</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox
-                      inputId="city4"
-                      name="city"
-                      value="San Francisco"
-                    />
-                    <label htmlFor="city4">&nbsp;&nbsp;NO Mayo</label>
-                  </div>
-                </AccordionTab>
-                <AccordionTab header="Avocado">
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city1" name="city" value="NO Pickles" />
-                    <label htmlFor="city1">&nbsp;&nbsp;ADD Peperoncin</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city2" name="city" value="NO Mayo" />
-                    <label htmlFor="city2">&nbsp;&nbsp;NO Veggies</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox inputId="city3" name="city" value="NO Lettuce" />
-                    <label htmlFor="city3">&nbsp;&nbsp;NO Sprouts</label>
-                  </div>
-                  <div className="field-checkbox">
-                    <Checkbox
-                      inputId="city4"
-                      name="city"
-                      value="San Francisco"
-                    />
-                    <label htmlFor="city4">&nbsp;&nbsp;NO Mayo</label>
-                  </div>
-                </AccordionTab>
+                {menuItems &&
+                  menuItems.modifiers.map((men) => {
+                    return (
+                      <AccordionTab header={men.name}>
+                        {men.options.map((opt) => {
+                          return (
+                            <div className="field-checkbox">
+                              <Checkbox
+                                inputId={opt.value}
+                                name={opt.value}
+                                value={opt.value}
+                              />
+                              <label htmlFor={opt.value}>
+                                &nbsp;&nbsp;{opt.label}
+                              </label>
+                            </div>
+                          );
+                        })}
+                      </AccordionTab>
+                    );
+                  })}
               </Accordion>
 
               <div className="inputConfig">

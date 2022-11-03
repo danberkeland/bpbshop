@@ -1,7 +1,7 @@
 
 
 const breads = {
-  name: "Sub Bread:",
+  name: "Sub Bread",
   modType: "chooseOne",
   options: [
     { label: "NONE", value: "BX36BIQTE5SZFE4EYIZL6ODE_0" },
