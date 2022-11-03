@@ -15,6 +15,8 @@ export const withFormComponentWrap = (Component) => (props) => {
     const [field, meta] = useField(props);
    
     meta.initialValue !== meta.value && setIsChange(true)
+
+    console.log('Wrapprops', props)
   
     return (
       <React.Fragment>
@@ -25,7 +27,7 @@ export const withFormComponentWrap = (Component) => (props) => {
               {...props}
               {...field}
 
-              disabled={isEdit ? props.dontedit==="true" ? true : false : isCreate ? false : true}
+            
               className={meta.touched && meta.error ? "p-error" : ""}
             />
           </div>

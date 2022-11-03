@@ -146,17 +146,20 @@ const CustomYesNoInputBase = ({ label, ...props }) => {
 };
 
 const CustomDropdownInputBase = ({ label, ...props }) => {
+  console.log('Dropprops', props)
   return (
     <Dropdown
       {...props}
       type="string"
+      disabled={false}
       value={props.value ? props.value : null}
     />
   );
 };
 
 const CustomMultiSelectInputBase = ({ label, ...props }) => {
-  return <MultiSelect {...props} value={props.value ? props.value : null} />;
+  console.log('Multiprops', props)
+  return <MultiSelect {...props}  disabled={false} value={props.value ? props.value : null} />;
 };
 
 export class CustomInputs {

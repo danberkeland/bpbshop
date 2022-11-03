@@ -215,7 +215,7 @@ export const menu = [
         days: null,
         specialStart: null,
         specialEnd: null,
-        modifiers: [breads, unDutchAble, theWorks, chips]
+        modifiers: [breads, unDutchAble, avocado, theWorks, chips]
       },
       {
         name: "The Queen of Clubs",
@@ -236,7 +236,7 @@ export const menu = [
         days: null,
         specialStart: null,
         specialEnd: null,
-        modifiers: [breads, queenOfClubs, chips]
+        modifiers: [breads, queenOfClubs, avocado, chips]
       },
       {
         name: "The California Garden",
@@ -278,7 +278,7 @@ export const menu = [
         days: null,
         specialStart: null,
         specialEnd: null,
-        modifiers: [breads, backPorchBLT,chips]
+        modifiers: [breads, backPorchBLT, avocado, chips]
       },
       {
         name: "Salami and Brie Ficelle",

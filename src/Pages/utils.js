@@ -48,7 +48,7 @@ export function checkAvailable(item, delivDate, delivTime) {
     dayOfWeek = item.days ? item.days.includes(weekday) : true;
 
     // check on time of day
-    let timeOfDay = item.start < delivTime;
+    let timeOfDay = item.start <= delivTime;
 
     return leadTime && specialDays && dayOfWeek && timeOfDay;
   }

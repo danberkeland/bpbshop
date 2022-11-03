@@ -11,18 +11,28 @@ import { compose } from "../utils";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { InputNumber } from "primereact/inputnumber";
 
 import { menu } from "./Menu";
 
 import { Title, SubInfo } from "../CommonStyles";
 import { time_convert, date_convert } from "./utils";
 import { CustomInputs } from "../FormComponents/CustomInputs";
+import { FieldArray } from "formik";
 
 const BPB = new CustomInputs();
 
+const countryTurkey = [
+  { label: "ADD Bacon", value: "ADD Bacon" },
+  { label: "NO Cheese", value: "NO Cheese" },
+  { label: "NO Onion", value: "NO Onion" },
+  { label: "NO Pickles", value: "NO Pickles" },
+  { label: "NO Lettuce", value: "NO Lettuce" },
+  { label: "NO Aioli", value: "NO Aioli" },
+];
+
 const initialState = {
   qty: 0,
+  locations: [],
 };
 
 function SingleItemForm({
@@ -43,7 +53,7 @@ function SingleItemForm({
 
   const itemName = menuItems.name;
   const itemDescription = menuItems.description;
-  const price = menuItems.price
+  const price = menuItems.price;
 
   const onHide = () => {
     setQty(0);
@@ -51,7 +61,7 @@ function SingleItemForm({
   };
 
   const cartAdd = (qty) => {
-    console.log('price', price)
+    console.log("price", price);
     let total = qty * price;
     return "ADD TO CART $" + total.toFixed(2);
   };
@@ -64,6 +74,7 @@ function SingleItemForm({
       </SubInfo>
     </React.Fragment>
   );
+
   const BPBItemForm = compose(
     withBPBForm,
     withFadeIn
@@ -84,46 +95,35 @@ function SingleItemForm({
               <SubInfo>{itemDescription}</SubInfo>
               <div className="inputConfig">
                 <BPB.CustomQtyInput label="Qty" name="qty" converter={props} />
-                
               </div>
-
               {pickupInfo}
-              {/*
-            <div className="inputConfig">
-              {menuItems.modifiers &&
-                menuItems.modifiers.map((mod) => {
-                  let response;
-                  if (mod.modType === "chooseOne") {
-                    response = mod.name + " chooseOne";
-                  }
-                  if (mod.modType === "chooseMany") {
-                    response = mod.name + " chooseMany";
-                  }
-
-                  return response;
-                })}
-            </div>
-            <div className="inputConfig">
-              <Button
-                type="submit"
-                icon="pi pi-shopping-cart"
-                label={cartAdd(menuItems.price)}
-                className="p-button-raised"
-                aria-label="Bookmark"
-              />
-              </div>*/}
+              {menuItems.modifiers.map((mod, index) => {
+                console.log("Modmod", mod);
+                return (
+                  <React.Fragment>
+                    <div className="inputConfig">
+                      <BPB.CustomMultiSelectInput
+                        label={mod.name}
+                        name={`modifiers[${index}].name`}
+                        options={mod.options}
+                        converter={props}
+                      />
+                    </div>
+                  </React.Fragment>
+                );
+              })}
+              ;
               <div className="inputConfig">
-              <Button
-                type="submit"
-                icon="pi pi-shopping-cart"
-                label={cartAdd(props.values.qty)}
-                className="p-button-raised"
-                aria-label="Bookmark"
-              />
-            </div>
+                <Button
+                  type="submit"
+                  icon="pi pi-shopping-cart"
+                  label={cartAdd(props.values.qty)}
+                  className="p-button-raised"
+                  aria-label="Bookmark"
+                />
+              </div>
             </div>
           </div>
-          
         </Dialog>
       </React.Fragment>
     );
