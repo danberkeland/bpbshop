@@ -176,7 +176,7 @@ h3 {
 .selectedItemContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  
+
 }
 
 
@@ -356,6 +356,25 @@ h3 {
 
   .smscreen {
     display: flex;
+  }
+
+
+  .selectedItemContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .foodPicBig {
+    object-fit: cover;
+    width: 240px;
+    height: 240px;
+    padding: 15px;
+  }
+
+  .itemSelectBox {
+    width: 240px;
   }
 
 

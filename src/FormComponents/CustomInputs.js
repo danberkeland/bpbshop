@@ -115,6 +115,7 @@ const CustomQtyInputBase = ({ label, ...props }) => {
       inputId="horizontal"
       disabled={false}
       value={props.value}
+      size={5}
       onChange={(values) => {
         props.converter.setFieldValue(props.name, Number(values.value));
       }}

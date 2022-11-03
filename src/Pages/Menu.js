@@ -4,12 +4,12 @@ const breads = {
   name: "Sub Bread:",
   modType: "chooseOne",
   options: [
-    { label: "NONE", value: "NONE", price: 0 },
-    { label: "Croissant ($1.00)", value: "croix", price: 1 },
-    { label: "Brioche ($0.50)", value: "bri", price: .5 },
-    { label: "Baguette ($0.50)", value: "bag", price: .5 },
-    { label: "Multigrain ($0.50)", value: "multi", price: .5 },
-    { label: "Levain ($0.50)", value: "lev", price: .5 },
+    { label: "NONE", value: "BX36BIQTE5SZFE4EYIZL6ODE_0" },
+    { label: "Croissant ($1.00)", value: "B5N2OZPBJTTLJ7WI42S2MYLX_1" },
+    { label: "Brioche ($0.50)", value: "3NZJXA4J45KZ2G3RATRJ3JGT_.5" },
+    { label: "Baguette ($0.50)", value: "MIY65C4DK2EKFSBZQ7GIKCA5_.5" },
+    { label: "Multigrain ($0.50)", value: "WEFDZSRCPIFN343DCM36D3G7_.5" },
+    { label: "Levain ($0.50)", value: "D5VS4GLMNR5HPXUCCXJGT7SX_.5" },
   ]
 }
 ;
@@ -18,13 +18,13 @@ const queenOfClubs = {
   name: "Queen of Clubs",
   modType: "chooseMany",
   options: [
-    { label: "NO Turkey", value: "NO Turkey", price: 0 },
-    { label: "NO Bacon", value: "NO Bacon", price: 0 },
-    { label: "NO Cheese", value: "NO Cheese", price: 0 },
-    { label: "NO Cucumber", value: "NO Cucumber", price: 0 },
-    { label: "NO Tomato", value: "NO Tomato", price: 0 },
-    { label: "NO Lettuce", value: "NO Lettuce", price: 0 },
-    { label: "NO Aioli", value: "NO Aioli", price: 0 },
+    { label: "NO Turkey", value: "NO QS3R2TS3WHNOZSSETE3ZEWIA_0" },
+    { label: "NO Bacon", value: "OHXILYVTW7TDZL3HNDYCROE3_0" },
+    { label: "NO Cheese", value: "E42T62BEGHS5PFH3IIKHERDK_0" },
+    { label: "NO Cucumber", value: "D52TV5LEP25I3FUIXXAEQCMQ_0" },
+    { label: "NO Tomato", value: "VPC2W5GV25IAPC5FLJKAWBIV_0" },
+    { label: "NO Lettuce", value: "7S2NRSLIEW46K3ATV7PGH3JK_0" },
+    { label: "NO Aioli", value: "7QJZBB6LTGKEFD3BQD5N3T2M_0" },
   ]
 }
 ;
@@ -33,7 +33,7 @@ const avocado = {
   name: "Avocado",
   modType: "chooseMany",
   options: [
-    { label: "ADD Avocado", value: "ADD Avocado", price: 2 },
+    { label: "ADD Avocado", value: "X5WTWZ5UGQPDZGF5XK4GD67M_2" },
   ]
 }
 ;
@@ -42,7 +42,7 @@ const chips = {
   name: "Chips",
   modType: "chooseMany",
   options: [
-    { label: "ADD Chips", value: "ADD Chips", price: 2 },
+    { label: "ADD Chips", value: "QY6RCULQI2H6NI7H6UMLZJL4_2" },
   ]
 }
 ;
@@ -51,43 +51,44 @@ const theWorks = {
   name: "The Works",
   modType: "chooseMany",
   options: [
-    { label: "ADD Peperoncini", value: "ADD Peperoncini", price: 0 },
-    { label: "NO Oil", value: "NO Oil", price: 0 },
-    { label: "NO Vinegar", value: "NO Vinegar", price: 0 },
-    { label: "NO Salt", value: "NO Salt", price: 0 },
-    { label: "NO Mayo", value: "NO Mayo", price: 0 },
-    { label: "NO Mustard", value: "NO Mustard", price: 0 },
-    { label: "NO Pickles", value: "NO Pickles", price: 0 },
+    { label: "ADD Peperoncini", value: "YVRHZ4UZY625D2RBYZYBQBGN_0" },
+    { label: "NO Oil", value: "CWCWJEORV7JTXRFRO2REAXDA_0" },
+    { label: "NO Vinegar", value: "BCG3HECOWDUYJZJBCNDTDZMO_0" },
+    { label: "NO Salt", value: "BE5PTX3J2RX3FJINDZV6TAGF_0" },
+    { label: "NO Pepper", value: "JARNUDV53KC7JO2RMIK6BBR3_0" },
+    { label: "NO Mayo", value: "CTZIXCYHUEALSO2L5QKJ3U3U_0" },
+    { label: "NO Mustard", value: "VI2CXZVRRRJFB73OHILPPX2I_0" },
+    { label: "NO Pickles", value: "2QRQ2ZF75VXBG33423QQLRG2_0" },
   ]
 }
 ;
 
 const unDutchAble = {
-  name: "Un.Dutch.able",
+  name: "UnDutchable",
   modType: "chooseMany",
   options: [
-    { label: "NO Salami", value: "NO Salami", price: 0 },
-    { label: "NO Ham", value: "NO Ham", price: 0 },
-    { label: "NO Capocollo", value: "NO Capocollo", price: 0 },
-    { label: "NO Provolone", value: "NO Provolone", price: 0 },
-    { label: "NO Onion", value: "NO Onion", price: 0 },
-    { label: "NO Tomato", value: "NO Tomato", price: 0 },
-    { label: "NO Lettuce", value: "NO Lettuce", price: 0 },
+    { label: "NO Salami", value: "HK3ITNXA4DH3SNELK5BDGBAD_0" },
+    { label: "NO Ham", value: "44GMBPJ3MJBCATL2Y55H4KVB_0" },
+    { label: "NO Capocollo", value: "P2AVBLDAHJ4NAHD4N5GRYWGN_0" },
+    { label: "NO Provolone", value: "2PYKSLMHBB73TXNJ5SYOSIOA_0" },
+    { label: "NO Onion", value: "GGXIXJWAK7TSH26DRA5IESWR_0" },
+    { label: "NO Tomato", value: "ARPJSFC3HEBQQ75TVOROF5PJ_0" },
+    { label: "NO Lettuce", value: "EVTFFGKVY2OTCM6Z3OXPA4AX_0" },
   ]
 }
 ;
 
 const californiaGarden = {
-  name: "TheCalifornia Garden",
+  name: "The California Garden",
   modType: "chooseMany",
   options: [
-    { label: "NO Avocado", value: "NO Avocado", price: 0 },
-    { label: "NO Lettuce", value: "NO Lettuce", price: 0 },
-    { label: "NO Veggies", value: "NO Veggies", price: 0 },
-    { label: "NO Cucumber", value: "NO Cucumber", price: 0 },
-    { label: "NO Cheese", value: "NO Cheese", price: 0 },
-    { label: "Sub Cream Cheese", value: "Sub Cream Cheese", price: 0 },
-    { label: "NO Dressing", value: "NO Dressing", price: 0 },
+    { label: "NO Avocado", value: "NGQNZVF5HVKGMZJK7XNMJU6DF_0" },
+    { label: "NO Lettuce", value: "ZDXXJFYYAC7DSYZ62XSO5JB5_0" },
+    { label: "NO Pickled Veggies", value: "UGF5OTPXQOCP25G6M4UNS6L2_0" },
+    { label: "NO Cucumber", value: "FUOXGCKVPUMUNO5GMQCUDGVO_0" },
+    { label: "NO Cheese", value: "HDKTW5EJCVGXHHK2NQ7MK7R5_0" },
+    { label: "Sub Cream Cheese", value: "SVHZDVL56EIW4U3DMBR6CESZ_0" },
+    { label: "NO Dressing", value: "MLWQ22E3MAAZAT6MGFMC3OHA_0" },
   ]
 }
 ;
@@ -96,11 +97,11 @@ const backPorchBLT = {
   name: "Sweet n Spicey BLT",
   modType: "chooseMany",
   options: [
-    { label: "NO Lettuce", value: "NO Lettuce", price: 0 },
-    { label: "NO Tomato", value: "NO Tomato", price: 0 },
-    { label: "NO Sambal Aioli", value: "NO Sambal Aioli", price: 0 },
-    { label: "Sub Regular Aioli", value: "Sub Regular Aioli", price: 0 },
-    { label: "Sub NOT Spicey Bacon", value: "Sub NOT Spicey Bacon", price: 0 },
+    { label: "NO Lettuce", value: "IYXEWOZST2HM4O6BX4DU5XZ7_0" },
+    { label: "NO Tomato", value: "PKI4PEKXICSI43MFHW5AIMZS_0" },
+    { label: "NO Sambal Aioli", value: "HHCL4RGTDLROXSRY5N5D63KG_0" },
+    { label: "Sub Regular Aioli", value: "BDSIFOISRYMISIC3ZJJOVL4A_0" },
+    { label: "Sub NOT Spicey Bacon", value: "L2WQWHGVWQLBLZUOSC2ENCL3_0" },
   ]
 }
 ;
@@ -109,12 +110,12 @@ const countryTurkey = {
   name: "Country Turkey",
   modType: "chooseMany",
   options: [
-    { label: "ADD Bacon", value: "ADD Bacon", price: 2 },
-    { label: "NO Cheese", value: "NO Cheese", price: 0 },
-    { label: "NO Onion", value: "NO Onion", price: 0 },
-    { label: "NO Pickles", value: "NO Pickles", price: 0 },
-    { label: "NO Lettuce", value: "NO Lettuce", price: 0 },
-    { label: "NO Aioli", value: "NO Aioli", price: 0 },
+    { label: "ADD Bacon", value: "TBAPLWYK3M2DI6H6FIKIPLJU_2" },
+    { label: "NO Cheese", value: "UMHPURUOVSDQYF3DCKYLKCK6_0" },
+    { label: "NO Onion", value: "PVSFZ3R7VCJ7GEMJRR2QUFVB_0" },
+    { label: "NO Pickles", value: "COYZB5MKCKERRBPOAD6NCYAL_0" },
+    { label: "NO Lettuce", value: "S3O2ZEBW3MPK6M7362O6AIMW_0" },
+    { label: "NO Aioli", value: "NYWD3HOCTBCHPW3LAP5536F7_0" },
   ]
 }
 ;

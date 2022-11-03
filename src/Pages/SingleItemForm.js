@@ -11,28 +11,19 @@ import { compose } from "../utils";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Checkbox } from "primereact/checkbox";
 
 import { menu } from "./Menu";
 
 import { Title, SubInfo } from "../CommonStyles";
 import { time_convert, date_convert } from "./utils";
 import { CustomInputs } from "../FormComponents/CustomInputs";
-import { FieldArray } from "formik";
 
 const BPB = new CustomInputs();
 
-const countryTurkey = [
-  { label: "ADD Bacon", value: "ADD Bacon" },
-  { label: "NO Cheese", value: "NO Cheese" },
-  { label: "NO Onion", value: "NO Onion" },
-  { label: "NO Pickles", value: "NO Pickles" },
-  { label: "NO Lettuce", value: "NO Lettuce" },
-  { label: "NO Aioli", value: "NO Aioli" },
-];
-
 const initialState = {
   qty: 0,
-  locations: [],
 };
 
 function SingleItemForm({
@@ -97,22 +88,75 @@ function SingleItemForm({
                 <BPB.CustomQtyInput label="Qty" name="qty" converter={props} />
               </div>
               {pickupInfo}
-              {menuItems.modifiers.map((mod, index) => {
-                console.log("Modmod", mod);
-                return (
-                  <React.Fragment>
-                    <div className="inputConfig">
-                      <BPB.CustomMultiSelectInput
-                        label={mod.name}
-                        name={`modifiers[${index}].name`}
-                        options={mod.options}
-                        converter={props}
-                      />
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-              ;
+              <Accordion>
+                <AccordionTab header="Substitute Bread">
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city1" name="city" value="NO Pickles" />
+                    <label htmlFor="city1">&nbsp;&nbsp;ADD Peperoncin</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city2" name="city" value="NO Mayo" />
+                    <label htmlFor="city2">&nbsp;&nbsp;NO Veggies</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city3" name="city" value="NO Lettuce" />
+                    <label htmlFor="city3">&nbsp;&nbsp;NO Sprouts</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox
+                      inputId="city4"
+                      name="city"
+                      value="San Francisco"
+                    />
+                    <label htmlFor="city4">&nbsp;&nbsp;NO Mayo</label>
+                  </div>
+                </AccordionTab>
+                <AccordionTab header="Chips">
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city1" name="city" value="NO Pickles" />
+                    <label htmlFor="city1">&nbsp;&nbsp;ADD Peperoncin</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city2" name="city" value="NO Mayo" />
+                    <label htmlFor="city2">&nbsp;&nbsp;NO Veggies</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city3" name="city" value="NO Lettuce" />
+                    <label htmlFor="city3">&nbsp;&nbsp;NO Sprouts</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox
+                      inputId="city4"
+                      name="city"
+                      value="San Francisco"
+                    />
+                    <label htmlFor="city4">&nbsp;&nbsp;NO Mayo</label>
+                  </div>
+                </AccordionTab>
+                <AccordionTab header="Avocado">
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city1" name="city" value="NO Pickles" />
+                    <label htmlFor="city1">&nbsp;&nbsp;ADD Peperoncin</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city2" name="city" value="NO Mayo" />
+                    <label htmlFor="city2">&nbsp;&nbsp;NO Veggies</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox inputId="city3" name="city" value="NO Lettuce" />
+                    <label htmlFor="city3">&nbsp;&nbsp;NO Sprouts</label>
+                  </div>
+                  <div className="field-checkbox">
+                    <Checkbox
+                      inputId="city4"
+                      name="city"
+                      value="San Francisco"
+                    />
+                    <label htmlFor="city4">&nbsp;&nbsp;NO Mayo</label>
+                  </div>
+                </AccordionTab>
+              </Accordion>
+
               <div className="inputConfig">
                 <Button
                   type="submit"
