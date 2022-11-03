@@ -132,11 +132,11 @@ export const Choose = () => {
           </div>
         </Dialog>
         <div className="lgscreen">
-          <Button label="Submit1" type="submit" style={editButtonStyle} />
+          <Button label="Submit" type="submit" style={editButtonStyle} />
         </div>
         <div className="smscreen medscreen floatButtonBottom">
           <Button
-            label="Submit2"
+            label="Submit"
             type="submit"
             className="p-button-rounded p-button-success"
             style={editButtonStyle}

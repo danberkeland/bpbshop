@@ -65,37 +65,31 @@ export const withBPBForm = (Component) => (props) => {
   return (
     <div>
       <CenteredContainer>
-      <ConfirmDialog />
-      <Formik
-        initialValues={props.initialState}
-        validationSchema={props.validationSchema(props)}
-        onSubmit={(props) => {
-          console.log("submitprops", props);
-          setIsLoading(true);
-          window.scrollTo(0, 0);
-          setIsEdit(false);
+        <ConfirmDialog />
+        <Formik
+          initialValues={props.initialState}
+          validationSchema={props.validationSchema(props)}
+          onSubmit={(props) => {
+            console.log("submitprops", props);
+            setIsLoading(true);
+            window.scrollTo(0, 0);
+            setIsEdit(false);
 
-          fns.update({ ...fns, ...props });
-        }}
-      >
-        {(props) => (
-          <React.Fragment>
-            
-            <div className="signInBox">
-              <Form>
-                <Component {...props} />
-                
-                
-                 
-             
-              </Form>
-            </div>
-            
-          </React.Fragment>
-        )}
-      </Formik>
+            fns.update({ ...fns, ...props });
+          }}
+        >
+          {(props) => (
+            <React.Fragment>
+              <div className="signInBox">
+                <Form>
+                  <Component {...props} />
+                </Form>
+              </div>
+            </React.Fragment>
+          )}
+        </Formik>
 
-      <div className="bottomSpace"></div>
+        <div className="bottomSpace"></div>
       </CenteredContainer>
     </div>
   );
