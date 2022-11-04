@@ -33,7 +33,7 @@ function InfoChosen() {
     setMenuGroup(index1);
     setItem(index2);
     setSelected(item);
-    setQty(0);
+    setQty(1);
     setModifiers([]);
     setDisplayBasic(true);
   };
@@ -107,6 +107,7 @@ function InfoChosen() {
         <div className="lgscreen">
           <Button
             type="button"
+            disabled={cartOrder.length===0}
             icon="pi pi-shopping-cart"
             label={`Cart (${addUpCart()} items)`}
             className="p-button-raised"

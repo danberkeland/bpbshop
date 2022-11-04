@@ -6,8 +6,8 @@ import { Dialog } from "primereact/dialog";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Checkbox } from "primereact/checkbox";
 import { InputNumber } from "primereact/inputnumber";
-import { Toast } from 'primereact/toast';
-import { updateItem } from "../restAPIs"
+import { Toast } from "primereact/toast";
+import { updateItem } from "../restAPIs";
 
 import { menu } from "./Menu";
 
@@ -24,7 +24,7 @@ function SingleItemForm({
   qty,
   setQty,
   modifiers,
-  setModifiers
+  setModifiers,
 }) {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
@@ -50,34 +50,47 @@ function SingleItemForm({
 
   const cartAdd = () => {
     console.log("price", price);
-    let addPrice = modifiers.map(mod => Number(mod.value.split('_')[1]))
+    let addPrice = modifiers.map((mod) => Number(mod.value.split("_")[1]));
     const sum = addPrice.reduce((partialSum, a) => partialSum + a, 0);
-    console.log('addPrice', addPrice)
-    let total = qty * (price+sum);
+    console.log("addPrice", addPrice);
+    let total = qty * (price + sum);
     return "ADD TO CART $" + total.toFixed(2);
   };
 
-  
-const updateItem = (e, qty, modifiers, selected) => {
-  console.log("qty", qty);
-  console.log("modifiers", modifiers);
-  console.log("selected", selected);
-  let addPrice = modifiers.map((mod) => Number(mod.value.split("_")[1]));
-  const sum = addPrice.reduce((partialSum, a) => partialSum + a, 0);
-  console.log("addPrice", addPrice);
-  let total = qty * (price + sum);
-  let newItem = {
-    item: selected,
-    qty: qty,
-    modifiers: modifiers,
-    price: total,
+  const updateItem = (e, qty, modifiers, selected) => {
+    let addPrice = modifiers.map((mod) => Number(mod.value.split("_")[1]));
+    const sum = addPrice.reduce((partialSum, a) => partialSum + a, 0);
+
+    let total = qty * (price + sum);
+    let addTo = false;
+    let newItem = {
+      item: selected,
+      qty: qty,
+      modifiers: modifiers,
+      price: total,
+    };
+    let cart = [...cartOrder];
+    for (let item of cart) {
+      console.log('item', item)
+      console.log('selected', selected)
+      if (item.item.name === selected.name && item.modifiers.length===0) {
+        item.price += qty*price
+        item.qty += qty;
+        addTo = true;
+      }
+    }
+    if (addTo === false) {
+      cart.push(newItem);
+    }
+
+    setCartOrder(cart);
+    toast.current.show({
+      severity: "success",
+      summary: "Added To Cart",
+      detail: `${qty} x ${selected.name} $${total.toFixed(2)}`,
+    });
+    setDisplayBasic(false);
   };
-  let cart = [...cartOrder]
-  cart.push(newItem)
-  setCartOrder(cart)
-  toast.current.show({severity: 'success', summary: 'Added To Cart', detail: `${qty} x ${selected.name} $${total.toFixed(2)}`});
-  setDisplayBasic(false);
-};
 
   const pickupInfo = (
     <React.Fragment>
@@ -91,10 +104,11 @@ const updateItem = (e, qty, modifiers, selected) => {
   const onModChange = (e) => {
     console.log("e", e);
     let selectedModifiers = [...modifiers];
-    if (e.checked) selectedModifiers.push({
-      name: e.target.name,
-      value: e.value
-    });
+    if (e.checked)
+      selectedModifiers.push({
+        name: e.target.name,
+        value: e.value,
+      });
     else selectedModifiers.splice(selectedModifiers.indexOf(e.value), 1);
     setModifiers(selectedModifiers);
   };
@@ -143,7 +157,9 @@ const updateItem = (e, qty, modifiers, selected) => {
                               inputId={opt.value}
                               name={opt.label}
                               value={opt.value}
-                              checked={modifiers.map(mod => mod.value).includes(opt.value)}
+                              checked={modifiers
+                                .map((mod) => mod.value)
+                                .includes(opt.value)}
                               onChange={onModChange}
                             />
                             <label htmlFor={opt.value}>
@@ -160,12 +176,12 @@ const updateItem = (e, qty, modifiers, selected) => {
             <div className="inputConfig">
               <Button
                 type="button"
-                disabled={qty>0 ? false : true}
+                disabled={qty > 0 ? false : true}
                 icon="pi pi-shopping-cart"
                 label={cartAdd(qty)}
                 className="p-button-raised"
                 aria-label="Bookmark"
-                onClick={e => updateItem(e,qty, modifiers, selected)}
+                onClick={(e) => updateItem(e, qty, modifiers, selected)}
               />
             </div>
           </div>

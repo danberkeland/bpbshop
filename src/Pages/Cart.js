@@ -32,12 +32,18 @@ function Cart({ displayCart, setDisplayCart }) {
   };
 
   const handleRemove = (e, index) => {
-    console.log('index', index)
+    console.log("index", index);
     let cart = [...cartOrder];
     cart.splice(index, 1);
-    setCartOrder(cart)
-   
+    setCartOrder(cart);
   };
+
+  const totalPrice = () => {
+    let prices = cartOrder.map(cart => cart.price)
+    const sum = prices.reduce((partialSum, a) => partialSum + a, 0);
+    return sum
+
+  }
 
   return (
     <React.Fragment>
@@ -48,81 +54,72 @@ function Cart({ displayCart, setDisplayCart }) {
         onHide={onHide}
       >
         <Title>Cart</Title>
-        <div className="tabInfo lgscreen">
-          <div>For pickup at&nbsp;&nbsp; </div>
-          <h2>{location}&nbsp;&nbsp;</h2>
-          <div> on &nbsp;&nbsp; </div>
-          <h2>{date_convert(delivDate)}&nbsp;&nbsp;</h2>
-          <div> at&nbsp;&nbsp; </div>
-          <h2> {time_convert(delivTime * 60)}</h2>
-        </div>
-        <div className="smscreen medscreen">
-          <Button
-            type="button"
-            label={
-              location +
-              ` - ` +
-              date_convert(delivDate) +
-              " - " +
-              time_convert(delivTime * 60)
-            }
-            className="p-button-text p-button-warning"
-            aria-label="Bookmark"
-            onClick={handleChangePickup}
-          />
-        </div>
-        <div className="lgscreen">
-          <Button
-            type="button"
-            icon="pi pi-clock"
-            label="Change Pickup"
-            className="p-button-raised"
-            aria-label="Bookmark"
-            onClick={handleChangePickup}
-          />
-        </div>
-        {cartOrder.map((cart, index) => {
-          return (
-            <div className="cartItem">
-              <Button
-                icon="pi pi-times"
-                onClick={(e) => handleRemove(e, index)}
-                className="p-button-outlined p-button-rounded p-button-danger"
-                aria-label="Cancel"
-              />
-              <img
-                className="foodPicSmall"
-                src={cart.item.url}
-                alt="sandwich"
-              />
-              <div>
-                <div>{cart.item.name}</div>
-                {cart.modifiers.map((mod) => {
-                  return <div>{mod.name}</div>;
-                })}
-              </div>
-
-              <div>
-                <InputNumber
-                  inputId="horizontal"
-                  disabled={false}
-                  value={1}
-                  size={2}
-                  showButtons
-                  buttonLayout="horizontal"
-                  min={0}
-                  decrementButtonClassName="p-button-secondary"
-                  incrementButtonClassName="p-button-secondary"
-                  incrementButtonIcon="pi pi-plus"
-                  decrementButtonIcon="pi pi-minus"
+        {cartOrder.length>0 ?
+        <React.Fragment>
+          <div className="tabInfo lgscreen">
+            <div>For pickup at&nbsp;&nbsp; </div>
+            <h2>{location}&nbsp;&nbsp;</h2>
+            <div> on &nbsp;&nbsp; </div>
+            <h2>{date_convert(delivDate)}&nbsp;&nbsp;</h2>
+            <div> at&nbsp;&nbsp; </div>
+            <h2> {time_convert(delivTime * 60)}</h2>
+          </div>
+          <div className="smscreen medscreen">
+            <Button
+              type="button"
+              label={
+                location +
+                ` - ` +
+                date_convert(delivDate) +
+                " - " +
+                time_convert(delivTime * 60)
+              }
+              className="p-button-text p-button-warning"
+              aria-label="Bookmark"
+              onClick={handleChangePickup}
+            />
+          </div>
+          <div className="lgscreen">
+            <Button
+              type="button"
+              icon="pi pi-clock"
+              label="Change Pickup"
+              className="p-button-raised"
+              aria-label="Bookmark"
+              onClick={handleChangePickup}
+            />
+          </div>
+          {cartOrder.map((cart, index) => {
+            return (
+              <div className="cartItem">
+                <Button
+                  icon="pi pi-times"
+                  onClick={(e) => handleRemove(e, index)}
+                  className="p-button-outlined p-button-rounded p-button-danger"
+                  aria-label="Cancel"
                 />
-                <div>${cart.price.toFixed(2)}</div>
+                <img
+                  className="foodPicSmall"
+                  src={cart.item.url}
+                  alt="sandwich"
+                />
+                <div>
+                  <div>{cart.item.name}</div>
+                  {cart.modifiers.map((mod) => {
+                    return <div>{mod.name}</div>;
+                  })}
+                </div>
+
+                <div>
+                  <div>Quantity: {cart.qty}</div>
+                  <div>${cart.price.toFixed(2)}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
-        <div>TOTAL</div>
-        <Button label="PAY NOW" />
+            );
+          })}
+          <div>TOTAL: ${totalPrice().toFixed(2)} + tax</div>
+          <Button label="PAY NOW" />
+        </React.Fragment> : <div>Cart is empty.</div>}
       </Dialog>
     </React.Fragment>
   );
