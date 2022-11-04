@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { validationSchema } from "./ValidationSchema";
 
@@ -37,8 +37,13 @@ function SingleItemForm({
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
+  const modifiers = useSettingsStore((state) => state.modifiers);
+  const setModifiers = useSettingsStore((state) => state.setModifiers);
 
-  const [qty, setQty] = useState(0);
+
+  useEffect(() => {
+    console.log('modifiers', modifiers)
+  },[modifiers])
 
   let menuItems = menu[menuGroup].items[item];
 
@@ -46,8 +51,8 @@ function SingleItemForm({
   const itemDescription = menuItems.description;
   const price = menuItems.price;
 
+
   const onHide = () => {
-    setQty(0);
     setDisplayBasic(false);
   };
 
@@ -65,6 +70,14 @@ function SingleItemForm({
       </SubInfo>
     </React.Fragment>
   );
+
+  const onModChange = (e) => {
+    console.log('e', e)
+    let selectedModifiers = [...modifiers];
+    if (e.checked) selectedModifiers.push(e.value);
+    else selectedModifiers.splice(selectedModifiers.indexOf(e.value), 1);
+    setModifiers(selectedModifiers)
+  };
 
   const BPBItemForm = compose(
     withBPBForm,
@@ -88,18 +101,20 @@ function SingleItemForm({
                 <BPB.CustomQtyInput label="Qty" name="qty" converter={props} />
               </div>
               {pickupInfo}
-              <Accordion>
+              <Accordion multiple>
                 {menuItems &&
-                  menuItems.modifiers.map((men) => {
+                  menuItems.modifiers.map((men, index1) => {
                     return (
-                      <AccordionTab header={men.name}>
+                      <AccordionTab key={men.name} header={men.name}>
                         {men.options.map((opt) => {
                           return (
-                            <div className="field-checkbox">
+                            <div key={opt.value} className="field-checkbox">
                               <Checkbox
                                 inputId={opt.value}
-                                name={opt.value}
+                                name={opt.label+opt.value}
                                 value={opt.value}
+                                checked={modifiers.includes(opt.value)}
+                                onChange={onModChange}
                               />
                               <label htmlFor={opt.value}>
                                 &nbsp;&nbsp;{opt.label}

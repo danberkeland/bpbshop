@@ -25,6 +25,8 @@ const store = (set) => ({
   setIsChange: (isChange) => set(() => ({ isChange: isChange })),
   location: "",
   setLocation: (location) => set(() => ({ location: location })),
+  modifiers: [],
+  setModifiers: (modifiers) => set(() => ({ modifiers: modifiers }))
 });
 
 export const useSettingsStore = create(devtools(store));
