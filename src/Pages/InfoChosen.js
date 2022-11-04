@@ -7,6 +7,7 @@ import { time_convert, date_convert, checkAvailable, itemFilter } from "./utils"
 import background from "../pastryblock.jpg";
 import SingleItemForm from "./SingleItemForm";
 import Footer from "./Footer";
+import Cart from "./Cart";
 
 
 
@@ -20,6 +21,7 @@ function InfoChosen() {
 
 
   const [displayBasic, setDisplayBasic] = useState(false);
+  const [displayCart, setDisplayCart] = useState(false);
   const [menuGroup, setMenuGroup] = useState(0);
   const [item, setItem] = useState(0);
   const [qty, setQty] = useState(0);
@@ -46,8 +48,17 @@ function InfoChosen() {
     return sum.toString()
   }
 
+  const handleCartDisplay = () => {
+    setDisplayCart(true)
+  }
+
   return (
     <React.Fragment>
+      <Cart 
+      displayCart={displayCart} 
+      setDisplayCart={setDisplayCart}
+      />
+
       <SingleItemForm
         displayBasic={displayBasic} 
         setDisplayBasic={setDisplayBasic}
@@ -97,10 +108,10 @@ function InfoChosen() {
           <Button
             type="button"
             icon="pi pi-shopping-cart"
-            label={`${addUpCart()}`}
+            label={`Cart (${addUpCart()} items)`}
             className="p-button-raised"
             aria-label="Bookmark"
-            onClick={() => {}}
+            onClick={handleCartDisplay}
           />
         </div>
 
@@ -111,7 +122,7 @@ function InfoChosen() {
             label={`${addUpCart()}`}
             className="p-button-raised p-button-rounded"
             aria-label="Bookmark"
-            onClick={() => {}}
+            onClick={handleCartDisplay}
           />
         </div>
       </div>
