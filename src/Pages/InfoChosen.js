@@ -9,29 +9,42 @@ import SingleItemForm from "./SingleItemForm";
 import Footer from "./Footer";
 
 
+
 function InfoChosen() {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
   const setFormType = useSettingsStore((state) => state.setFormType);
   const setSelected = useSettingsStore((state) => state.setSelected);
+  const cartOrder = useSettingsStore((state) => state.cartOrder);
+
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [menuGroup, setMenuGroup] = useState(0);
   const [item, setItem] = useState(0);
+  const [qty, setQty] = useState(0);
+  const [modifiers, setModifiers] = useState([]);
  
 
   const onDisplay = (index1, index2, item) => {
     console.log("index", index1 + index2);
     setMenuGroup(index1);
     setItem(index2);
-    setSelected(item)
+    setSelected(item);
+    setQty(0);
+    setModifiers([]);
     setDisplayBasic(true);
   };
 
   const handleChangePickup = () => {
     setFormType("");
   };
+
+  const addUpCart = () => {
+    let countList = cartOrder.map(cart => Number(cart.qty))
+    const sum = countList.reduce((partialSum, a) => partialSum + a, 0);
+    return sum.toString()
+  }
 
   return (
     <React.Fragment>
@@ -41,7 +54,11 @@ function InfoChosen() {
         menuGroup={menuGroup}
         setMenuGroup={setMenuGroup}
         item={item}
-        setItem={setItem}/>
+        setItem={setItem}
+        qty={qty}
+        setQty={setQty}
+        modifiers={modifiers}
+        setModifiers={setModifiers}/>
       <div className="tabContainer">
         <div className="tabInfo lgscreen">
           <div>For pickup at&nbsp;&nbsp; </div>
@@ -80,7 +97,7 @@ function InfoChosen() {
           <Button
             type="button"
             icon="pi pi-shopping-cart"
-            label="CART"
+            label={`${addUpCart()}`}
             className="p-button-raised"
             aria-label="Bookmark"
             onClick={() => {}}
@@ -91,6 +108,7 @@ function InfoChosen() {
           <Button
             type="button"
             icon="pi pi-shopping-cart"
+            label={`${addUpCart()}`}
             className="p-button-raised p-button-rounded"
             aria-label="Bookmark"
             onClick={() => {}}

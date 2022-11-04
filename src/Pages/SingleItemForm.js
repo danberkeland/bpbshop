@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
@@ -6,6 +6,7 @@ import { Dialog } from "primereact/dialog";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Checkbox } from "primereact/checkbox";
 import { InputNumber } from "primereact/inputnumber";
+import { Toast } from 'primereact/toast';
 import { updateItem } from "../restAPIs"
 
 import { menu } from "./Menu";
@@ -20,14 +21,18 @@ function SingleItemForm({
   setMenuGroup,
   item,
   setItem,
+  qty,
+  setQty,
+  modifiers,
+  setModifiers
 }) {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
   const selected = useSettingsStore((state) => state.selected);
-
-  const [qty, setQty] = useState(0);
-  const [modifiers, setModifiers] = useState([]);
+  const cartOrder = useSettingsStore((state) => state.cartOrder);
+  const setCartOrder = useSettingsStore((state) => state.setCartOrder);
+  const toast = useRef(null);
 
   useEffect(() => {
     console.log("modifiers", modifiers);
@@ -45,9 +50,34 @@ function SingleItemForm({
 
   const cartAdd = () => {
     console.log("price", price);
-    let total = qty * price;
+    let addPrice = modifiers.map(mod => Number(mod.value.split('_')[1]))
+    const sum = addPrice.reduce((partialSum, a) => partialSum + a, 0);
+    console.log('addPrice', addPrice)
+    let total = qty * (price+sum);
     return "ADD TO CART $" + total.toFixed(2);
   };
+
+  
+const updateItem = (e, qty, modifiers, selected) => {
+  console.log("qty", qty);
+  console.log("modifiers", modifiers);
+  console.log("selected", selected);
+  let addPrice = modifiers.map((mod) => Number(mod.value.split("_")[1]));
+  const sum = addPrice.reduce((partialSum, a) => partialSum + a, 0);
+  console.log("addPrice", addPrice);
+  let total = qty * (price + sum);
+  let newItem = {
+    item: selected,
+    qty: qty,
+    modifiers: modifiers,
+    price: total,
+  };
+  let cart = [...cartOrder]
+  cart.push(newItem)
+  setCartOrder(cart)
+  toast.current.show({severity: 'success', summary: 'Added To Cart', detail: `${qty} x ${selected.name} $${total.toFixed(2)}`});
+  setDisplayBasic(false);
+};
 
   const pickupInfo = (
     <React.Fragment>
@@ -61,13 +91,17 @@ function SingleItemForm({
   const onModChange = (e) => {
     console.log("e", e);
     let selectedModifiers = [...modifiers];
-    if (e.checked) selectedModifiers.push(e.value);
+    if (e.checked) selectedModifiers.push({
+      name: e.target.name,
+      value: e.value
+    });
     else selectedModifiers.splice(selectedModifiers.indexOf(e.value), 1);
     setModifiers(selectedModifiers);
   };
 
   return (
     <React.Fragment>
+      <Toast ref={toast} />
       <Dialog
         visible={displayBasic}
         style={{ width: "50vw", minWidth: "300px" }}
@@ -98,7 +132,7 @@ function SingleItemForm({
             </div>
             {pickupInfo}
             <Accordion multiple>
-              {menuItems &&
+              {menuItems.modifiers &&
                 menuItems.modifiers.map((men, index1) => {
                   return (
                     <AccordionTab key={men.name} header={men.name}>
@@ -107,9 +141,9 @@ function SingleItemForm({
                           <div key={opt.value} className="field-checkbox">
                             <Checkbox
                               inputId={opt.value}
-                              name={opt.label + opt.value}
+                              name={opt.label}
                               value={opt.value}
-                              checked={modifiers.includes(opt.value)}
+                              checked={modifiers.map(mod => mod.value).includes(opt.value)}
                               onChange={onModChange}
                             />
                             <label htmlFor={opt.value}>

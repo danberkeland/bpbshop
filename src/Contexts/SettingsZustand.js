@@ -34,7 +34,9 @@ const store = (set) => ({
   location: "carlton",
   setLocation: (location) => set(() => ({ location: location })),
   selected: [],
-  setSelected: (selected) => set(() => ({ selected: selected }))
+  setSelected: (selected) => set(() => ({ selected: selected })),
+  cartOrder: [],
+  setCartOrder: (cartOrder) => set(() => ({ cartOrder: cartOrder })),
 });
 
 export const useSettingsStore = create(devtools(store));

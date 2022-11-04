@@ -33,7 +33,7 @@ const avocado = {
   name: "Avocado",
   modType: "chooseMany",
   options: [
-    { label: "ADD Avocado", value: "X5WTWZ5UGQPDZGF5XK4GD67M_2" },
+    { label: "ADD Avocado ($2.00)", value: "X5WTWZ5UGQPDZGF5XK4GD67M_2" },
   ]
 }
 ;
@@ -42,7 +42,7 @@ const chips = {
   name: "Chips",
   modType: "chooseMany",
   options: [
-    { label: "ADD Chips", value: "QY6RCULQI2H6NI7H6UMLZJL4_2" },
+    { label: "ADD Chips ($2.00)", value: "QY6RCULQI2H6NI7H6UMLZJL4_2" },
   ]
 }
 ;
@@ -110,7 +110,7 @@ const countryTurkey = {
   name: "Country Turkey",
   modType: "chooseMany",
   options: [
-    { label: "ADD Bacon", value: "TBAPLWYK3M2DI6H6FIKIPLJU_2" },
+    { label: "ADD Bacon ($2.00)", value: "TBAPLWYK3M2DI6H6FIKIPLJU_2" },
     { label: "NO Cheese", value: "UMHPURUOVSDQYF3DCKYLKCK6_0" },
     { label: "NO Onion", value: "PVSFZ3R7VCJ7GEMJRR2QUFVB_0" },
     { label: "NO Pickles", value: "COYZB5MKCKERRBPOAD6NCYAL_0" },
