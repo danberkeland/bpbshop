@@ -68,11 +68,14 @@ export const infoChosen = (event) => {
   event.setDelivTime(fullTime);
   event.setLocation(event.location);
   event.setDelivDate(fullDate);
+  event.setDelivDateProgram(event.pickup)
+  event.setDelivTimeProgram(event.time)
   event.setIsLoading(false);
   event.setFormType("infoChosen");
 };
 
-export const updateItem = (props) => {
-  console.log('updateprops', props)
-  console.log('testSubmit')
+export const updateItem = (e, qty, modifiers, selected) => {
+ console.log('qty', qty)
+ console.log('modifiers', modifiers)
+ console.log('selected', selected)
 }

@@ -46,7 +46,17 @@ const locations = [
 
 export const Choose = () => {
   const setIsEdit = useSettingsStore((state) => state.setIsEdit);
+  const delivDateProgram = useSettingsStore((state) => state.delivDateProgram);
+  const delivTimeProgram = useSettingsStore((state) => state.delivTimeProgram);
+  const location = useSettingsStore((state) => state.location);
   const [showMessage, setShowMessage] = useState(false);
+
+  
+const initialState = {
+  location: location,
+  pickup: delivDateProgram,
+  time: delivTimeProgram,
+};
 
   const editButtonStyle = {
     width: "100px",

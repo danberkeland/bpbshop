@@ -14,18 +14,18 @@ function InfoChosen() {
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
   const setFormType = useSettingsStore((state) => state.setFormType);
-  const setModifiers = useSettingsStore((state) => state.setModifiers);
+  const setSelected = useSettingsStore((state) => state.setSelected);
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [menuGroup, setMenuGroup] = useState(0);
   const [item, setItem] = useState(0);
  
 
-  const onDisplay = (index1, index2) => {
+  const onDisplay = (index1, index2, item) => {
     console.log("index", index1 + index2);
     setMenuGroup(index1);
     setItem(index2);
-    setModifiers([])
+    setSelected(item)
     setDisplayBasic(true);
   };
 
@@ -141,7 +141,7 @@ function InfoChosen() {
                                   label="SELECT"
                                   className="p-button-rounded p-button-primary p-button-outlined"
                                   aria-label="Bookmark"
-                                  onClick={() => onDisplay(index1, index2)}
+                                  onClick={() => onDisplay(index1, index2, item)}
                                 />
                               ) : (
                                 <div>

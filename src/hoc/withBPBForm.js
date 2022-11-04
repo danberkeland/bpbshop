@@ -22,6 +22,11 @@ export const withBPBForm = (Component) => (props) => {
   const setDelivDate = useSettingsStore((state) => state.setDelivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const setDelivTime = useSettingsStore((state) => state.setDelivTime);
+  const delivDateProgram = useSettingsStore((state) => state.delivDateProgram);
+  const setDelivDateProgram = useSettingsStore((state) => state.setDelivDateProgram);
+  const delivTimeProgram = useSettingsStore((state) => state.delivTimeProgram);
+  const setDelivTimeProgram = useSettingsStore((state) => state.setDelivTimeProgram);
+
 
   console.log("Firstprops", props);
 
@@ -42,6 +47,10 @@ export const withBPBForm = (Component) => (props) => {
     setDelivDate,
     delivTime,
     setDelivTime,
+    delivDateProgram,
+    setDelivDateProgram,
+    delivTimeProgram,
+    setDelivTimeProgram
   };
 
   const editButtonStyle = {
