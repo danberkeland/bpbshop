@@ -72,6 +72,7 @@ export const infoChosen = (event) => {
   event.setFormType("infoChosen");
 };
 
-export const updateItem = () => {
+export const updateItem = (props) => {
+  console.log('updateprops', props)
   console.log('testSubmit')
 }

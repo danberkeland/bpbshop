@@ -14,6 +14,7 @@ function InfoChosen() {
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
   const setFormType = useSettingsStore((state) => state.setFormType);
+  const setModifiers = useSettingsStore((state) => state.setModifiers);
 
   const [displayBasic, setDisplayBasic] = useState(false);
   const [menuGroup, setMenuGroup] = useState(0);
@@ -24,6 +25,7 @@ function InfoChosen() {
     console.log("index", index1 + index2);
     setMenuGroup(index1);
     setItem(index2);
+    setModifiers([])
     setDisplayBasic(true);
   };
 
