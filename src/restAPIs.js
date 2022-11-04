@@ -49,7 +49,7 @@ export const updateProduct = (event) => {
   return fetcher(event, "/products/updateProduct", "route");
 };
 
-export const infoChosen = (event) => {
+export const infoChosen = (event, location) => {
   console.log("event", event);
   let newTime = new Date(Date.parse(event.time));
   let newDate = new Date(Date.parse(event.pickup));
@@ -64,13 +64,17 @@ export const infoChosen = (event) => {
       : newDate.getMonth() + 1) +
     "-" +
     (newDate.getDate() < 10 ? "0" + newDate.getDate() : newDate.getDate());
+  if (event.location !== location) {
+    newTime = new Date(Date.parse("01 Jan 2022 07:00:00"));
+    fullTime = newTime.getHours() + newTime.getMinutes() / 60;
+    event.time = newTime
+  }
   console.log("fullDate", fullDate);
   event.setDelivTime(fullTime);
   event.setLocation(event.location);
   event.setDelivDate(fullDate);
-  event.setDelivDateProgram(event.pickup)
-  event.setDelivTimeProgram(event.time)
+  event.setDelivDateProgram(event.pickup);
+  event.setDelivTimeProgram(event.time);
   event.setIsLoading(false);
   event.setFormType("infoChosen");
 };
-

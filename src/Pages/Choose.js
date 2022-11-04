@@ -161,7 +161,7 @@ const initialState = {
       name="pickup"
       validationSchema={validationSchema}
       initialState={initialState}
-      update={infoChosen}
+      update={e => infoChosen(e, location)}
       setShowMessage={setShowMessage}
     />
   );
