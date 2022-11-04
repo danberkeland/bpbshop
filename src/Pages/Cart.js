@@ -3,7 +3,12 @@ import React, { useRef } from "react";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { InputNumber } from "primereact/inputnumber";
-import { time_convert, date_convert, checkAvailable, itemFilter } from "./utils";
+import {
+  time_convert,
+  date_convert,
+  checkAvailable,
+  itemFilter,
+} from "./utils";
 import { Toast } from "primereact/toast";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Title, SubInfo } from "../CommonStyles";
@@ -13,6 +18,7 @@ function Cart({ displayCart, setDisplayCart }) {
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
   const cartOrder = useSettingsStore((state) => state.cartOrder);
+  const setCartOrder = useSettingsStore((state) => state.setCartOrder);
   const setFormType = useSettingsStore((state) => state.setFormType);
   const toast = useRef(null);
 
@@ -20,10 +26,17 @@ function Cart({ displayCart, setDisplayCart }) {
     setDisplayCart(false);
   };
 
-  
   const handleChangePickup = () => {
     setDisplayCart(false);
     setFormType("");
+  };
+
+  const handleRemove = (e, index) => {
+    console.log('index', index)
+    let cart = [...cartOrder];
+    cart.splice(index, 1);
+    setCartOrder(cart)
+   
   };
 
   return (
@@ -68,10 +81,15 @@ function Cart({ displayCart, setDisplayCart }) {
             onClick={handleChangePickup}
           />
         </div>
-        {cartOrder.map((cart) => {
+        {cartOrder.map((cart, index) => {
           return (
             <div className="cartItem">
-               <Button icon="pi pi-times" className="p-button-outlined p-button-rounded p-button-danger" aria-label="Cancel" />
+              <Button
+                icon="pi pi-times"
+                onClick={(e) => handleRemove(e, index)}
+                className="p-button-outlined p-button-rounded p-button-danger"
+                aria-label="Cancel"
+              />
               <img
                 className="foodPicSmall"
                 src={cart.item.url}
@@ -100,9 +118,6 @@ function Cart({ displayCart, setDisplayCart }) {
                 />
                 <div>${cart.price.toFixed(2)}</div>
               </div>
-
-              
-              
             </div>
           );
         })}
