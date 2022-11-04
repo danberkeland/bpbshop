@@ -160,6 +160,7 @@ const updateItem = (e, qty, modifiers, selected) => {
             <div className="inputConfig">
               <Button
                 type="button"
+                disabled={qty>0 ? false : true}
                 icon="pi pi-shopping-cart"
                 label={cartAdd(qty)}
                 className="p-button-raised"
