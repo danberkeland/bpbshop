@@ -48,6 +48,8 @@ export const Choose = () => {
   const setIsEdit = useSettingsStore((state) => state.setIsEdit);
   const delivDateProgram = useSettingsStore((state) => state.delivDateProgram);
   const delivTimeProgram = useSettingsStore((state) => state.delivTimeProgram);
+  const init = useSettingsStore((state) => state.init);
+  const setInit = useSettingsStore((state) => state.setInit);
   const location = useSettingsStore((state) => state.location);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -161,7 +163,7 @@ const initialState = {
       name="pickup"
       validationSchema={validationSchema}
       initialState={initialState}
-      update={e => infoChosen(e, location)}
+      update={e => infoChosen(e, location,init, setInit)}
       setShowMessage={setShowMessage}
     />
   );

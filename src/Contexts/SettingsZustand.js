@@ -13,6 +13,9 @@ console.log('newDate', newDate)
 
 
 const store = (set) => ({
+  init: true,
+  setInit: (init) => set(() => ({ init: init })),
+
   formType: "",
   setFormType: (formType) => set(() => ({ formType: formType })),
   isLoading: false,

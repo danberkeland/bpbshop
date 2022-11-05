@@ -97,7 +97,7 @@ function Cart({ displayCart, setDisplayCart }) {
                 <React.Fragment>
                   <div
                     className={
-                      checkAvailable(cart.item, delivDate, delivTime)
+                      checkAvailable(cart.item, delivDate, delivTime, location, cartOrder, setCartOrder)
                         ? "cartItem"
                         : "redItem"
                     }
@@ -115,13 +115,26 @@ function Cart({ displayCart, setDisplayCart }) {
                     />
                     <div>
                       <div>{cart.item.name}</div>
+
                       {cart.modifiers.map((mod) => {
                         return <div>{mod.name}</div>;
                       })}
-                      {!checkAvailable(cart.item, delivDate, delivTime) && (
+
+                      {!checkAvailable(
+                        cart.item,
+                        delivDate,
+                        delivTime,
+                        location, cartOrder, setCartOrder
+                      ) && (
                         <React.Fragment>
                           <div className="alert">
-                          <div>
+                            <div>
+                              {cart.item.location !== location ? (
+                                <div className="itemAlert">
+                                  NOT AVAILABLE AT THIS LOCATION
+                                </div>
+                              ) : (
+                                <React.Fragment>
                                   {cart.item.specialStart ? (
                                     cart.item.specialEnd ? (
                                       <div className="itemAlert">
@@ -130,7 +143,8 @@ function Cart({ displayCart, setDisplayCart }) {
                                       </div>
                                     ) : (
                                       <div className="itemAlert">
-                                        Item available after {cart.item.specialStart}
+                                        Item available after{" "}
+                                        {cart.item.specialStart}
                                       </div>
                                     )
                                   ) : (
@@ -139,7 +153,9 @@ function Cart({ displayCart, setDisplayCart }) {
                                   {cart.item.days ? (
                                     <div className="itemAlert">
                                       Available{" "}
-                                      {cart.item.days.map((item) => item + ", ")}{" "}
+                                      {cart.item.days.map(
+                                        (item) => item + ", "
+                                      )}{" "}
                                       after {time_convert(cart.item.start * 60)}
                                     </div>
                                   ) : !cart.item.specialStart ? (
@@ -155,9 +171,10 @@ function Cart({ displayCart, setDisplayCart }) {
                                       LEAD TIME: {cart.item.lead} days
                                     </div>
                                   )}
-
-                                  <div>WILL NOT BE INCLUDED IN THIS ORDER.</div>
-                                </div>
+                                </React.Fragment>
+                              )}
+                              <div>WILL NOT BE INCLUDED IN THIS ORDER.</div>
+                            </div>
                           </div>
                         </React.Fragment>
                       )}

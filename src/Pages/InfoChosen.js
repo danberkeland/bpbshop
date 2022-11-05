@@ -18,6 +18,7 @@ function InfoChosen() {
   const setFormType = useSettingsStore((state) => state.setFormType);
   const setSelected = useSettingsStore((state) => state.setSelected);
   const cartOrder = useSettingsStore((state) => state.cartOrder);
+  const setCartOrder = useSettingsStore((state) => state.setCartOrder);
 
 
   const [displayBasic, setDisplayBasic] = useState(false);
@@ -164,7 +165,7 @@ function InfoChosen() {
                               </div>
                               <h4>${item.price.toFixed(2)}</h4>
 
-                              {checkAvailable(item, delivDate, delivTime) ? (
+                              {checkAvailable(item, delivDate, delivTime,location, cartOrder, setCartOrder) ? (
                                 <Button
                                   type="button"
                                   icon="pi pi-shopping-cart"

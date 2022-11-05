@@ -1,5 +1,6 @@
 import { Auth } from "aws-amplify";
 import axios from "axios";
+import { time_convert } from "./Pages/utils";
 
 const API_bpbrouterAuth =
   "https://8gw70qn5eb.execute-api.us-east-2.amazonaws.com/auth";
@@ -49,10 +50,12 @@ export const updateProduct = (event) => {
   return fetcher(event, "/products/updateProduct", "route");
 };
 
-export const infoChosen = (event, location) => {
+export const infoChosen = (event, location, init, setInit) => {
   console.log("event", event);
+ 
   let newTime = new Date(Date.parse(event.time));
   let newDate = new Date(Date.parse(event.pickup));
+  
 
   console.log("newDate", newDate);
   let fullTime = newTime.getHours() + newTime.getMinutes() / 60;
@@ -64,7 +67,7 @@ export const infoChosen = (event, location) => {
       : newDate.getMonth() + 1) +
     "-" +
     (newDate.getDate() < 10 ? "0" + newDate.getDate() : newDate.getDate());
-  if (event.location !== location) {
+  if (init===false && event.location !== location && fullTime>11) {
     newTime = new Date(Date.parse("01 Jan 2022 07:00:00"));
     fullTime = newTime.getHours() + newTime.getMinutes() / 60;
     event.time = newTime
@@ -76,5 +79,6 @@ export const infoChosen = (event, location) => {
   event.setDelivDateProgram(event.pickup);
   event.setDelivTimeProgram(event.time);
   event.setIsLoading(false);
+  setInit(false)
   event.setFormType("infoChosen");
 };
