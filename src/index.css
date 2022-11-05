@@ -179,6 +179,11 @@ h3 {
 
 }
 
+.alert {
+  color: red;
+  font-weight: bold;;
+}
+
 
 
 .descripGroup {
@@ -248,6 +253,21 @@ h3 {
 
 .cartItem {
   width: 100%;
+  display: grid;
+  border-color: rgb(211, 211, 211);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  grid-template-columns: .3fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+
+.redItem {
+  width: 100%;
+  background-color: rgb(239, 188, 188);
   display: grid;
   border-color: rgb(211, 211, 211);
   border-radius: 4px;
@@ -404,6 +424,21 @@ h3 {
   padding: 10px;
   margin: 10px;
 }
+
+.redItem {
+  width: 100%;
+  display: grid;
+  border-color: rgb(211, 211, 211);
+  background-color: rgb(239, 188, 188);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
 
 
 .foodPicSmall {
