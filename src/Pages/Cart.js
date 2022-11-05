@@ -172,7 +172,7 @@ function Cart({ displayCart, setDisplayCart }) {
               );
             })}
             <div>TOTAL: ${totalPrice().toFixed(2)} + tax</div>
-            <Button label="PAY NOW" />
+            <Button label="CHECKOUT" />
           </React.Fragment>
         ) : (
           <div>Cart is empty.</div>
