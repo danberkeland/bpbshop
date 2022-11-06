@@ -202,7 +202,8 @@ function InfoChosen() {
                                       {time_convert(item.start * 60)}
                                     </div>
                                   ) : (
-                                    ""
+                                    <div className="itemAlert">Available after{" "}
+                                    {time_convert(item.start * 60)}</div>
                                   )}
                                   {item.lead > 0 && (
                                     <div className="itemAlert">
