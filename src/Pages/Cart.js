@@ -96,7 +96,7 @@ console.log('newDate', newDate)
     setDisplayCart(false)
     setIsLoading(true)
     console.log('event', event)
-    //checkout(event, setIsLoading)
+    checkout(event, setIsLoading)
   }
 
   return (
