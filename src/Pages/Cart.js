@@ -14,9 +14,14 @@ import { Toast } from "primereact/toast";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Title, SubInfo } from "../CommonStyles";
 
+const { DateTime } = require("luxon");
+
+
 function Cart({ displayCart, setDisplayCart }) {
   const delivDate = useSettingsStore((state) => state.delivDate);
+  const delivDateProgram = useSettingsStore((state) => state.delivDateProgram);
   const delivTime = useSettingsStore((state) => state.delivTime);
+  const delivTimeProgram = useSettingsStore((state) => state.delivTimeProgram);
   const location = useSettingsStore((state) => state.location);
   const cartOrder = useSettingsStore((state) => state.cartOrder);
   const setCartOrder = useSettingsStore((state) => state.setCartOrder);
@@ -47,52 +52,51 @@ function Cart({ displayCart, setDisplayCart }) {
   };
 
   const handleCheckout = () => {
+    let loc = location==="carlton" ? "16VS30T9E7CM9" : "KTQGYHG092NK8"
+    let lineItems = cartOrder.map(ord => {
+      return (
+        {
+          "quantity": ord.qty.toString(),
+          "catalogObjectId": ord.item.variations[0].varid,
+          "modifiers": ord.modifiers.map(mod => {
+            return (
+              {
+                "catalogObjectId": mod.value.split('_')[0],
+              }
+            )
+          })
+        }
+      )
+    })
+    
+let nnewDelivDate = new DateTime(delivDate).setZone("America/Los_Angeles").set({ hour: delivTime }).set({ minutes: (delivTime-Math.floor(delivTime))*60 });
+console.log('delivTime', delivTime)
+let newDate = new Date(Date.parse(nnewDelivDate));
+
+
+console.log('newDate', newDate)
+    let pickup = newDate
+    console.log('pickup', pickup)
+
+    let event = {
+      order: {
+        "locationId": loc,
+        "lineItems": lineItems,
+        "fulfillments": [
+          {
+            "type": "PICKUP",
+            "pickupDetails": {
+              "scheduleType": "SCHEDULED",
+              "pickupAt": pickup,
+            },
+          },
+        ],
+      },
+    };
     setDisplayCart(false)
     setIsLoading(true)
     checkout(event, setIsLoading)
   }
-
-  const event = {
-    order: {
-      locationId: "16VS30T9E7CM9",
-      lineItems: [
-        {
-          quantity: "5",
-          catalogObjectId: "SP6LVRMWV5PSFQPUATN36U74",
-          modifiers: [
-            {
-              catalogObjectId: "IYXEWOZST2HM4O6BX4DU5XZ7",
-            },
-            {
-              catalogObjectId: "HHCL4RGTDLROXSRY5N5D63KG",
-            },
-          ],
-        },
-        {
-          quantity: "3",
-          catalogObjectId: "2V2IT2GF3UVTJR2OGVKHOGDX",
-        },
-        {
-          quantity: "1",
-          catalogObjectId: "LVYDXMISMDVCJHJG7KGFXH46",
-          modifiers: [
-            {
-              catalogObjectId: "UGF5OTPXQOCP25G6M4UNS6L2",
-            },
-          ],
-        },
-      ],
-      fulfillments: [
-        {
-          type: "PICKUP",
-          pickupDetails: {
-            scheduleType: "SCHEDULED",
-            pickupAt: "2022-11-03T12:00:00-08:00",
-          },
-        },
-      ],
-    },
-  };
 
   return (
     <React.Fragment>
