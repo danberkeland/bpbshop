@@ -69,9 +69,9 @@ function Cart({ displayCart, setDisplayCart }) {
       )
     })
     
-let nnewDelivDate = new DateTime(delivDate).setZone("America/Los_Angeles").set({ hour: delivTime }).set({ minutes: (delivTime-Math.floor(delivTime))*60 });
-console.log('delivTime', delivTime)
-let newDate = new Date(Date.parse(nnewDelivDate));
+let newDelivDate = DateTime.fromISO(delivDate).setZone("America/Los_Angeles").set({ hour: delivTime }).set({ minutes: (delivTime-Math.floor(delivTime))*60 });
+console.log('newDelivDate', newDelivDate)
+let newDate = new Date(Date.parse(newDelivDate));
 
 
 console.log('newDate', newDate)
@@ -95,7 +95,8 @@ console.log('newDate', newDate)
     };
     setDisplayCart(false)
     setIsLoading(true)
-    checkout(event, setIsLoading)
+    console.log('event', event)
+    //checkout(event, setIsLoading)
   }
 
   return (
