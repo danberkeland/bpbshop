@@ -1,3 +1,4 @@
+import axios from "axios";
 import { DateTime } from "luxon";
 import { menu } from "./Menu";
 
@@ -40,8 +41,7 @@ export function checkAvailable(
   if (item.location !== location) {
     for (let cat of menu) {
       let ind = cat.items.findIndex(
-        (men) =>
-          men.location === location && men.name === item.name
+        (men) => men.location === location && men.name === item.name
       );
       console.log("ind", ind);
       if (ind > -1) {
@@ -49,7 +49,7 @@ export function checkAvailable(
       }
     }
   } else {
-    loc=true
+    loc = true;
   }
 
   // check if within lead time
@@ -95,6 +95,27 @@ export const itemFilter = (item, delivDate, location) => {
     isComingUp = false;
   }
 
-
   return item.location === location && isComingUp;
+};
+
+export const checkout = async (event, setIsLoading) => {
+  try {
+   
+    let response = await axios.post(
+      "https://1fjluffgld.execute-api.us-east-2.amazonaws.com/prod/grabsquarecheckouturl",
+      event,
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+
+    //let url = await response.json();
+    //url = JSON.parse(url);
+   setIsLoading(false)
+    window.location.href = await JSON.parse(response.data)
+  } catch {
+    console.log("Error on Square load");
+  }
 };

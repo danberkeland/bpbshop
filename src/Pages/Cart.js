@@ -8,6 +8,7 @@ import {
   date_convert,
   checkAvailable,
   itemFilter,
+  checkout,
 } from "./utils";
 import { Toast } from "primereact/toast";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
@@ -20,6 +21,7 @@ function Cart({ displayCart, setDisplayCart }) {
   const cartOrder = useSettingsStore((state) => state.cartOrder);
   const setCartOrder = useSettingsStore((state) => state.setCartOrder);
   const setFormType = useSettingsStore((state) => state.setFormType);
+  const setIsLoading = useSettingsStore((state) => state.setIsLoading);
   const toast = useRef(null);
 
   const onHide = () => {
@@ -44,8 +46,52 @@ function Cart({ displayCart, setDisplayCart }) {
     return sum;
   };
 
-  const isValid = () => {
-    return false;
+  const handleCheckout = () => {
+    setDisplayCart(false)
+    setIsLoading(true)
+    checkout(event, setIsLoading)
+  }
+
+  const event = {
+    order: {
+      locationId: "16VS30T9E7CM9",
+      lineItems: [
+        {
+          quantity: "5",
+          catalogObjectId: "SP6LVRMWV5PSFQPUATN36U74",
+          modifiers: [
+            {
+              catalogObjectId: "IYXEWOZST2HM4O6BX4DU5XZ7",
+            },
+            {
+              catalogObjectId: "HHCL4RGTDLROXSRY5N5D63KG",
+            },
+          ],
+        },
+        {
+          quantity: "3",
+          catalogObjectId: "2V2IT2GF3UVTJR2OGVKHOGDX",
+        },
+        {
+          quantity: "1",
+          catalogObjectId: "LVYDXMISMDVCJHJG7KGFXH46",
+          modifiers: [
+            {
+              catalogObjectId: "UGF5OTPXQOCP25G6M4UNS6L2",
+            },
+          ],
+        },
+      ],
+      fulfillments: [
+        {
+          type: "PICKUP",
+          pickupDetails: {
+            scheduleType: "SCHEDULED",
+            pickupAt: "2022-11-03T12:00:00-08:00",
+          },
+        },
+      ],
+    },
   };
 
   return (
@@ -97,7 +143,14 @@ function Cart({ displayCart, setDisplayCart }) {
                 <React.Fragment>
                   <div
                     className={
-                      checkAvailable(cart.item, delivDate, delivTime, location, cartOrder, setCartOrder)
+                      checkAvailable(
+                        cart.item,
+                        delivDate,
+                        delivTime,
+                        location,
+                        cartOrder,
+                        setCartOrder
+                      )
                         ? "cartItem"
                         : "redItem"
                     }
@@ -124,7 +177,9 @@ function Cart({ displayCart, setDisplayCart }) {
                         cart.item,
                         delivDate,
                         delivTime,
-                        location, cartOrder, setCartOrder
+                        location,
+                        cartOrder,
+                        setCartOrder
                       ) && (
                         <React.Fragment>
                           <div className="alert">
@@ -189,7 +244,14 @@ function Cart({ displayCart, setDisplayCart }) {
               );
             })}
             <div>TOTAL: ${totalPrice().toFixed(2)} + tax</div>
-            <Button label="CHECKOUT" />
+            <Button
+              type="button"
+              icon="pi pi-shopping-cart"
+              label="CHECKOUT"
+              className="p-button-raised"
+              aria-label="Bookmark"
+              onClick={handleCheckout}
+            />
           </React.Fragment>
         ) : (
           <div>Cart is empty.</div>
