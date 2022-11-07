@@ -292,7 +292,7 @@ function Cart({ displayCart, setDisplayCart }) {
             })}
             <div className="center">
               <h4>TOTAL: ${totalPrice().toFixed(2)} + tax</h4>
-              <h4>A 20% preorder discount will be applied at checkout.</h4>
+              <h4>A 20% preorder discount will be applied to breads and pastries at checkout.</h4>
               <Button
                 type="button"
                 icon="pi pi-shopping-cart"

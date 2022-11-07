@@ -135,7 +135,7 @@ export const menu = [
         sqid: "UEIQVBT6IY37XG6U6CAYJYEQ",
         variations: [
           {
-            varid: "5RA2S5UMAGVICYV6IUXPAGNJ",
+            varid: "VHH67QA3UCI3DMWKW4C2A3MI",
             varDescrip: "",
             priceDiff: 0,
           },
@@ -279,7 +279,7 @@ export const menu = [
         sqid: "UEIQVBT6IY37XG6U6CAYJYEQ",
         variations: [
           {
-            varid: "5RA2S5UMAGVICYV6IUXPAGNJ",
+            varid: "VHH67QA3UCI3DMWKW4C2A3MI",
             varDescrip: "",
             priceDiff: 0,
           },
