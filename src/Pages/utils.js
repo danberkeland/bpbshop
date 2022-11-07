@@ -10,8 +10,8 @@ export function time_convert(num) {
     hours -= 12;
     ampm = " pm";
   }
-  if (hours===12) {
-    ampm="pm"
+  if (hours === 12) {
+    ampm = "pm";
   }
   var minutes = num % 60;
   if (minutes < 10) {
@@ -110,7 +110,6 @@ export const itemFilter = (item, delivDate, location) => {
 
 export const checkout = async (event, setIsLoading) => {
   try {
-   
     let response = await axios.post(
       "https://1fjluffgld.execute-api.us-east-2.amazonaws.com/prod/grabsquarecheckouturl",
       event,
@@ -123,8 +122,11 @@ export const checkout = async (event, setIsLoading) => {
 
     //let url = await response.json();
     //url = JSON.parse(url);
-   setIsLoading(false)
-    window.location.href = await JSON.parse(response.data)
+    setIsLoading(false);
+
+    let url = await JSON.parse(response.data)
+    setTimeout(window.location.href = url, 2000)
+    
   } catch {
     console.log("Error on Square load");
   }
