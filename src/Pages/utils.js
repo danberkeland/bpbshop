@@ -10,6 +10,9 @@ export function time_convert(num) {
     hours -= 12;
     ampm = " pm";
   }
+  if (hours===12) {
+    ampm="pm"
+  }
   var minutes = num % 60;
   if (minutes < 10) {
     result = hours + ":0" + minutes + ampm;

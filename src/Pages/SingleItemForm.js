@@ -98,6 +98,7 @@ function SingleItemForm({
       <SubInfo>
         {date_convert(delivDate)} at {time_convert(delivTime * 60)}
       </SubInfo>
+      <SubInfo>A 20% preorder discount will be applied at checkout.</SubInfo>
     </React.Fragment>
   );
 

@@ -53,25 +53,35 @@ function Cart({ displayCart, setDisplayCart }) {
 
   const handleCheckout = () => {
     let loc = location === "carlton" ? "16VS30T9E7CM9" : "KTQGYHG092NK8";
-    let lineItems = cartOrder.filter(cart => checkAvailable(
-      cart.item,
-      delivDate,
-      delivTime,
-      location,
-      cartOrder,
-      setCartOrder
-    )).map((ord) => {
-      return {
-        quantity: ord.qty.toString(),
-        catalogObjectId: ord.item.variations[0].varid,
-        modifiers: ord.modifiers.map((mod) => {
-          return {
-            catalogObjectId: mod.value.split("_")[0],
-          };
-        }),
-        
-      };
-    });
+    let lineItems = cartOrder
+      .filter((cart) =>
+        checkAvailable(
+          cart.item,
+          delivDate,
+          delivTime,
+          location,
+          cartOrder,
+          setCartOrder
+        )
+      )
+      .map((ord) => {
+        console.log("ord", ord);
+        return {
+          "applied_discounts": [
+            {
+              "discount_uid": "123456"
+            }
+          ],
+          "quantity": ord.qty.toString(),
+          "catalogObjectId": ord.item.variations[0].varid,
+          "modifiers": ord.modifiers.map((mod) => {
+            return {
+              "catalogObjectId": mod.value.split("_")[0],
+            };
+          }),
+          
+        };
+      });
 
     let newDelivDate = DateTime.fromISO(delivDate)
       .setZone("America/Los_Angeles")
@@ -92,7 +102,7 @@ function Cart({ displayCart, setDisplayCart }) {
       order: {
         locationId: loc,
         lineItems: lineItems,
-        
+
         fulfillments: [
           {
             type: "PICKUP",
@@ -104,8 +114,13 @@ function Cart({ displayCart, setDisplayCart }) {
         ],
         discounts: [
           {
-            catalogObjectId: 'MNCPOTN6U2NTOABASZRDGHSS'
-          }
+            uid: "123456",
+            scope: "ORDER",
+
+            type: "FIXED_PERCENTAGE",
+            percentage: "20",
+            name: "Preorder discount",
+          },
         ],
       },
     };
@@ -266,6 +281,7 @@ function Cart({ displayCart, setDisplayCart }) {
             })}
             <div className="center">
               <h4>TOTAL: ${totalPrice().toFixed(2)} + tax</h4>
+              <h4>A 20% preorder discount will be applied at checkout.</h4>
               <Button
                 type="button"
                 icon="pi pi-shopping-cart"
