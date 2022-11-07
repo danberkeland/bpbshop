@@ -66,12 +66,14 @@ function Cart({ displayCart, setDisplayCart }) {
       )
       .map((ord) => {
         console.log("ord", ord);
+       
+        let applied = ord.item.discount ? {
+          discountUid: ord.item.discount
+        } : {discountUid: "000000"}
+         
+
         return {
-          applied_discounts: [
-            {
-              discount_uid: "123456",
-            },
-          ],
+          appliedDiscounts: [applied],
           quantity: ord.qty.toString(),
           catalogObjectId: ord.item.variations[0].varid,
           modifiers: ord.modifiers.map((mod) => {
@@ -114,15 +116,24 @@ function Cart({ displayCart, setDisplayCart }) {
         discounts: [
           {
             uid: "123456",
-            scope: "ORDER",
+            scope: "LINE_ITEM",
 
             type: "FIXED_PERCENTAGE",
             percentage: "20",
             name: "Preorder discount",
           },
+          {
+            uid: "000000",
+            scope: "LINE_ITEM",
+
+            type: "FIXED_PERCENTAGE",
+            percentage: "0",
+            name: "Preorder discount",
+          },
         ],
       },
     };
+
     setDisplayCart(false);
     setIsLoading(true);
     console.log("event", event);
