@@ -27,6 +27,13 @@ export function date_convert(num) {
   return newDate.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
 }
 
+export function date_convert_simple(num) {
+  let newDate = DateTime.fromISO(num);
+  console.log("newDate", newDate);
+  console.log("newDate", newDate.DATE_MED_WITH_WEEKDAY);
+  return newDate.toLocaleString(DateTime.DATE_SHORT);
+}
+
 export function checkAvailable(
   item,
   delivDate,

@@ -6,6 +6,7 @@ import { InputNumber } from "primereact/inputnumber";
 import {
   time_convert,
   date_convert,
+  date_convert_simple,
   checkAvailable,
   itemFilter,
   checkout,
@@ -15,7 +16,6 @@ import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Title, SubInfo } from "../CommonStyles";
 
 const { DateTime } = require("luxon");
-
 
 function Cart({ displayCart, setDisplayCart }) {
   const delivDate = useSettingsStore((state) => state.delivDate);
@@ -52,52 +52,61 @@ function Cart({ displayCart, setDisplayCart }) {
   };
 
   const handleCheckout = () => {
-    let loc = location==="carlton" ? "16VS30T9E7CM9" : "KTQGYHG092NK8"
-    let lineItems = cartOrder.map(ord => {
-      return (
-        {
-          "quantity": ord.qty.toString(),
-          "catalogObjectId": ord.item.variations[0].varid,
-          "modifiers": ord.modifiers.map(mod => {
-            return (
-              {
-                "catalogObjectId": mod.value.split('_')[0],
-              }
-            )
-          })
-        }
-      )
-    })
-    
-let newDelivDate = DateTime.fromISO(delivDate).setZone("America/Los_Angeles").set({ hour: delivTime }).set({ minutes: (delivTime-Math.floor(delivTime))*60 });
-console.log('newDelivDate', newDelivDate)
-let newDate = new Date(Date.parse(newDelivDate));
+    let loc = location === "carlton" ? "16VS30T9E7CM9" : "KTQGYHG092NK8";
+    let lineItems = cartOrder.map((ord) => {
+      return {
+        quantity: ord.qty.toString(),
+        catalogObjectId: ord.item.variations[0].varid,
+        modifiers: ord.modifiers.map((mod) => {
+          return {
+            catalogObjectId: mod.value.split("_")[0],
+          };
+        }),
+        
+      };
+    });
 
+    let newDelivDate = DateTime.fromISO(delivDate)
+      .setZone("America/Los_Angeles")
+      .set({ hour: delivTime })
+      .set({ minutes: (delivTime - Math.floor(delivTime)) * 60 });
+    console.log("newDelivDate", newDelivDate);
+    let newDate = new Date(Date.parse(newDelivDate));
 
-console.log('newDate', newDate)
-    let pickup = newDate
-    console.log('pickup', pickup)
+    console.log("newDate", newDate);
+    let pickup = newDate;
+    let fulfill = `For pickup at ${location} on ${date_convert(
+      delivDate
+    )} at ${time_convert(delivTime * 60)}`;
+    console.log("pickup", pickup);
 
     let event = {
+      fulfill: fulfill,
       order: {
-        "locationId": loc,
-        "lineItems": lineItems,
-        "fulfillments": [
+        locationId: loc,
+        lineItems: lineItems,
+        
+        fulfillments: [
           {
-            "type": "PICKUP",
-            "pickupDetails": {
-              "scheduleType": "SCHEDULED",
-              "pickupAt": pickup,
+            type: "PICKUP",
+            pickupDetails: {
+              scheduleType: "SCHEDULED",
+              pickupAt: pickup,
             },
           },
         ],
+        discounts: [
+          {
+            catalogObjectId: 'MNCPOTN6U2NTOABASZRDGHSS'
+          }
+        ],
       },
     };
-    setDisplayCart(false)
-    setIsLoading(true)
-    console.log('event', event)
-    checkout(event, setIsLoading)
-  }
+    setDisplayCart(false);
+    setIsLoading(true);
+    console.log("event", event);
+    checkout(event, setIsLoading);
+  };
 
   return (
     <React.Fragment>
@@ -118,17 +127,17 @@ console.log('newDate', newDate)
               <div> at&nbsp;&nbsp; </div>
               <h2> {time_convert(delivTime * 60)}</h2>
             </div>
-            <div className="smscreen medscreen">
+            <div className=" center smscreen medscreen">
               <Button
                 type="button"
                 label={
                   location +
                   ` - ` +
-                  date_convert(delivDate) +
+                  date_convert_simple(delivDate) +
                   " - " +
                   time_convert(delivTime * 60)
                 }
-                className="p-button-text p-button-warning"
+                className="p-button-raised p-button-primary"
                 aria-label="Bookmark"
                 onClick={handleChangePickup}
               />
@@ -172,10 +181,10 @@ console.log('newDate', newDate)
                       alt="sandwich"
                     />
                     <div>
-                      <div>{cart.item.name}</div>
+                      <h3>{cart.item.name}</h3>
 
                       {cart.modifiers.map((mod) => {
-                        return <div>{mod.name}</div>;
+                        return <SubInfo>{mod.name}</SubInfo>;
                       })}
 
                       {!checkAvailable(
@@ -241,22 +250,24 @@ console.log('newDate', newDate)
                     </div>
 
                     <div>
-                      <div>Quantity: {cart.qty}</div>
-                      <div>${cart.price.toFixed(2)}</div>
+                      <div className="itemDescrip">Quantity: {cart.qty}</div>
+                      <h4>${cart.price.toFixed(2)}</h4>
                     </div>
                   </div>
                 </React.Fragment>
               );
             })}
-            <div>TOTAL: ${totalPrice().toFixed(2)} + tax</div>
-            <Button
-              type="button"
-              icon="pi pi-shopping-cart"
-              label="CHECKOUT"
-              className="p-button-raised"
-              aria-label="Bookmark"
-              onClick={handleCheckout}
-            />
+            <div className="center">
+              <h4>TOTAL: ${totalPrice().toFixed(2)} + tax</h4>
+              <Button
+                type="button"
+                icon="pi pi-shopping-cart"
+                label="CHECKOUT"
+                className="p-button-raised"
+                aria-label="Bookmark"
+                onClick={handleCheckout}
+              />
+            </div>
           </React.Fragment>
         ) : (
           <div>Cart is empty.</div>
