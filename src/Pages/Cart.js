@@ -67,19 +67,18 @@ function Cart({ displayCart, setDisplayCart }) {
       .map((ord) => {
         console.log("ord", ord);
         return {
-          "applied_discounts": [
+          applied_discounts: [
             {
-              "discount_uid": "123456"
-            }
+              discount_uid: "123456",
+            },
           ],
-          "quantity": ord.qty.toString(),
-          "catalogObjectId": ord.item.variations[0].varid,
-          "modifiers": ord.modifiers.map((mod) => {
+          quantity: ord.qty.toString(),
+          catalogObjectId: ord.item.variations[0].varid,
+          modifiers: ord.modifiers.map((mod) => {
             return {
-              "catalogObjectId": mod.value.split("_")[0],
+              catalogObjectId: mod.value.split("_")[0],
             };
           }),
-          
         };
       });
 
@@ -197,6 +196,7 @@ function Cart({ displayCart, setDisplayCart }) {
                       className="p-button-outlined p-button-rounded p-button-danger"
                       aria-label="Cancel"
                     />
+
                     <img
                       className="foodPicSmall"
                       src={cart.item.url}
