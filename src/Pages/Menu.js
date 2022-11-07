@@ -191,7 +191,7 @@ export const menu = [
       {
         name: "Pecan Pie",
         description: "Classic Pecan Pie",
-        price: 21,
+        price: 23.75,
         sqid: "TONUVVEZNERSIUHOZ2T6Y7KG",
         variations: [
           {
@@ -233,7 +233,7 @@ export const menu = [
       {
         name: "Pesto Pull Apart Brioche Loaf",
         description: "Pesto Pull Apart Brioche Loaf",
-        price: 7.35,
+        price: 9.75,
         sqid: "IHXEVJV375MWQDJ6O32KWVLN",
         variations: [
           {
@@ -338,7 +338,7 @@ export const menu = [
       {
         name: "Pecan Pie",
         description: "Classic Pecan Pie",
-        price: 21,
+        price: 23.75,
         sqid: "TONUVVEZNERSIUHOZ2T6Y7KG",
         variations: [
           {
@@ -380,7 +380,7 @@ export const menu = [
       {
         name: "Pesto Pull Apart Brioche Loaf",
         description: "Pesto Pull Apart Brioche Loaf",
-        price: 7.35,
+        price: 9.75,
         sqid: "IHXEVJV375MWQDJ6O32KWVLN",
         variations: [
           {
@@ -996,7 +996,7 @@ export const menu = [
         name: "Olive Herb",
         description:
           "Wheat flour, water, kalamata olives, queen olives, natural starter, herbs de provence, salt, yeast",
-        price: 7.4,
+        price: 7.95,
         sqid: "OXASXKSSZWM3S4HYIZBOHYQW",
         variations: [
           {
@@ -1019,7 +1019,7 @@ export const menu = [
         name: "Blue Cheese Walnut",
         description:
           "Wheat flour, water, walnuts, blue cheese, natural starter, salt, yeast",
-        price: 7.4,
+        price: 7.95,
         sqid: "CVKZ6E3OCHBKDVB7YZPB3J6N",
         variations: [
           {
@@ -1041,7 +1041,7 @@ export const menu = [
       {
         name: "Epi",
         description: "Wheat flour, water, natural starter, salt, yeast",
-        price: 7.4,
+        price: 5.7,
         sqid: "QNZ6RBYHJ5JZGYE5VYLI2BMZ",
         variations: [
           {
@@ -1215,7 +1215,7 @@ export const menu = [
         name: "Blue Cheese Walnut",
         description:
           "Wheat flour, water, walnuts, blue cheese, natural starter, salt, yeast",
-        price: 7.4,
+        price: 7.95,
         sqid: "CVKZ6E3OCHBKDVB7YZPB3J6N",
         variations: [
           {
@@ -1237,7 +1237,7 @@ export const menu = [
         name: "Olive Herb",
         description:
           "Wheat flour, water, kalamata olives, queen olives, natural starter, herbs de provence, salt, yeast",
-        price: 7.4,
+        price: 7.95,
         sqid: "OXASXKSSZWM3S4HYIZBOHYQW",
         variations: [
           {
@@ -1258,7 +1258,7 @@ export const menu = [
       {
         name: "Epi",
         description: "Wheat flour, water, natural starter, salt, yeast",
-        price: 7.4,
+        price: 5.7,
         sqid: "QNZ6RBYHJ5JZGYE5VYLI2BMZ",
         variations: [
           {
