@@ -53,7 +53,14 @@ function Cart({ displayCart, setDisplayCart }) {
 
   const handleCheckout = () => {
     let loc = location === "carlton" ? "16VS30T9E7CM9" : "KTQGYHG092NK8";
-    let lineItems = cartOrder.map((ord) => {
+    let lineItems = cartOrder.filter(cart => checkAvailable(
+      cart.item,
+      delivDate,
+      delivTime,
+      location,
+      cartOrder,
+      setCartOrder
+    )).map((ord) => {
       return {
         quantity: ord.qty.toString(),
         catalogObjectId: ord.item.variations[0].varid,
