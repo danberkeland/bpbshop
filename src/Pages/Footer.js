@@ -5,6 +5,11 @@ import { Button } from "primereact/button";
 import { Title } from "../CommonStyles";
 
 function Footer() {
+
+  const handleDirections = () => {
+    window.open('https://www.google.com/maps/dir/?api=1&destination=6005+El+Camino+Real+Atascadero+CA+93422','_blank')
+  }
+
   return (
     <React.Fragment>
       <div className="locationInfoBox">
@@ -23,7 +28,7 @@ function Footer() {
               label="GET DIRECTIONS"
               className="p-button-rounded p-button-primary p-button-outlined"
               aria-label="Bookmark"
-              onClick={() => {}}
+              onClick={handleDirections}
             />
           </div>
           <div className="column">
