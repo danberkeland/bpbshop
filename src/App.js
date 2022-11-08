@@ -3,7 +3,13 @@ import React from "react";
 import { Amplify } from "aws-amplify";
 import awsmobile from "./aws-exports";
 
-import { BrowserRouter as Router } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+  
+  
+} from "react-router-dom";
 
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -15,6 +21,7 @@ import Loader from "./AppStructure/Loader";
 import { useSettingsStore } from "./Contexts/SettingsZustand";
 import { Choose } from "./Pages/Choose";
 import InfoChosen from "./Pages/InfoChosen";
+import { Confirm } from "./Pages/Confirm";
 
 import styled from "styled-components";
 
@@ -34,13 +41,17 @@ export function App() {
   const formType = useSettingsStore((state) => state.formType);
   const isLoading = useSettingsStore((state) => state.isLoading);
 
+
+
+ 
   return (
     <React.Fragment>
       {isLoading && <Loader />}
 
-
       <Router>
-        {formType === "infoChosen" ? (
+      <Routes>
+          <Route path="/Confirm" element={<Confirm />} />
+          <Route path="/" element={formType === "infoChosen" ? (
           <InfoChosen />
         ) : (
           <React.Fragment>
@@ -49,7 +60,9 @@ export function App() {
               <Choose />
             </LoaderBack>
           </React.Fragment>
-        )}
+        )}/>
+        </Routes>
+        
       </Router>
     </React.Fragment>
   );

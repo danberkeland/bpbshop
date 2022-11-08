@@ -35,6 +35,9 @@ export const Title = styled.h2`
   color: rgb(66, 97, 201);
 `;
 
+
+
+
 export const SubInfo = styled.div`
   padding: 0;
   margin: 8px 10px;
@@ -55,6 +58,18 @@ export const GroupBox = styled.div`
   width: 95%;
   margin: 5px 10px 20px 10px;
   padding: 5px 5px 10px 5px;
+`;
+
+
+export const GroupBoxCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  border: 1px solid lightgrey;
+  width: 100%;
+ 
+  padding: 20px;
 `;
 
 export const FlexSpaceBetween = styled.div`
