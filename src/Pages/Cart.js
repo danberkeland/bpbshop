@@ -93,10 +93,12 @@ function Cart({ displayCart, setDisplayCart }) {
 
     console.log("newDate", newDate);
     let pickup = newDate;
-    let fulfill = `For pickup at ${location} on ${date_convert(
-      delivDate
-    )} at ${time_convert(delivTime * 60)}`;
-    console.log("pickup", pickup);
+    let fulfill = {
+      location: location,
+      delivDate: delivDate,
+      delivTime: delivTime
+    }
+    
 
     let event = {
       fulfill: fulfill,
