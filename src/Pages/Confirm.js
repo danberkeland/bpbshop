@@ -16,10 +16,13 @@ export const Confirm = () => {
   const handleClick = () => {
     window.location.href = "https://www.backporchbakery.com"
   }
+  let location = ""
+  let delivDate = ""
+  let delivTime = ""
 
-  let location = searchParams.get('location').charAt(0).toUpperCase()+searchParams.get('location').slice(1)
-  let delivDate = date_convert(searchParams.get('delivDate'))
-  let delivTime = time_convert(searchParams.get('delivTime')*60)
+  try {location = searchParams.get('location').charAt(0).toUpperCase()+searchParams.get('location').slice(1)
+  delivDate = date_convert(searchParams.get('delivDate'))
+  delivTime = time_convert(searchParams.get('delivTime')*60)} catch{}
 
 
   return (
