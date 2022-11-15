@@ -67,7 +67,7 @@ export const infoChosen = (event, location, init, setInit) => {
       : newDate.getMonth() + 1) +
     "-" +
     (newDate.getDate() < 10 ? "0" + newDate.getDate() : newDate.getDate());
-  if (init===false && event.location !== location && fullTime>11) {
+  if ((init===false && event.location !== location && fullTime>11) || newDate.getDate() === 24) {
     newTime = new Date(Date.parse("01 Jan 2022 07:00:00"));
     fullTime = newTime.getHours() + newTime.getMinutes() / 60;
     event.time = newTime

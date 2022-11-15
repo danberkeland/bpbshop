@@ -159,6 +159,13 @@ h3 {
   padding: 10px;
 }
 
+.spaceFlex {
+  width: 50vh;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
 .itemContainer {
   border-color: rgb(211, 211, 211);
   border-radius: 4px;

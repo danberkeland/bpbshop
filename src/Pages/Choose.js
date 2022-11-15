@@ -40,7 +40,10 @@ const locations = [
     label: "Carlton",
     value: "carlton",
     open: "01 Jan 2022 07:00:00",
-    close: "01 Jan 2022 14:00:00",
+    close:
+      newDate.getDate() !== 24
+        ? "01 Jan 2022 14:00:00"
+        : "01 Jan 2022 11:30:00",
   },
 ];
 
@@ -53,12 +56,11 @@ export const Choose = () => {
   const location = useSettingsStore((state) => state.location);
   const [showMessage, setShowMessage] = useState(false);
 
-  
-const initialState = {
-  location: location,
-  pickup: delivDateProgram,
-  time: delivTimeProgram,
-};
+  const initialState = {
+    location: location,
+    pickup: delivDateProgram,
+    time: delivTimeProgram,
+  };
 
   const editButtonStyle = {
     width: "100px",
@@ -92,7 +94,12 @@ const initialState = {
     );
 
     let openTime = new Date(Date.parse(locations[ind].open));
-    let closeTime = new Date(Date.parse(locations[ind].close));
+    let closeTime =
+      props.values.pickup.getDate() !== 24
+        ? new Date(Date.parse(locations[ind].close))
+        : new Date(Date.parse("01 Jan 2022 11:30:00"));
+
+    console.log("closeTime", closeTime);
 
     return (
       <React.Fragment>
@@ -163,7 +170,7 @@ const initialState = {
       name="pickup"
       validationSchema={validationSchema}
       initialState={initialState}
-      update={e => infoChosen(e, location,init, setInit)}
+      update={(e) => infoChosen(e, location, init, setInit)}
       setShowMessage={setShowMessage}
     />
   );
