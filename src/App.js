@@ -51,13 +51,23 @@ export function App() {
       <Router>
       <Routes>
           <Route path="/Confirm" element={<Confirm />} />
-          <Route path="/" element={formType === "infoChosen" ? (
-          <InfoChosen />
+          <Route path="/mikeb2023" element={formType === "infoChosen" ? (
+          <InfoChosen promocode="mikeb2023"/>
         ) : (
           <React.Fragment>
-            <InfoChosen />
+            <InfoChosen promocode="mikeb2023"/>
             <LoaderBack>
-              <Choose />
+              <Choose promocode="mikeb2023"/>
+            </LoaderBack>
+          </React.Fragment>
+        )}/>
+          <Route path="/" element={formType === "infoChosen" ? (
+          <InfoChosen promocode="nocode"/>
+        ) : (
+          <React.Fragment>
+            <InfoChosen promocode="nocode"/>
+            <LoaderBack>
+              <Choose promocode="nocode"/>
             </LoaderBack>
           </React.Fragment>
         )}/>

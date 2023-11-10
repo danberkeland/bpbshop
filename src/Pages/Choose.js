@@ -47,7 +47,7 @@ const locations = [
   },
 ];
 
-export const Choose = () => {
+export const Choose = (props) => {
   const setIsEdit = useSettingsStore((state) => state.setIsEdit);
   const delivDateProgram = useSettingsStore((state) => state.delivDateProgram);
   const delivTimeProgram = useSettingsStore((state) => state.delivTimeProgram);
@@ -55,6 +55,8 @@ export const Choose = () => {
   const setInit = useSettingsStore((state) => state.setInit);
   const location = useSettingsStore((state) => state.location);
   const [showMessage, setShowMessage] = useState(false);
+
+  console.log('choose props', props.promocode)
 
   const initialState = {
     location: location,

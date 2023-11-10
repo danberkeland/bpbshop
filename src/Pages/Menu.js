@@ -1327,3 +1327,268 @@ export const menu = [
     ],
   },
 ];
+
+
+export const Tmenu = [
+  {
+    title: "Thanksgiving",
+    info: "Order now!!",
+    items: [
+      {
+        name: "Pumpkin Tart (7 in)",
+        description:
+          "Azita's 7 inch Pumpkin Tart w/ cinnamon and pumpkin ganache.",
+        price: 27,
+        sqid: "TKFTYXRTLAGK3KAUXPJ5YNSE",
+        variations: [
+          {
+            varid: "L5ZMBJZQPBZMY3CUIF4NHFAM",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+      
+        url: "https://items-images-production-f.squarecdn.com/files/01c0f968be980e827611de1e4a7ce75dd1cefe79/original.jpeg?width=516&fit=bounds&enable=upscale",
+        location: "carlton",
+        start: 7,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+
+      
+      {
+        name: "Chocolate Caramel Pecan Pie (7 in)",
+        description: "Azita's Chocolate Caramel Pecan Pie (7 in)",
+        price: 27,
+        sqid: "7BYMXB5KRH5UMYR6X5ITHCP5",
+        variations: [
+          {
+            varid: "HKJN5XINIWXJDI6TMABQP4YZ",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p458_i1_w2791.jpeg",
+        location: "carlton",
+        start: 7,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+      {
+        name: "Pumpkin Pie",
+        description: "Classic Pumpkin Pie",
+        price: 23,
+        sqid: "NLCMLDOGFWIZJZQLUOOBVYEI",
+        variations: [
+          {
+            varid: "NVLOBXO4DIXDQV4FBGE36NTD",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p463_i1_w800.jpeg",
+        location: "carlton",
+        start: 7,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+      {
+        name: "Pecan Pie",
+        description: "Classic Pecan Pie",
+        price: 25,
+        sqid: "TONUVVEZNERSIUHOZ2T6Y7KG",
+        variations: [
+          {
+            varid: "P7AD2E4C55U7DJ76UL6Z6UZJ",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p467_i1_w800.jpeg",
+        location: "carlton",
+        start: 7,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+      {
+        name: "Brioche Dinner Rolls (12)",
+        description:
+          "Wheat flour, water, butter, sugar, milk powder, salt, yeast",
+        price: 7.35,
+        sqid: "JT33KV4Y6E2ALGTJ2BYMCXMN",
+        variations: [
+          {
+            varid: "SDUDPDWHCOBU2GZR5SHGFDNI",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        discount: '123456',
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p260_i1_w590.jpeg",
+        location: "carlton",
+        start: 7,
+        lead: 2,
+        days: null,
+        specialStart: null,
+        specialEnd: null,
+      },
+      {
+        name: "Pesto Pull Apart Brioche Loaf",
+        description: "Pesto Pull Apart Brioche Loaf",
+        price: 9.75,
+        sqid: "IHXEVJV375MWQDJ6O32KWVLN",
+        variations: [
+          {
+            varid: "MM2KMHYOVSXMM45U3KEZASDJ",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p469_i1_w2484.jpeg",
+        location: "carlton",
+        start: 7,
+        lead: 2,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+      
+      {
+        name: "Pumpkin Tart (7 in)",
+        description:
+          "Azita's 7 inch Pumpkin Tart w/ cinnamon and pumpkin ganache.",
+        price: 27,
+        sqid: "TKFTYXRTLAGK3KAUXPJ5YNSE",
+        variations: [
+          {
+            varid: "L5ZMBJZQPBZMY3CUIF4NHFAM",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://items-images-production-f.squarecdn.com/files/01c0f968be980e827611de1e4a7ce75dd1cefe79/original.jpeg?width=516&fit=bounds&enable=upscale",
+        location: "prado",
+        start: 8.5,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+      
+
+      {
+        name: "Chocolate Caramel Pecan Pie (7 in)",
+        description: "Azita's Chocolate Caramel Pecan Pie (7 in)",
+        price: 27,
+        sqid: "7BYMXB5KRH5UMYR6X5ITHCP5",
+        variations: [
+          {
+            varid: "HKJN5XINIWXJDI6TMABQP4YZ",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p458_i1_w2791.jpeg",
+        location: "prado",
+        start: 8.5,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+
+      {
+        name: "Pumpkin Pie",
+        description: "Classic Pumpkin Pie",
+        price: 23,
+        sqid: "NLCMLDOGFWIZJZQLUOOBVYEI",
+        variations: [
+          {
+            varid: "NVLOBXO4DIXDQV4FBGE36NTD",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p463_i1_w800.jpeg",
+        location: "prado",
+        start: 8.5,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+
+      {
+        name: "Pecan Pie",
+        description: "Classic Pecan Pie",
+        price: 25,
+        sqid: "TONUVVEZNERSIUHOZ2T6Y7KG",
+        variations: [
+          {
+            varid: "P7AD2E4C55U7DJ76UL6Z6UZJ",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p467_i1_w800.jpeg",
+        location: "prado",
+        start: 8.5,
+        lead: 6,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+      {
+        name: "Brioche Dinner Rolls (12)",
+        description:
+          "Wheat flour, water, butter, sugar, milk powder, salt, yeast",
+        price: 7.35,
+        sqid: "JT33KV4Y6E2ALGTJ2BYMCXMN",
+        variations: [
+          {
+            varid: "SDUDPDWHCOBU2GZR5SHGFDNI",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        discount: '123456',
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p260_i1_w590.jpeg",
+        location: "prado",
+        start: 7,
+        lead: 2,
+        days: null,
+        specialStart: null,
+        specialEnd: null,
+      },
+      {
+        name: "Pesto Pull Apart Brioche Loaf",
+        description: "Pesto Pull Apart Brioche Loaf",
+        price: 9.75,
+        sqid: "IHXEVJV375MWQDJ6O32KWVLN",
+        variations: [
+          {
+            varid: "MM2KMHYOVSXMM45U3KEZASDJ",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p469_i1_w2484.jpeg",
+        location: "prado",
+        start: 8.5,
+        lead: 2,
+        days: null,
+        specialStart: "2023-11-21",
+        specialEnd: "2023-11-23",
+      },
+
+      
+    ],
+  }]

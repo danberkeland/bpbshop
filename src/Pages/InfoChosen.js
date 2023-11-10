@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSettingsStore } from "../Contexts/SettingsZustand";
 import { Button } from "primereact/button";
 import { Accordion, AccordionTab } from "primereact/accordion";
-import { menu } from "./Menu";
+import { Tmenu, menu } from "./Menu";
 import { time_convert, date_convert, checkAvailable, itemFilter } from "./utils";
 import background from "../pastryblock.jpg";
 import SingleItemForm from "./SingleItemForm";
@@ -11,7 +11,7 @@ import Cart from "./Cart";
 
 
 
-function InfoChosen() {
+function InfoChosen(props) {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivTime = useSettingsStore((state) => state.delivTime);
   const location = useSettingsStore((state) => state.location);
@@ -19,6 +19,15 @@ function InfoChosen() {
   const setSelected = useSettingsStore((state) => state.setSelected);
   const cartOrder = useSettingsStore((state) => state.cartOrder);
   const setCartOrder = useSettingsStore((state) => state.setCartOrder);
+
+  console.log('infochosen props', props.promocode)
+
+  let usemenu
+  if (props.promocode === "mikeb2023"){
+    usemenu = Tmenu
+  } else {
+    usemenu = menu
+  }
 
 
   const [displayBasic, setDisplayBasic] = useState(false);
@@ -58,9 +67,11 @@ function InfoChosen() {
       <Cart 
       displayCart={displayCart} 
       setDisplayCart={setDisplayCart}
+      promocode={props.promocode}
       />
 
       <SingleItemForm
+        promocode={props.promocode}
         displayBasic={displayBasic} 
         setDisplayBasic={setDisplayBasic}
         menuGroup={menuGroup}
@@ -137,7 +148,7 @@ function InfoChosen() {
           <h1 className="bigTitle">BACK PORCH BAKERY</h1>
         </div>
         <Accordion multiple>
-          {menu.map((group, index1) => {
+          {usemenu.map((group, index1) => {
             return (
               group.items.filter(item => itemFilter(item,delivDate,location)).length > 0 && (
                 <AccordionTab header={group.title}>

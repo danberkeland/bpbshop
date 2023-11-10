@@ -17,7 +17,7 @@ import { Title, SubInfo } from "../CommonStyles";
 
 const { DateTime } = require("luxon");
 
-function Cart({ displayCart, setDisplayCart }) {
+function Cart({ promocode, displayCart, setDisplayCart }) {
   const delivDate = useSettingsStore((state) => state.delivDate);
   const delivDateProgram = useSettingsStore((state) => state.delivDateProgram);
   const delivTime = useSettingsStore((state) => state.delivTime);
@@ -29,9 +29,56 @@ function Cart({ displayCart, setDisplayCart }) {
   const setIsLoading = useSettingsStore((state) => state.setIsLoading);
   const toast = useRef(null);
 
+  console.log("cart promocode", promocode);
   const onHide = () => {
     setDisplayCart(false);
   };
+
+
+
+  let discounts;
+  let discountMessage;
+
+  // Get the current date
+const currentDate = new Date();
+
+// Create a date object for November 18, 2023
+const targetDate = new Date('2023-11-18');
+
+// Compare the current date with the target date
+if (currentDate < targetDate) {
+  console.log("Today's date is less than November 18, 2023.");
+} else {
+  console.log("Today's date is not less than November 18, 2023.");
+}
+
+
+  if (promocode === "mikeb2023" && currentDate < targetDate) {
+    discounts = {
+      uid: "123457",
+      scope: "ORDER",
+
+      type: "FIXED_AMOUNT",
+      amountMoney: {
+        amount: 2500,
+        currency: "USD"
+      },
+      name: "Mike B Pies",
+    };
+    discountMessage =
+      "A $25 discount will be applied to your order thanks to Mike B!";
+  } else {
+    discounts = {
+      uid: "123456",
+      scope: "LINE_ITEM",
+
+      type: "FIXED_PERCENTAGE",
+      percentage: "20",
+      name: "Preorder discount",
+    };
+    discountMessage =
+      "A 20% preorder discount will be applied to breads and pastries at checkout.";
+  }
 
   const handleChangePickup = () => {
     setDisplayCart(false);
@@ -66,11 +113,12 @@ function Cart({ displayCart, setDisplayCart }) {
       )
       .map((ord) => {
         console.log("ord", ord);
-       
-        let applied = ord.item.discount ? {
-          discountUid: ord.item.discount
-        } : {discountUid: "000000"}
-         
+
+        let applied = ord.item.discount
+          ? {
+              discountUid: ord.item.discount,
+            }
+          : { discountUid: "000000" };
 
         return {
           appliedDiscounts: [applied],
@@ -96,9 +144,8 @@ function Cart({ displayCart, setDisplayCart }) {
     let fulfill = {
       location: location,
       delivDate: delivDate,
-      delivTime: delivTime
-    }
-    
+      delivTime: delivTime,
+    };
 
     let event = {
       fulfill: fulfill,
@@ -116,14 +163,7 @@ function Cart({ displayCart, setDisplayCart }) {
           },
         ],
         discounts: [
-          {
-            uid: "123456",
-            scope: "LINE_ITEM",
-
-            type: "FIXED_PERCENTAGE",
-            percentage: "20",
-            name: "Preorder discount",
-          },
+          discounts,
           {
             uid: "000000",
             scope: "LINE_ITEM",
@@ -132,6 +172,7 @@ function Cart({ displayCart, setDisplayCart }) {
             percentage: "0",
             name: "Preorder discount",
           },
+          
         ],
       },
     };
@@ -294,7 +335,7 @@ function Cart({ displayCart, setDisplayCart }) {
             })}
             <div className="center">
               <h4>TOTAL: ${totalPrice().toFixed(2)} + tax</h4>
-              <h4>A 20% preorder discount will be applied to breads and pastries at checkout.</h4>
+              <h4>{discountMessage}</h4>
               <Button
                 type="button"
                 icon="pi pi-shopping-cart"

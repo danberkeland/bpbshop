@@ -15,6 +15,7 @@ import { Title, SubInfo } from "../CommonStyles";
 import { time_convert, date_convert } from "./utils";
 
 function SingleItemForm({
+  promocode,
   displayBasic,
   setDisplayBasic,
   menuGroup,
@@ -34,6 +35,7 @@ function SingleItemForm({
   const setCartOrder = useSettingsStore((state) => state.setCartOrder);
   const toast = useRef(null);
 
+  console.log('singleItempromocode', promocode)
   useEffect(() => {
     console.log("modifiers", modifiers);
   }, [modifiers]);
