@@ -1174,28 +1174,6 @@ export const menu = [
         specialEnd: null,
       },
       {
-        name: "Blue Cheese Walnut",
-        description:
-          "Wheat flour, water, walnuts, blue cheese, natural starter, salt, yeast",
-        price: 7.95,
-        sqid: "CVKZ6E3OCHBKDVB7YZPB3J6N",
-        variations: [
-          {
-            varid: "77OSDARFCER2RPZJPMG42SC2",
-            varDescrip: "",
-            priceDiff: 0,
-          },
-        ],
-        discount: '123456',
-        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p3_i2_w2448.jpeg",
-        location: "prado",
-        start: 8.5,
-        lead: 2,
-        days: null,
-        specialStart: null,
-        specialEnd: null,
-      },
-      {
         name: "Olive Herb",
         description:
           "Wheat flour, water, kalamata olives, queen olives, natural starter, herbs de provence, salt, yeast",
@@ -1217,6 +1195,29 @@ export const menu = [
         specialStart: null,
         specialEnd: null,
       },
+      {
+        name: "Blue Cheese Walnut",
+        description:
+          "Wheat flour, water, walnuts, blue cheese, natural starter, salt, yeast",
+        price: 7.95,
+        sqid: "CVKZ6E3OCHBKDVB7YZPB3J6N",
+        variations: [
+          {
+            varid: "77OSDARFCER2RPZJPMG42SC2",
+            varDescrip: "",
+            priceDiff: 0,
+          },
+        ],
+        discount: '123456',
+        url: "https://backporchbakery.square.site/uploads/1/2/9/7/129700795/s925172661976394124_p3_i2_w2448.jpeg",
+        location: "prado",
+        start: 8.5,
+        lead: 2,
+        days: null,
+        specialStart: null,
+        specialEnd: null,
+      },
+      
       {
         name: "Epi",
         description: "Wheat flour, water, natural starter, salt, yeast",
