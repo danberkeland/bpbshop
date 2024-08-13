@@ -123,7 +123,7 @@ export const checkout = async (event, setIsLoading) => {
     //let url = await response.json();
     //url = JSON.parse(url);
     setIsLoading(false);
-
+    console.log('url', response)
     let url = await JSON.parse(response.data)
     setTimeout(window.location.href = url, 2000)
     
