@@ -109,7 +109,7 @@ export const menu = [
         name: "Pumpkin Tart (7 in)",
         description:
           "Azita's 7 inch Pumpkin Tart w/ cinnamon and pumpkin ganache.",
-        price: 27,
+        price: 29,
         sqid: "TKFTYXRTLAGK3KAUXPJ5YNSE",
         variations: [
           {
@@ -124,15 +124,15 @@ export const menu = [
         start: 7,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
 
       
       {
         name: "Chocolate Caramel Pecan Pie (7 in)",
         description: "Azita's Chocolate Caramel Pecan Pie (7 in)",
-        price: 27,
+        price: 29,
         sqid: "7BYMXB5KRH5UMYR6X5ITHCP5",
         variations: [
           {
@@ -146,8 +146,8 @@ export const menu = [
         start: 7,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
       {
         name: "Pumpkin Pie",
@@ -166,8 +166,8 @@ export const menu = [
         start: 7,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
       {
         name: "Pecan Pie",
@@ -186,8 +186,8 @@ export const menu = [
         start: 7,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
       {
         name: "Brioche Dinner Rolls (12)",
@@ -228,15 +228,15 @@ export const menu = [
         start: 7,
         lead: 2,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
       
       {
         name: "Pumpkin Tart (7 in)",
         description:
           "Azita's 7 inch Pumpkin Tart w/ cinnamon and pumpkin ganache.",
-        price: 27,
+        price: 29,
         sqid: "TKFTYXRTLAGK3KAUXPJ5YNSE",
         variations: [
           {
@@ -250,15 +250,15 @@ export const menu = [
         start: 8.5,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
       
 
       {
         name: "Chocolate Caramel Pecan Pie (7 in)",
         description: "Azita's Chocolate Caramel Pecan Pie (7 in)",
-        price: 27,
+        price: 29,
         sqid: "7BYMXB5KRH5UMYR6X5ITHCP5",
         variations: [
           {
@@ -272,8 +272,8 @@ export const menu = [
         start: 8.5,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
 
       {
@@ -293,8 +293,8 @@ export const menu = [
         start: 8.5,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
 
       {
@@ -314,8 +314,8 @@ export const menu = [
         start: 8.5,
         lead: 6,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
       {
         name: "Brioche Dinner Rolls (12)",
@@ -356,8 +356,8 @@ export const menu = [
         start: 8.5,
         lead: 2,
         days: null,
-        specialStart: "2023-11-21",
-        specialEnd: "2023-11-23",
+        specialStart: "2024-11-26",
+        specialEnd: "2024-11-28",
       },
 
       
