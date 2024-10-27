@@ -119,7 +119,7 @@ export const menu = [
           },
         ],
       
-        url: "https://items-images-production-f.squarecdn.com/files/01c0f968be980e827611de1e4a7ce75dd1cefe79/original.jpeg?width=516&fit=bounds&enable=upscale",
+        url: "https://items-images-production-f.squarecdn.com/files/3b9ec50470d2343c6831ad12767ac8d70a228910/original.jpeg?width=550&fit=bounds&enable=upscale",
         location: "carlton",
         start: 7,
         lead: 6,
@@ -245,7 +245,7 @@ export const menu = [
             priceDiff: 0,
           },
         ],
-        url: "https://items-images-production-f.squarecdn.com/files/01c0f968be980e827611de1e4a7ce75dd1cefe79/original.jpeg?width=516&fit=bounds&enable=upscale",
+        url: "https://items-images-production-f.squarecdn.com/files/3b9ec50470d2343c6831ad12767ac8d70a228910/original.jpeg?width=550&fit=bounds&enable=upscale",
         location: "prado",
         start: 8.5,
         lead: 6,
