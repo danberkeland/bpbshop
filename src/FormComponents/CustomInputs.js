@@ -44,12 +44,18 @@ const CustomTextInputBase = ({ label, ...props }) => {
 };
 
 const CustomCalendarBase = ({ label, ...props }) => {
+  
+  const disabledDates = [
+    new Date(2024, 11, 25)
+  ];
+
   return (
     <Calendar
       {...props}
       type="string"
       minDate={newDate}
       value={props.value ? props.value : ""}
+      disabledDates={disabledDates}
     />
   );
 };
