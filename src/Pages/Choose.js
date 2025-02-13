@@ -31,7 +31,7 @@ const initialState = {
 
 const locations = [
   {
-    label: "Prado",
+    label: "San Luis Obispo",
     value: "prado",
     open: "01 Jan 2022 07:00:00",
     close: "01 Jan 2022 11:00:00",
