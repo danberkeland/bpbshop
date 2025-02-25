@@ -755,7 +755,7 @@ export const menu = [
         name: "Chocolate Croissant",
         description:
           "Wheat flour, water, butter, chocolate, sugar, salt, yeast",
-        price: 4.85,
+        price: 4.50,
         sqid: "5WV2EBECSFPICUDUXNE6EWPQ",
         variations: [
           {
@@ -777,7 +777,7 @@ export const menu = [
         name: "Morning Bun",
         description:
           "Wheat flour, water, butter, sugar, salt, cinammon, orange zest, yeast",
-        price: 4.85,
+        price: 4.50,
         sqid: "A2KJVO3L6LEVZ3OBDGFU53PB",
         variations: [
           {
@@ -798,7 +798,7 @@ export const menu = [
       {
         name: "All Butter Croissant",
         description: "Wheat flour, water, butter, sugar, salt, yeast",
-        price: 3.70,
+        price: 3.50,
         sqid: "WKGVREPSY7K7ZNDGRYWWWCJQ",
         variations: [
           {
@@ -820,7 +820,7 @@ export const menu = [
         name: "Almond Croissant",
         description:
           "Wheat flour, water, butter, eggs, almonds, sugar, salt, almond extract, yeast",
-        price: 6.25,
+        price: 6,
         sqid: "SUZ6S4BR5BO7K2YDXL34R7UN",
         variations: [
           {
@@ -842,7 +842,7 @@ export const menu = [
         name: "Spinach Feta Croissant",
         description:
           "Wheat flour, water, butter, spinach, feta, cream cheese, parsley, dill, sugar, salt, yeast",
-        price: 6.25,
+        price: 6,
         sqid: "VRGUZK6LRX5VLQJEKLP2JZC2",
         variations: [
           {
@@ -864,7 +864,7 @@ export const menu = [
         name: "Ham and Cheese Croissant",
         description:
           "Wheat flour, water, butter, ham, swiss cheese, sugar, salt, yeast.",
-        price: 6.25,
+        price: 6,
         sqid: "V2RSBJ7GVUDXRRGDS5MZC6T7",
         variations: [
           {
@@ -1111,7 +1111,7 @@ export const menu = [
         name: "Brioche Loaf",
         description:
           "Wheat flour, water, butter, sugar, milk powder, salt, yeast",
-        price: 7.75,
+        price: 7.50,
         sqid: "M7ZPR7KYXNN3JLQDD3ZQLZZE",
         variations: [
           {
@@ -1133,7 +1133,7 @@ export const menu = [
         name: "Brioche Buns (8)",
         description:
           "Wheat flour, water, butter, sugar, milk powder, salt, yeast",
-        price: 7.75,
+        price: 7.50,
         sqid: "MGDRYUMVNXHFFOICMQRGFHJO",
         variations: [
           {
@@ -1155,7 +1155,7 @@ export const menu = [
         name: "Brioche Dinner Rolls (12)",
         description:
           "Wheat flour, water, butter, sugar, milk powder, salt, yeast",
-        price: 7.75,
+        price: 7.50,
         sqid: "JT33KV4Y6E2ALGTJ2BYMCXMN",
         variations: [
           {
@@ -1177,7 +1177,7 @@ export const menu = [
         name: "Olive Herb",
         description:
           "Wheat flour, water, kalamata olives, queen olives, natural starter, herbs de provence, salt, yeast",
-        price: 8.25,
+        price: 8,
         sqid: "OXASXKSSZWM3S4HYIZBOHYQW",
         variations: [
           {
@@ -1199,7 +1199,7 @@ export const menu = [
         name: "Blue Cheese Walnut",
         description:
           "Wheat flour, water, walnuts, blue cheese, natural starter, salt, yeast",
-        price: 8.25,
+        price: 8,
         sqid: "CVKZ6E3OCHBKDVB7YZPB3J6N",
         variations: [
           {
@@ -1242,7 +1242,7 @@ export const menu = [
       {
         name: "BPB Baguette",
         description: "Wheat flour, water, natural starter, salt, yeast",
-        price: 3.7,
+        price: 3.5,
         sqid: "MXWDWKDPJ2633BO7SURJWOLM",
         variations: [
           {
@@ -1264,7 +1264,7 @@ export const menu = [
         name: "Country Rye",
         description:
           "Wheat flour, rye flour, water, natural starter, salt, yeast",
-        price: 7.75,
+        price: 6,
         sqid: "C34CXVX6JXTIACXRDCV5PADU",
         variations: [
           {
@@ -1285,7 +1285,7 @@ export const menu = [
       {
         name: "Country Batard",
         description: "Wheat flour, water, natural starter, salt",
-        price: 7.75,
+        price: 6,
         sqid: "M72IUS7PDXZ3QA6DKSNKNRY5",
         variations: [
           {
@@ -1307,7 +1307,7 @@ export const menu = [
         name: "Multigrain",
         description:
           "Wheat flour, nine-grain mix, whole wheat flour, rye flour, water, natural starter, vital wheat gluten, salt, yeast",
-        price: 6.56,
+        price: 5.5,
         sqid: "J4UJQC7LJEE4QFE2FDVJSDND",
         variations: [
           {
