@@ -6,14 +6,18 @@ import { Title } from "../CommonStyles";
 
 function Footer() {
 
-  const handleDirections = () => {
+  const handleDirections1 = () => {
     window.open('https://www.google.com/maps/dir/?api=1&destination=6005+El+Camino+Real+Atascadero+CA+93422','_blank')
+  }
+
+  const handleDirections2 = () => {
+    window.open('https://maps.app.goo.gl/veL9a1WuBBP69La67','_blank')
   }
 
   return (
     <React.Fragment>
       <div className="locationInfoBox">
-        <Title>Location & Hours</Title>
+        <Title>Location & Hours Carlton Hotel</Title>
         <div className="twoColumns">
           <div className="column">
             <div>Back Porch Bakery</div>
@@ -28,7 +32,7 @@ function Footer() {
               label="GET DIRECTIONS"
               className="p-button-rounded p-button-primary p-button-outlined"
               aria-label="Bookmark"
-              onClick={handleDirections}
+              onClick={handleDirections1}
             />
           </div>
           <div className="column">
@@ -39,6 +43,35 @@ function Footer() {
             <div>Thursday 7:00 am - 2:00 pm</div>
             <div>Friday 7:00 am - 2:00 pm</div>
             <div>Saturday 7:00 am - 2:00 pm</div>
+          </div>
+        </div>
+      </div>
+      <div className="locationInfoBox">
+        <Title>Location & Hours San Luis Obispo</Title>
+        <div className="twoColumns">
+          <div className="column">
+            <div>Back Porch Bakery</div>
+            <div>3536 S. Higuera #210</div>
+            <div>San Luis Obispo, California 93401</div>
+            <div>backporchbakeryslo@gmail.com</div>
+            <div className="gap"> </div>
+            <Button
+              type="button"
+              icon="pi pi-map"
+              label="GET DIRECTIONS"
+              className="p-button-rounded p-button-primary p-button-outlined"
+              aria-label="Bookmark"
+              onClick={handleDirections2}
+            />
+          </div>
+          <div className="column">
+            <div>Sunday 7:00 am - 12:00 pm</div>
+            <div>Monday 7:00 am - 12:00 pm</div>
+            <div>Tuesday 7:00 am - 12:00 pm</div>
+            <div>Wednesday 7:00 am - 12:00 pm</div>
+            <div>Thursday 7:00 am - 12:00 pm</div>
+            <div>Friday 7:00 am - 12:00 pm</div>
+            <div>Saturday 7:00 am - 12:00 pm</div>
           </div>
         </div>
       </div>
