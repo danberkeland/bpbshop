@@ -33,7 +33,7 @@ export const Confirm = () => {
         <div className="space">We'll see you at {location}</div>
         <div className="space">{delivDate}</div>
         <div className="space">{delivTime}</div>
-        <div className="space">A receipt has been sent to your email.</div>
+        <div className="space">A receipt has been sent to your email</div>
         <Button label="www.backporchbakery.com" className="p-button-text" onClick={handleClick}/>
       </GroupBoxCenter>
     </CenteredContainer>
